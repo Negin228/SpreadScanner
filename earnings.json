@@ -1,17 +1,17 @@
 {
-  "updated": "seed - will be overwritten by the first fetch_earnings.py run",
+  "updated": "2026-06-03 22:19:22 UTC",
   "earnings": {
-    "NVDA": null,
-    "AMZN": null,
-    "MSFT": null,
-    "META": null,
-    "GOOG": null,
-    "NFLX": null,
-    "TSLA": null,
+    "NVDA": "2026-08-26",
+    "AMZN": "2026-07-30",
+    "MSFT": "2026-07-29",
+    "META": "2026-07-29",
+    "GOOG": "2026-07-23",
+    "NFLX": "2026-07-16",
+    "TSLA": "2026-07-22",
     "SPY": null,
-    "AMD": null,
-    "AAPL": null,
-    "ORCL": null,
+    "AMD": "2026-08-04",
+    "AAPL": "2026-07-30",
+    "ORCL": "2026-06-10",
     "TQQQ": null
   }
 }
