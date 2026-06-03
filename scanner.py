@@ -263,6 +263,24 @@ def run_workstation_scan():
         "top_signals": all_signals[:20]
     }
 
+    # Anti-blank guard: if this scan found ZERO signals (e.g. a pre-market or
+    # after-hours run where option bids are 0 and every leg gets filtered out),
+    # do NOT overwrite a perfectly good existing signals.json. Keep the last
+    # session's data on the dashboard until a live scan produces real signals.
+    if not all_signals:
+        existing = []
+        if os.path.exists(OUTPUT_FILE):
+            try:
+                with open(OUTPUT_FILE, "r") as f:
+                    existing = json.load(f).get("top_signals", [])
+            except Exception:
+                existing = []
+        if existing:
+            print(f"\n[SKIP] Scan produced 0 signals (likely market closed). "
+                  f"Keeping previous {len(existing)} signals in {OUTPUT_FILE} "
+                  f"instead of blanking the dashboard.")
+            return
+
     with open(OUTPUT_FILE, "w") as f:
         json.dump(report, f, indent=4)
 
