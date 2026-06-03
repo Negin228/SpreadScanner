@@ -232,19 +232,26 @@ def run_workstation_scan():
 
                 earnings_date, earnings_before_exp = earnings_check(symbol, exp, earnings_map)
 
+                total_risk = round(metrics["qty"] * max_loss * 100)
+
                 signal = {
                     "symbol": symbol,
                     "expiration": exp,
                     "dte": dte,
                     "spread": spread_label,
                     "spread_key": spread_key,
-                    "underlying_price": price,
+                    "price": round(price, 2),
+                    "underlying_price": round(price, 2),
                     "net_credit": round(net_credit, 2),
                     "max_loss": round(max_loss, 2),
-                    "velocity_edge_score": metrics["velocity_edge_score"],
-                    "edge_ratio": metrics["edge_ratio"],
+                    "ev": metrics["ev"],
                     "pop_pct": metrics["pop"],
                     "rec_qty": metrics["qty"],
+                    "spy_delta_eq": metrics["spy_weighted_delta"],
+                    "correlation_spy": correlation,
+                    "edge_ratio": metrics["edge_ratio"],
+                    "total_risk": total_risk,
+                    "velocity_edge_score": metrics["velocity_edge_score"],
                     "bid_ask_spread_width": round(s_ba_width, 2),
                     "earnings_date": earnings_date,
                     "earnings_before_exp": earnings_before_exp
@@ -260,6 +267,8 @@ def run_workstation_scan():
     report = {
         "scan_time": scan_time,
         "sorting_method": "Velocity Edge Engine (Optimized for Fast Fills & Rapid Theta Decay)",
+        "account_basis": ACCOUNT_SIZE,
+        "benchmark_spy": round(spy_price, 2),
         "top_signals": all_signals[:20]
     }
 
