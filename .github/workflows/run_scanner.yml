@@ -1,0 +1,119 @@
+name: Auto Market Scanner
+
+on:
+  schedule:
+    - cron: '30 11 * * 1-5'   # 4:30 AM PT (PDT=UTC-7), 2 hours before 6:30 open
+  repository_dispatch:
+    types: [chain_restart]
+  workflow_dispatch:
+    inputs:
+      run_block:
+        description: 'Run block (1=open-9:30am, 2=9:30am-close)'
+        required: false
+        default: '1'
+
+# REQUIRED: actions:write lets the GITHUB_TOKEN fire the repository_dispatch
+# that hands off to Block 2. contents:write lets the workflow push signals.json.
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  run-scanner:
+    runs-on: ubuntu-latest
+    env:
+      RUN_BLOCK: ${{ github.event.client_payload.run_block || inputs.run_block || '1' }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Configure git
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+
+      - name: Block 1 — pre-market scan + morning loop (open to 9:30 AM PT)
+        # Max runtime = 9:30 handoff - 4:30 cron = 5h, safely under GitHub's 6h job limit
+        if: env.RUN_BLOCK == '1'
+        env:
+          TRADIER_API_KEY: ${{ secrets.TRADIER_API_KEY }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -e
+
+          run_scan() {
+            echo "────────────────────────────────────────"
+            echo "[SCAN] $(TZ='America/Los_Angeles' date '+%Y-%m-%d %H:%M:%S %Z')"
+            python scanner.py
+            git add signals.json
+            git commit -m "Auto scan $(TZ='America/Los_Angeles' date '+%H:%M %Z')" || true
+            git push
+            echo "[DONE] committed signals.json"
+          }
+
+          echo "[PRE-MARKET] Running initial scan..."
+          run_scan
+
+          echo "[WAIT] Checking market open (6:30 AM PT)..."
+          while ! python pt_check.py 6 30; do
+            echo "[WAIT] Not open yet, sleeping 60s..."
+            sleep 60
+          done
+          echo "[OPEN] Market is open — starting 5-min loop"
+
+          # Loop every 5 min until 9:30 AM PT handoff
+          while ! python pt_check.py 9 30; do
+            run_scan
+            sleep 300
+          done
+          echo "[HANDOFF] Reached 9:30 AM PT — dispatching Block 2"
+
+          # Dispatch Block 2 and CHECK the response (no silent failure)
+          HTTP_CODE=$(curl -s -o /tmp/dispatch_resp.txt -w "%{http_code}" -X POST \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github.v3+json" \
+            -H "Content-Type: application/json" \
+            "https://api.github.com/repos/${{ github.repository }}/dispatches" \
+            -d '{"event_type":"chain_restart","client_payload":{"run_block":"2"}}')
+
+          if [ "$HTTP_CODE" = "204" ]; then
+            echo "[CHAIN] Block 2 dispatched successfully (HTTP 204)"
+          else
+            echo "[ERROR] Dispatch failed with HTTP $HTTP_CODE"
+            cat /tmp/dispatch_resp.txt
+            exit 1
+          fi
+
+      - name: Block 2 — midday loop to market close (9:30 AM to 1:00 PM PT)
+        if: env.RUN_BLOCK == '2'
+        env:
+          TRADIER_API_KEY: ${{ secrets.TRADIER_API_KEY }}
+        run: |
+          set -e
+
+          run_scan() {
+            echo "────────────────────────────────────────"
+            echo "[SCAN] $(TZ='America/Los_Angeles' date '+%Y-%m-%d %H:%M:%S %Z')"
+            python scanner.py
+            git add signals.json
+            git commit -m "Auto scan $(TZ='America/Los_Angeles' date '+%H:%M %Z')" || true
+            git push
+            echo "[DONE] committed signals.json"
+          }
+
+          echo "[BLOCK2] Resuming scan loop until market close (1:00 PM PT)"
+          # Loop until 1:00 PM PT (market close)
+          while ! python pt_check.py 13 0; do
+            run_scan
+            sleep 300
+          done
+          echo "[CLOSE] Market closed at 1:00 PM PT — scanner shutting down"
+          echo "[DONE] Full trading day complete."
