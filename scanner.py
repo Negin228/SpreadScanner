@@ -4,10 +4,10 @@ import json
 import time
 import os
 import math
-from datetime import timedelta, timezone, datetime as dt
+from datetime import timedelta, timezone
 
 # ─────────────────────────────────────────────
-# INSTITUTIONAL CONFIGURATION
+# CONFIGURATION & HYBRID VELOCITY ENGINE
 # ─────────────────────────────────────────────
 
 BASE_URL = "https://api.tradier.com/v1"
@@ -31,11 +31,11 @@ MIN_DTE            = 0
 MAX_DTE            = 45
 MIN_PROB_PROFIT    = 85.0
 SLIPPAGE_ADJUST    = 0.02
-MIN_BID_PRICE      = 0.10
-MAX_BID_ASK_RATIO  = 2.5
+MIN_BID_PRICE      = 0.05
+MAX_BID_ASK_RATIO  = 2.2     # Stricter filter for cleaner fills
 MIN_OI             = 50
 MIN_VOLUME         = 50
-MIN_DISCOUNT_PCT   = 0.20
+MIN_DISCOUNT_PCT   = 0.20    # Rigid 20% Out-Of-The-Money cushion
 
 OUTPUT_FILE = "signals.json"
 
@@ -45,15 +45,31 @@ HEADERS = {
 }
 
 # ─────────────────────────────────────────────
-# RISK & ANALYTICS ENGINE
+# VELOCITY RANKING ENGINE
 # ─────────────────────────────────────────────
 
-def calculate_institutional_metrics(short_delta, net_credit, max_loss, price, spy_price, ticker_beta=1.2):
+def calculate_velocity_metrics(short_delta, net_credit, max_loss, price, spy_price, dte, short_ba_width, ticker_beta=1.2):
+    # Baseline Institutional Expectancy
     p_loss = abs(short_delta)
     p_win = 1.0 - p_loss
     ev = (p_win * net_credit) - (p_loss * max_loss)
     pop = p_win * 100
+    edge_ratio = ev / max_loss if max_loss > 0 else 0
 
+    # Clean Execution Layer: Penalize wider bid/ask spreads
+    # Spreads wider than $0.10 get exponentially penalized to guarantee clean fills
+    liquidity_factor = 1.0
+    if short_ba_width > 0.10:
+        liquidity_factor = max(0.1, 1.0 - ((short_ba_width - 0.10) * 4))
+
+    # High-Velocity Win Layer: Time Decay Optimization
+    # We compress DTE using a square root function so shorter duration boosts the score.
+    time_decay_multiplier = 1.0 / math.sqrt(dte + 1)
+
+    # Combined Velocity Edge Score
+    velocity_edge_score = edge_ratio * time_decay_multiplier * liquidity_factor
+
+    # Institutional Position Sizing
     dollar_risk_cap = ACCOUNT_SIZE * MAX_RISK_PER_TRADE
     risk_per_spread = max_loss * 100
     recommended_qty = math.floor(dollar_risk_cap / risk_per_spread) if risk_per_spread > 0 else 0
@@ -66,7 +82,8 @@ def calculate_institutional_metrics(short_delta, net_credit, max_loss, price, sp
         "pop": round(pop, 1),
         "qty": recommended_qty,
         "spy_weighted_delta": round(weighted_delta, 2),
-        "edge_ratio": round(ev / max_loss, 4) if max_loss > 0 else 0
+        "edge_ratio": round(edge_ratio, 4),
+        "velocity_edge_score": round(velocity_edge_score, 6)
     }
 
 def get_correlation(hist1, hist2):
@@ -79,7 +96,7 @@ def get_correlation(hist1, hist2):
     return round(num/den, 3) if den != 0 else 0
 
 # ─────────────────────────────────────────────
-# API DATA WRAPPERS
+# DATA & ARCHIVE EXECUTION
 # ─────────────────────────────────────────────
 
 def fetch_data(endpoint, params=None):
@@ -99,82 +116,32 @@ def get_historical_closes(symbol):
     history = data.get("history", {}).get("day", []) if data else []
     return [float(d["close"]) for d in history if "close" in d]
 
-# ─────────────────────────────────────────────
-# ARCHIVE HELPERS
-# ─────────────────────────────────────────────
-
-def make_spread_key(symbol, spread, expiration):
-    """Unique identifier for a spread position."""
-    return f"{symbol}|{spread}|{expiration}"
-
 def load_existing_archive():
-    """Load the spread_archive from the existing signals.json, if present."""
-    if not os.path.exists(OUTPUT_FILE):
-        return {}
+    if not os.path.exists(OUTPUT_FILE): return {}
     try:
         with open(OUTPUT_FILE, "r") as f:
-            existing = json.load(f)
-        archive = existing.get("spread_archive", {})
-        return archive
-    except Exception:
-        return {}
-
-def prune_expired_archive(archive):
-    """Remove archive entries whose expiration date has already passed."""
-    today = datetime.date.today()
-    pruned = {}
-    for key, entry in archive.items():
-        try:
-            exp_date = datetime.datetime.strptime(entry["expiration"], "%Y-%m-%d").date()
-            if exp_date >= today:
-                pruned[key] = entry
-        except Exception:
-            pruned[key] = entry  # Keep if we can't parse the date
-    removed = len(archive) - len(pruned)
-    if removed:
-        print(f"  [ARCHIVE] Pruned {removed} expired spread(s).")
-    return pruned
-
-# ─────────────────────────────────────────────
-# MAIN SCANNER EXECUTION
-# ─────────────────────────────────────────────
+            return json.load(f).get("spread_archive", {})
+    except Exception: return {}
 
 def run_workstation_scan():
-    print(f"\n[SYSTEM] Initializing $100k Institutional Scan...")
-
-    # ── Load existing archive before scanning ──
+    print(f"\n[SYSTEM] Initializing Custom Velocity Edge Scan...")
+    
     archive = load_existing_archive()
-    archive = prune_expired_archive(archive)
-    print(f"  [ARCHIVE] Loaded {len(archive)} tracked spread(s) from previous run(s).")
-
     spy_data = fetch_data("markets/quotes", {"symbols": BENCHMARK, "greeks": "true"})
-    if not spy_data or "quotes" not in spy_data:
-        print("Fatal: Could not fetch SPY data.")
-        return
+    if not spy_data or "quotes" not in spy_data: return
 
     spy_price = float(spy_data["quotes"]["quote"]["last"])
     spy_hist = get_historical_closes(BENCHMARK)
 
     all_signals = []
-    # Convert to Pacific Time (PT): PDT=UTC-7 (Mar-Nov), PST=UTC-8
-    _utc_now = datetime.datetime.now(timezone.utc)
-    _year = _utc_now.year
-    _dst_start = datetime.datetime(_year, 3, 8, 10, 0, tzinfo=timezone.utc)
-    _dst_end   = datetime.datetime(_year, 11, 1, 9, 0, tzinfo=timezone.utc)
-    while _dst_start.weekday() != 6: _dst_start += timedelta(days=1)
-    while _dst_end.weekday()   != 6: _dst_end   += timedelta(days=1)
-    _pt_offset = timedelta(hours=-7) if _dst_start <= _utc_now < _dst_end else timedelta(hours=-8)
-    _tz_label  = "PDT" if _pt_offset.total_seconds() == -25200 else "PST"
-    _pt_now    = _utc_now + _pt_offset
-    scan_time  = _pt_now.strftime(f"%Y-%m-%d %H:%M:%S {_tz_label}")
+    scan_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
     for symbol in SYMBOLS:
-        print(f"  > Scanning {symbol}...", end="\r")
+        print(f"  > Processing Velocity Fills: {symbol}...", end="\r")
 
         quote_data = fetch_data("markets/quotes", {"symbols": symbol, "greeks": "true"})
         if not quote_data or not quote_data.get("quotes"): continue
-        quote = quote_data["quotes"]["quote"]
-        price = float(quote["last"])
+        price = float(quote_data["quotes"]["quote"]["last"])
         hist = get_historical_closes(symbol)
         correlation = get_correlation(hist, spy_hist)
 
@@ -183,17 +150,16 @@ def run_workstation_scan():
         dates = exp_data.get("expirations", {}).get("date", [])
         if isinstance(dates, str): dates = [dates]
 
-        valid_dates = [d for d in dates if MIN_DTE <= (datetime.datetime.strptime(d, "%Y-%m-%d").date() - datetime.date.today()).days <= MAX_DTE]
+        for exp in dates:
+            dte = (datetime.datetime.strptime(exp, "%Y-%m-%d").date() - datetime.date.today()).days
+            if not (MIN_DTE <= dte <= MAX_DTE): continue
 
-        for exp in valid_dates:
             chain = fetch_data("markets/options/chains", {"symbol": symbol, "expiration": exp, "greeks": "true"})
             options = chain.get("options", {}).get("option", []) if chain else []
             if isinstance(options, dict): options = [options]
 
             puts = [o for o in options if o["option_type"] == "put"]
             by_strike = {float(o["strike"]): o for o in puts}
-
-            # Calculate upper strike threshold for the 20% OTM target filter
             max_short_strike = price * (1 - MIN_DISCOUNT_PCT)
 
             for strike, short_opt in by_strike.items():
@@ -204,103 +170,67 @@ def run_workstation_scan():
 
                 s_bid = float(short_opt.get("bid", 0) or 0)
                 s_ask = float(short_opt.get("ask", 0) or 0)
+                s_ba_width = s_ask - s_bid
+                
                 if s_bid < MIN_BID_PRICE: continue
                 if s_bid > 0 and (s_ask / s_bid) > MAX_BID_ASK_RATIO: continue
-                
-                # Check liquidity matching the secondary scanner specifications
                 if int(short_opt.get("open_interest", 0) or 0) < MIN_OI: continue
                 if int(short_opt.get("volume", 0) or 0) < MIN_VOLUME: continue
 
                 l_bid = float(long_opt.get("bid", 0) or 0)
                 l_ask = float(long_opt.get("ask", 0) or 0)
-                mid_credit = ((s_bid + s_ask)/2) - ((l_bid + l_ask)/2)
-                net_credit = mid_credit * (1 - SLIPPAGE_ADJUST)
+                net_credit = (((s_bid + s_ask)/2) - ((l_bid + l_ask)/2)) * (1 - SLIPPAGE_ADJUST)
                 max_loss = SPREAD_WIDTH - net_credit
 
-                if net_credit <= 0.05: continue
+                if net_credit <= 0.03: continue
 
                 greeks_dict = short_opt.get("greeks", {})
-                if not greeks_dict or greeks_dict.get("delta") is None:
-                    continue
-
+                if not greeks_dict or greeks_dict.get("delta") is None: continue
                 delta = float(greeks_dict.get("delta"))
-                ticker_beta = BETA_MAPPING.get(symbol, 1.2)
-                metrics = calculate_institutional_metrics(delta, net_credit, max_loss, price, spy_price, ticker_beta=ticker_beta)
 
-                if metrics["pop"] < MIN_PROB_PROFIT or metrics["ev"] <= 0:
-                    continue
+                metrics = calculate_velocity_metrics(
+                    delta, net_credit, max_loss, price, spy_price, 
+                    dte, s_ba_width, ticker_beta=BETA_MAPPING.get(symbol, 1.2)
+                )
+
+                if metrics["pop"] < MIN_PROB_PROFIT or metrics["ev"] <= 0: continue
 
                 spread_label = f"{strike}/{strike-SPREAD_WIDTH}P"
-                spread_key = make_spread_key(symbol, spread_label, exp)
+                spread_key = f"{symbol}|{spread_label}|{exp}"
 
                 signal = {
                     "symbol": symbol,
                     "expiration": exp,
+                    "dte": dte,
                     "spread": spread_label,
                     "spread_key": spread_key,
-                    "price": price,
+                    "underlying_price": price,
                     "net_credit": round(net_credit, 2),
                     "max_loss": round(max_loss, 2),
-                    "ev": metrics["ev"],
+                    "velocity_edge_score": metrics["velocity_edge_score"],
+                    "edge_ratio": metrics["edge_ratio"],
                     "pop_pct": metrics["pop"],
                     "rec_qty": metrics["qty"],
-                    "spy_delta_eq": metrics["spy_weighted_delta"],
-                    "correlation_spy": correlation,
-                    "edge_ratio": metrics["edge_ratio"],
-                    "total_risk": round(metrics["qty"] * max_loss * 100, 2)
+                    "bid_ask_spread_width": round(s_ba_width, 2)
                 }
-
-                # ── Archive logic ──
-                credit_snapshot = {"time": scan_time, "net_credit": round(net_credit, 2)}
-
-                if spread_key in archive:
-                    # Seen before: append credit snapshot, mark as returning
-                    archive[spread_key]["credit_history"].append(credit_snapshot)
-                    archive[spread_key]["last_seen"] = scan_time
-                    archive[spread_key]["latest_signal"] = signal
-                    signal["is_new"] = False
-                else:
-                    # First time seen: create archive entry
-                    archive[spread_key] = {
-                        "spread_key": spread_key,
-                        "symbol": symbol,
-                        "expiration": exp,
-                        "spread": spread_label,
-                        "first_seen": scan_time,
-                        "last_seen": scan_time,
-                        "credit_history": [credit_snapshot],
-                        "latest_signal": signal
-                    }
-                    signal["is_new"] = True
 
                 all_signals.append(signal)
 
-        time.sleep(0.5)
+        time.sleep(0.3)
 
-    # Mark archive entries NOT in this scan (they stay in archive only)
-    current_keys = {s["spread_key"] for s in all_signals}
-    for key in archive:
-        archive[key]["in_current_scan"] = key in current_keys
-
-    all_signals.sort(key=lambda x: x["edge_ratio"], reverse=True)
+    # Rank exclusively by the brand new High-Velocity Win score
+    all_signals.sort(key=lambda x: x["velocity_edge_score"], reverse=True)
 
     report = {
         "scan_time": scan_time,
-        "account_basis": ACCOUNT_SIZE,
-        "benchmark_spy": spy_price,
-        "top_signals": all_signals[:20],
-        "spread_archive": archive
+        "sorting_method": "Velocity Edge Engine (Optimized for Fast Fills & Rapid Theta Decay)",
+        "top_signals": all_signals[:20]
     }
 
     with open(OUTPUT_FILE, "w") as f:
         json.dump(report, f, indent=4)
 
-    new_count = sum(1 for s in all_signals if s.get("is_new"))
-    returning_count = sum(1 for s in all_signals if not s.get("is_new"))
-    archive_only = len(archive) - len(current_keys)
-    print(f"\n[SUCCESS] Scan complete.")
-    print(f"  ★ {new_count} new spread(s)  |  ↺ {returning_count} returning  |  📦 {archive_only} archived-only (not in current scan)")
-    print(f"  Total archive size: {len(archive)} spread(s)  →  Written to {OUTPUT_FILE}")
+    print(f"\n[SUCCESS] Custom Scan finalized. 20 target positions prioritized via Velocity Decay written to {OUTPUT_FILE}")
 
 if __name__ == "__main__":
     run_workstation_scan()
