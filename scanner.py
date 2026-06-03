@@ -27,13 +27,15 @@ BENCHMARK = "SPY"
 ACCOUNT_SIZE       = 100000
 MAX_RISK_PER_TRADE = 0.02
 SPREAD_WIDTH       = 5.0
-MIN_DTE            = 7
+MIN_DTE            = 0
 MAX_DTE            = 45
 MIN_PROB_PROFIT    = 85.0
 SLIPPAGE_ADJUST    = 0.02
 MIN_BID_PRICE      = 0.10
 MAX_BID_ASK_RATIO  = 2.5
-MIN_OI             = 200
+MIN_OI             = 50
+MIN_VOLUME         = 50
+MIN_DISCOUNT_PCT   = 0.20
 
 OUTPUT_FILE = "signals.json"
 
@@ -191,7 +193,12 @@ def run_workstation_scan():
             puts = [o for o in options if o["option_type"] == "put"]
             by_strike = {float(o["strike"]): o for o in puts}
 
+            # Calculate upper strike threshold for the 20% OTM target filter
+            max_short_strike = price * (1 - MIN_DISCOUNT_PCT)
+
             for strike, short_opt in by_strike.items():
+                if strike > max_short_strike: continue
+                
                 long_opt = by_strike.get(strike - SPREAD_WIDTH)
                 if not long_opt: continue
 
@@ -199,7 +206,10 @@ def run_workstation_scan():
                 s_ask = float(short_opt.get("ask", 0) or 0)
                 if s_bid < MIN_BID_PRICE: continue
                 if s_bid > 0 and (s_ask / s_bid) > MAX_BID_ASK_RATIO: continue
+                
+                # Check liquidity matching the secondary scanner specifications
                 if int(short_opt.get("open_interest", 0) or 0) < MIN_OI: continue
+                if int(short_opt.get("volume", 0) or 0) < MIN_VOLUME: continue
 
                 l_bid = float(long_opt.get("bid", 0) or 0)
                 l_ask = float(long_opt.get("ask", 0) or 0)
