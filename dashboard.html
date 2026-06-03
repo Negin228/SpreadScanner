@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Institutional Put Credit Spread Workstation</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e14; --bg2: #0f1520; --bg3: #141c2b; --bg4: #192234;
+    --border: #1e2d45; --border2: #243650;
+    --text: #c8d8ef; --text2: #7a9bbf; --text3: #3d5a7a;
+    --green: #00e5a0; --green-dim: #00b87d; --green-bg: rgba(0,229,160,0.07);
+    --amber: #f5a623; --amber-bg: rgba(245,166,35,0.08);
+    --red: #ff4d6a; --red-bg: rgba(255,77,106,0.08);
+    --blue: #4d9fff; --blue-bg: rgba(77,159,255,0.08);
+    --cyan: #00cfff; --gold: #ffd166; --gold-bg: rgba(255,209,102,0.08);
+    --purple: #b48eff; --purple-bg: rgba(180,142,255,0.08);
+    --new: #ff9f43; --new-bg: rgba(255,159,67,0.10);
+    --archive: #778ca3; --archive-bg: rgba(119,140,163,0.08);
+    --mono: 'IBM Plex Mono', monospace; --sans: 'IBM Plex Sans', sans-serif;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--text); font-family:var(--sans); font-size:13px; min-height:100vh; padding-bottom:80px; }
+
+  /* ── Header ── */
+  .header { background:var(--bg2); border-bottom:1px solid var(--border); padding:14px 24px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:100; }
+  .header-left { display:flex; align-items:center; gap:12px; }
+  .logo { font-family:var(--mono); font-size:11px; font-weight:600; color:var(--green); letter-spacing:0.12em; border:1px solid var(--green-dim); padding:4px 10px; border-radius:3px; }
+  .title { font-size:15px; font-weight:500; }
+  .subtitle { font-size:11px; color:var(--text3); font-family:var(--mono); margin-top:1px; }
+  .header-right { display:flex; align-items:center; gap:16px; }
+  .status-row { display:flex; align-items:center; gap:7px; }
+  .dot { width:7px; height:7px; border-radius:50%; background:var(--green); box-shadow:0 0 8px var(--green); animation:pulse 2s infinite; }
+  .dot.stale { background:var(--amber); box-shadow:0 0 8px var(--amber); }
+  .dot.error { background:var(--red); box-shadow:0 0 8px var(--red); animation:none; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+  .status-text { font-family:var(--mono); font-size:11px; color:var(--text2); }
+  .btn { background:var(--bg3); border:1px solid var(--border2); color:var(--text2); font-family:var(--mono); font-size:11px; padding:5px 12px; border-radius:3px; cursor:pointer; transition:all 0.15s; }
+  .btn:hover { border-color:var(--blue); color:var(--blue); }
+
+  /* ── Tab bar ── */
+  .tab-bar { display:flex; align-items:center; gap:0; border-bottom:1px solid var(--border); padding:0 24px; background:var(--bg2); }
+  .tab { font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; padding:12px 18px; cursor:pointer; color:var(--text3); border-bottom:2px solid transparent; transition:all 0.15s; user-select:none; display:flex; align-items:center; gap:7px; }
+  .tab:hover { color:var(--text2); }
+  .tab.active { color:var(--text); border-bottom-color:var(--green); }
+  .tab.top10-tab.active { color:var(--gold); border-bottom-color:var(--gold); }
+  .tab-badge { font-size:10px; padding:1px 6px; border-radius:3px; background:var(--bg3); border:1px solid var(--border2); color:var(--text3); }
+  .tab.active .tab-badge { background:var(--green-bg); border-color:var(--green-dim); color:var(--green); }
+  .tab.top10-tab.active .tab-badge { background:var(--gold-bg); border-color:var(--gold); color:var(--gold); }
+
+  /* ── Main ── */
+  .main { padding:20px 24px; }
+  .tab-panel { display:none; }
+  .tab-panel.active { display:block; }
+
+  /* ── Top Grid Cards ── */
+  .top10-grid { display:grid; gap:10px; }
+  .signal-card { background:var(--bg2); border:1px solid var(--border); border-radius:6px; padding:14px 16px; transition:border-color 0.2s; position:relative; overflow:hidden; }
+  .signal-card:hover { border-color:var(--border2); }
+  .signal-card.rank-1 { border-color:var(--gold); }
+  .signal-card.rank-2 { border-color:rgba(255,209,102,0.4); }
+  .signal-card.rank-3 { border-color:rgba(255,209,102,0.2); }
+  .card-rank { position:absolute; top:0; right:0; font-family:var(--mono); font-size:10px; font-weight:600; color:var(--bg); background:var(--text3); padding:3px 8px; border-radius:0 6px 0 4px; }
+  .rank-1 .card-rank { background:var(--gold); }
+  .rank-2 .card-rank { background:rgba(255,209,102,0.6); }
+  .rank-3 .card-rank { background:rgba(255,209,102,0.35); color:var(--gold); }
+  .card-top { display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:10px; }
+  .card-sym { font-family:var(--mono); font-size:16px; font-weight:600; color:var(--cyan); }
+  .card-exp { font-family:var(--mono); font-size:11px; color:var(--text2); margin-top:2px; }
+  .card-credit { text-align:right; }
+  .card-credit-val { font-family:var(--mono); font-size:18px; font-weight:600; color:var(--green); }
+  .card-credit-sub { font-size:10px; color:var(--text3); font-family:var(--mono); margin-top:1px; }
+  .card-meta { display:grid; grid-template-columns:repeat(5,1fr); gap:8px; }
+  .card-stat-label { font-size:10px; color:var(--text3); font-family:var(--mono); letter-spacing:0.08em; text-transform:uppercase; }
+  .card-stat-val { font-family:var(--mono); font-size:12px; color:var(--text); margin-top:2px; }
+  .card-divider { border:none; border-top:1px solid var(--border); margin:10px 0; }
+  .card-profit-row { display:flex; align-items:center; gap:8px; margin-top:8px; flex-wrap:wrap; }
+  .profit-pill { font-family:var(--mono); font-size:11px; background:var(--green-bg); border:1px solid var(--green-dim); color:var(--green); padding:2px 8px; border-radius:3px; }
+  .dte-pill { font-family:var(--mono); font-size:11px; background:var(--amber-bg); border:1px solid var(--amber); color:var(--amber); padding:2px 8px; border-radius:3px; }
+  .delta-pill { font-family:var(--mono); font-size:11px; background:var(--blue-bg); border:1px solid var(--blue); color:var(--blue); padding:2px 8px; border-radius:3px; }
+
+  /* ── Toolbar / Filters ── */
+  .toolbar { display:flex; gap:8px; margin-bottom:14px; flex-wrap:wrap; align-items:center; }
+  .filter-label { font-size:11px; color:var(--text3); font-family:var(--mono); }
+  .fbtn { background:var(--bg3); border:1px solid var(--border); color:var(--text2); font-family:var(--mono); font-size:11px; padding:4px 10px; border-radius:3px; cursor:pointer; transition:all 0.15s; }
+  .fbtn:hover { border-color:var(--border2); color:var(--text); }
+  .fbtn.active { background:var(--blue-bg); border-color:var(--blue); color:var(--blue); }
+
+  /* ── Institutional Table Layout ── */
+  .table-wrap { overflow-x:auto; border:1px solid var(--border); border-radius:6px; }
+  table { width:100%; border-collapse:collapse; font-family:var(--mono); font-size:12px; }
+  thead th { background:var(--bg3); color:var(--text3); font-size:10px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; padding:10px 12px; text-align:left; border-bottom:1px solid var(--border); white-space:nowrap; cursor:pointer; user-select:none; transition:color 0.15s; }
+  thead th:hover { color:var(--text2); }
+  thead th.sorted { color:var(--cyan) !important; border-bottom:2px solid var(--cyan); }
+  tbody tr { border-bottom:1px solid var(--border); transition:background 0.1s; cursor:pointer; }
+  tbody tr:last-child { border-bottom:none; }
+  tbody tr:hover { background:var(--bg3); }
+  tbody tr.top-row { background:rgba(0,229,160,0.03); }
+  tbody tr.top-row td:first-child { border-left:2px solid var(--green); }
+  tbody tr.new-signal td:first-child { border-left:2px solid var(--new); }
+  td { padding:9px 12px; white-space:nowrap; color:var(--text); vertical-align:middle; }
+  .sym { color:var(--cyan); font-weight:600; }
+  .exp { color:var(--text2); }
+  .dte-b { display:inline-block; padding:1px 6px; border-radius:3px; font-size:10px; background:var(--bg3); border:1px solid var(--border2); color:var(--text2); }
+  .dte-b.sweet { border-color:var(--green-dim); color:var(--green); background:var(--green-bg); }
+  .credit-v { color:var(--green); font-weight:500; }
+  .risk-v { color:var(--red); }
+  .ev-v { color:var(--gold); font-weight:500; }
+  .pop-v { color:var(--green); }
+  .edge-v { color:var(--purple); }
+  .beta-v { color:var(--blue); }
+  .no-row td { text-align:center; padding:40px; color:var(--text3); font-family:var(--mono); font-size:12px; }
+
+  /* ── NEW badge ── */
+  .new-badge { display:inline-flex; align-items:center; gap:4px; font-family:var(--mono); font-size:9px; font-weight:600; letter-spacing:0.08em; background:var(--new-bg); border:1px solid var(--new); color:var(--new); padding:1px 5px; border-radius:3px; margin-left:6px; vertical-align:middle; }
+
+  /* ── Legend ── */
+  .legend-row { display:flex; gap:16px; align-items:center; margin-bottom:10px; font-family:var(--mono); font-size:11px; color:var(--text3); }
+  .legend-item { display:flex; align-items:center; gap:5px; }
+  .legend-dot { width:8px; height:8px; border-radius:2px; }
+
+  /* ── Meta bar ── */
+  .section-title { font-family:var(--mono); font-size:11px; font-weight:600; color:var(--text3); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:12px; }
+  .account-meta-bar { display:flex; gap:16px; flex-wrap:wrap; margin-bottom:14px; padding:12px 16px; background:var(--bg2); border:1px solid var(--border); border-radius:5px; }
+  .meta-item { display:flex; flex-direction:column; gap:2px; }
+  .meta-label { font-size:10px; color:var(--text3); font-family:var(--mono); letter-spacing:0.1em; text-transform:uppercase; }
+  .meta-val { font-family:var(--mono); font-size:12px; color:var(--cyan); }
+
+  /* ── Archive Section ── */
+  .archive-section { margin-top:32px; }
+  .archive-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; padding:12px 16px; background:var(--bg2); border:1px solid var(--border); border-radius:5px 5px 0 0; border-bottom:none; cursor:pointer; user-select:none; }
+  .archive-header:hover { background:var(--bg3); }
+  .archive-title-row { display:flex; align-items:center; gap:10px; }
+  .archive-icon { font-size:14px; }
+  .archive-label { font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:0.15em; text-transform:uppercase; color:var(--archive); }
+  .archive-count { font-family:var(--mono); font-size:10px; padding:2px 8px; border-radius:3px; background:var(--archive-bg); border:1px solid var(--archive); color:var(--archive); }
+  .archive-toggle { font-family:var(--mono); font-size:11px; color:var(--text3); transition:transform 0.2s; }
+  .archive-toggle.open { transform:rotate(180deg); }
+  .archive-body { display:none; border:1px solid var(--border); border-radius:0 0 5px 5px; overflow:hidden; }
+  .archive-body.open { display:block; }
+  .archive-desc { padding:10px 16px; font-size:11px; color:var(--text3); font-family:var(--mono); background:var(--bg3); border-bottom:1px solid var(--border); }
+
+  /* archive table row styles */
+  tbody tr.arc-active { background:rgba(0,229,160,0.02); }
+  tbody tr.arc-inactive { opacity:0.6; }
+  tbody tr.arc-inactive:hover { opacity:1; }
+  .arc-status-pill { font-family:var(--mono); font-size:10px; padding:1px 7px; border-radius:3px; display:inline-block; }
+  .arc-status-pill.active { background:var(--green-bg); border:1px solid var(--green-dim); color:var(--green); }
+  .arc-status-pill.inactive { background:var(--archive-bg); border:1px solid var(--archive); color:var(--archive); }
+  .history-count { font-family:var(--mono); font-size:11px; color:var(--purple); }
+
+  /* ── Chart Modal ── */
+  .modal-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.75); z-index:500; align-items:center; justify-content:center; backdrop-filter:blur(3px); }
+  .modal-overlay.open { display:flex; }
+  .modal { background:var(--bg2); border:1px solid var(--border2); border-radius:8px; width:min(700px,95vw); max-height:90vh; overflow:auto; padding:0; box-shadow:0 24px 80px rgba(0,0,0,0.6); }
+  .modal-header { display:flex; align-items:center; justify-content:space-between; padding:16px 20px; border-bottom:1px solid var(--border); }
+  .modal-title { font-family:var(--mono); font-size:13px; font-weight:600; color:var(--cyan); }
+  .modal-sub { font-family:var(--mono); font-size:11px; color:var(--text3); margin-top:2px; }
+  .modal-close { background:none; border:none; color:var(--text3); font-size:18px; cursor:pointer; padding:2px 6px; border-radius:3px; transition:color 0.15s; }
+  .modal-close:hover { color:var(--text); }
+  .modal-body { padding:20px; }
+  .chart-area { position:relative; width:100%; height:280px; }
+  canvas#creditChart { width:100% !important; height:280px !important; }
+  .modal-stats { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:18px; }
+  .mstat { background:var(--bg3); border:1px solid var(--border); border-radius:5px; padding:10px 12px; }
+  .mstat-label { font-size:10px; color:var(--text3); font-family:var(--mono); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:4px; }
+  .mstat-val { font-family:var(--mono); font-size:13px; color:var(--text); font-weight:600; }
+  .no-history { text-align:center; padding:60px 20px; color:var(--text3); font-family:var(--mono); font-size:12px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <div class="logo">PCS</div>
+    <div>
+      <div class="title">Institutional Risk Workstation</div>
+      <div class="subtitle">$5 wide · Dynamic Risk Cap · Real Slippage Adjusted</div>
+    </div>
+  </div>
+  <div class="header-right">
+    <div class="status-row">
+      <div class="dot" id="dot"></div>
+      <div class="status-text" id="status-text">Connecting to Node...</div>
+    </div>
+    <button class="btn" onclick="triggerScan()">↺ Run Engine</button>
+  </div>
+</div>
+
+<div class="tab-bar">
+  <div class="tab active" id="tab-all" onclick="switchTab('all')">
+    All Valid Signals <span class="tab-badge" id="badge-all">0</span>
+  </div>
+  <div class="tab top10-tab" id="tab-top10" onclick="switchTab('top10')">
+    ⭐ Top Alpha Trades <span class="tab-badge" id="badge-top10">0</span>
+  </div>
+</div>
+
+<div class="tab-panel active" id="panel-all">
+  <div class="main">
+
+    <div class="account-meta-bar" id="meta-bar">
+      <div class="meta-item"><span class="meta-label">Account Basis</span><span class="meta-val" id="meta-basis">$0.00</span></div>
+      <div class="meta-item"><span class="meta-label">SPY Reference</span><span class="meta-val" id="meta-spy">$0.00</span></div>
+      <div class="meta-item"><span class="meta-label">Max Trade Risk</span><span class="meta-val" style="color:var(--red);">2.00% ($2k)</span></div>
+    </div>
+
+    <div class="legend-row">
+      <span class="legend-item"><span class="legend-dot" style="background:var(--new);"></span> <span style="color:var(--new);">★ NEW</span> — first time appearing</span>
+      <span class="legend-item"><span class="legend-dot" style="background:var(--green);"></span> <span style="color:var(--text2);">Returning spread (in archive)</span></span>
+      <span class="legend-item" style="color:var(--text3);">Click any row to view credit history chart</span>
+    </div>
+
+    <div class="toolbar">
+      <span class="filter-label">Filter:</span>
+      <button class="fbtn active" onclick="setFilter('ALL',this)">All Underlyings</button>
+      <span id="sym-filters"></span>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th onclick="setSort('symbol',this)">Symbol</th>
+            <th onclick="setSort('expiration',this)">Expiry</th>
+            <th onclick="setSort('dte',this)">DTE</th>
+            <th>Spread Leg Matrix</th>
+            <th onclick="setSort('price',this)">Underlying</th>
+            <th onclick="setSort('net_credit',this)">Slippage Credit</th>
+            <th onclick="setSort('max_loss',this)">Max Loss</th>
+            <th onclick="setSort('ev',this)">Expected Value</th>
+            <th onclick="setSort('pop_pct',this)">PoP%</th>
+            <th onclick="setSort('rec_qty',this)">Sized Qty</th>
+            <th onclick="setSort('spy_delta_eq',this)">SPY Beta-Weighted Δ</th>
+            <th onclick="setSort('correlation_spy',this)">SPY Corr</th>
+            <th onclick="setSort('edge_ratio',this)">Edge Ratio</th>
+            <th onclick="setSort('total_risk',this)">Total Matrix Risk</th>
+          </tr>
+        </thead>
+        <tbody id="signals-body">
+          <tr class="no-row"><td colspan="14">Awaiting signals.json payload parse...</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ── Archive Section ── -->
+    <div class="archive-section" id="archive-section" style="display:none;">
+      <div class="archive-header" onclick="toggleArchive()">
+        <div class="archive-title-row">
+          <span class="archive-icon">📦</span>
+          <span class="archive-label">Spread Archive</span>
+          <span class="archive-count" id="archive-count">0 tracked</span>
+        </div>
+        <span class="archive-toggle" id="archive-toggle">▼</span>
+      </div>
+      <div class="archive-body" id="archive-body">
+        <div class="archive-desc">
+          All spreads ever identified. Entries expire when DTE reaches 0. Spreads active in the current scan are promoted back to the main table above. Click any row to view credit history.
+        </div>
+        <div class="table-wrap" style="border-radius:0; border:none; border-top:1px solid var(--border);">
+          <table>
+            <thead>
+              <tr>
+                <th>Status</th>
+                <th>Symbol</th>
+                <th>Expiry</th>
+                <th>DTE</th>
+                <th>Spread</th>
+                <th>Latest Credit</th>
+                <th>First Seen</th>
+                <th>Last Seen</th>
+                <th>Scans Tracked</th>
+              </tr>
+            </thead>
+            <tbody id="archive-body-rows">
+              <tr class="no-row"><td colspan="9">No archive data yet.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!-- /Archive Section -->
+
+  </div>
+</div>
+
+<div class="tab-panel" id="panel-top10">
+  <div class="main">
+    <div class="section-title">Highest Edge Allocations</div>
+    <div class="top10-grid" id="top10-grid">
+      <div class="no-row" style="color:var(--text3); padding:40px; text-align:center;">Processing engine metrics...</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Chart Modal ── -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <div>
+        <div class="modal-title" id="modal-title">—</div>
+        <div class="modal-sub" id="modal-sub">Credit History</div>
+      </div>
+      <button class="modal-close" onclick="closeModalDirect()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="chart-area">
+        <canvas id="creditChart"></canvas>
+      </div>
+      <div class="modal-stats" id="modal-stats"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  let allSignals   = [];
+  let spreadArchive = {};
+  let activeFilter = 'ALL', activeSort = 'edge_ratio', sortDir = -1;
+  let lastUpdatedStamp = null;
+  let isScanRunning = false;
+
+  // ─── Tab switching ───────────────────────────────────
+  function switchTab(tab) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('panel-' + tab).classList.add('active');
+    document.getElementById('tab-' + tab).classList.add('active');
+  }
+
+  // ─── Status ──────────────────────────────────────────
+  function setScanningStatus(msg) {
+    document.getElementById('dot').className = 'dot stale';
+    document.getElementById('status-text').textContent = msg + (lastUpdatedStamp ? ' · Last: ' + lastUpdatedStamp : '');
+  }
+
+  // ─── Fetch signals.json ───────────────────────────────
+  async function fetchData() {
+    if (!isScanRunning) setScanningStatus('Reading Data Streams...');
+    try {
+      const res = await fetch('signals.json?t=' + Date.now());
+      if (res.ok) {
+        const data = await res.json();
+        processData(data);
+      } else {
+        document.getElementById('dot').className = 'dot error';
+        document.getElementById('status-text').textContent = 'signals.json connection array missing';
+      }
+    } catch (e) {
+      document.getElementById('dot').className = 'dot error';
+      document.getElementById('status-text').textContent = 'Stream error: ' + e.message;
+    }
+  }
+
+  // ─── Trigger GitHub Actions scan ─────────────────────
+  async function triggerScan() {
+    if (isScanRunning) return;
+    let token = localStorage.getItem('gh_token');
+    if (!token) {
+      token = prompt("Enter GitHub Personal Access Token:");
+      if (token) localStorage.setItem('gh_token', token);
+    }
+    if (!token) return;
+    try {
+      isScanRunning = true;
+      const btn = document.querySelector('.btn');
+      btn.textContent = '⏳ Engine Mapping…';
+      setScanningStatus('Deploying GitHub Dispatch Routine…');
+      const res = await fetch('https://api.github.com/repos/negin228/scanner/dispatches', {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${token}`, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
+        body: JSON.stringify({ event_type: 'manual_refresh' })
+      });
+      if (res.status === 401) {
+        localStorage.removeItem('gh_token');
+        alert("Invalid authorization payload string.");
+        isScanRunning = false;
+        btn.textContent = '↺ Run Engine';
+        return;
+      }
+      if (res.ok) {
+        let attempts = 0;
+        const poll = setInterval(async () => {
+          attempts++;
+          setScanningStatus('Re-calculating Greeks (' + attempts + '/9)');
+          await fetchData();
+          if (attempts >= 9) {
+            clearInterval(poll);
+            isScanRunning = false;
+            btn.textContent = '↺ Run Engine';
+            document.getElementById('dot').className = 'dot';
+          }
+        }, 8000);
+      }
+    } catch (e) {
+      isScanRunning = false;
+      document.querySelector('.btn').textContent = '↺ Run Engine';
+    }
+  }
+
+  // ─── Process incoming data ────────────────────────────
+  function processData(data) {
+    allSignals    = data.top_signals || [];
+    spreadArchive = data.spread_archive || {};
+    lastUpdatedStamp = data.scan_time || '—';
+
+    document.getElementById('meta-basis').textContent = '$' + (data.account_basis || 0).toLocaleString();
+    document.getElementById('meta-spy').textContent   = '$' + (data.benchmark_spy || 0).toFixed(2);
+
+    if (!isScanRunning) {
+      document.getElementById('dot').className = 'dot';
+      document.getElementById('status-text').textContent = 'Live Synced: ' + lastUpdatedStamp;
+    }
+
+    document.getElementById('badge-all').textContent   = allSignals.length;
+    document.getElementById('badge-top10').textContent = Math.min(allSignals.length, 10);
+
+    renderSymFilters(allSignals);
+    renderSignals();
+    renderTopCards();
+    renderArchive();
+  }
+
+  // ─── Filters ─────────────────────────────────────────
+  function renderSymFilters(signals) {
+    const syms = [...new Set(signals.map(s => s.symbol))].sort();
+    document.getElementById('sym-filters').innerHTML = syms.map(sym =>
+      `<button class="fbtn ${activeFilter===sym?'active':''}" onclick="setFilter('${sym}',this)">${sym}</button>`
+    ).join('');
+  }
+
+  function setFilter(sym, btn) {
+    activeFilter = sym;
+    document.querySelectorAll('.toolbar .fbtn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderSignals();
+  }
+
+  function setSort(field, btn) {
+    if (activeSort === field) { sortDir *= -1; }
+    else { activeSort = field; sortDir = -1; }
+    document.querySelectorAll('thead th').forEach(el => el.classList.remove('sorted'));
+    if (btn) btn.classList.add('sorted');
+    renderSignals();
+  }
+
+  // ─── Main signals table ───────────────────────────────
+  function renderSignals() {
+    let sigs = activeFilter === 'ALL' ? [...allSignals] : allSignals.filter(s => s.symbol === activeFilter);
+
+    sigs.sort((a, b) => {
+      let vA = a[activeSort], vB = b[activeSort];
+      if (vA == null) return 1; if (vB == null) return -1;
+      const factor = (activeSort === 'dte' || activeSort === 'max_loss') ? -sortDir : sortDir;
+      return (vA - vB) * factor;
+    });
+
+    if (!sigs.length) {
+      document.getElementById('signals-body').innerHTML = '<tr class="no-row"><td colspan="14">No matrix intersections cleared filters.</td></tr>';
+      return;
+    }
+
+    document.getElementById('signals-body').innerHTML = sigs.map((s, i) => {
+      const dte = s.expiration ? Math.round((new Date(s.expiration) - new Date()) / 864e5) : 0;
+      const isNew = s.is_new === true;
+      const newBadge = isNew ? `<span class="new-badge">★ NEW</span>` : '';
+      const rowClass = isNew ? 'new-signal' : (i < 3 ? 'top-row' : '');
+      const key = s.spread_key || '';
+      return `<tr class="${rowClass}" onclick="openModal('${escKey(key)}')" title="Click to view credit history">
+        <td><span class="sym">${s.symbol}</span>${newBadge}</td>
+        <td><span class="exp">${s.expiration}</span></td>
+        <td><span class="dte-b ${dte<=30?'sweet':''}">${dte}d</span></td>
+        <td>$${s.spread}</td>
+        <td>$${s.price.toFixed(2)}</td>
+        <td class="credit-v">$${s.net_credit.toFixed(2)}</td>
+        <td class="risk-v">$${s.max_loss.toFixed(2)}</td>
+        <td class="ev-v">$${s.ev.toFixed(2)}</td>
+        <td class="pop-v">${s.pop_pct}%</td>
+        <td style="font-weight:600;">${s.rec_qty} c</td>
+        <td class="beta-v">${s.spy_delta_eq.toFixed(1)} Δ</td>
+        <td>${s.correlation_spy.toFixed(2)}</td>
+        <td class="edge-v">${s.edge_ratio.toFixed(4)}</td>
+        <td style="color:var(--text); font-weight:500;">$${s.total_risk.toLocaleString()}</td>
+      </tr>`;
+    }).join('');
+  }
+
+  // ─── Top 10 cards ─────────────────────────────────────
+  function renderTopCards() {
+    const topTrades = allSignals.slice(0, 10);
+    if (!topTrades.length) {
+      document.getElementById('top10-grid').innerHTML = '<div style="text-align:center;padding:40px;color:var(--text3);">Zero alpha flags detected.</div>';
+      return;
+    }
+    document.getElementById('top10-grid').innerHTML = topTrades.map((s, i) => {
+      const dte = s.expiration ? Math.round((new Date(s.expiration) - new Date()) / 864e5) : 0;
+      const isNew = s.is_new === true;
+      const key = s.spread_key || '';
+      return `
+      <div class="signal-card ${i<3?`rank-${i+1}`:''}" onclick="openModal('${escKey(key)}')" style="cursor:pointer;" title="Click to view credit history">
+        <div class="card-rank">EDGE RANK #${i+1}${isNew?' ★':''}</div>
+        <div class="card-top">
+          <div>
+            <div class="card-sym">${s.symbol}${isNew?'<span class="new-badge" style="font-size:8px;margin-left:8px;">★ NEW</span>':''}</div>
+            <div class="card-exp">${s.expiration} · ${dte} DTE</div>
+          </div>
+          <div class="card-credit">
+            <div class="card-credit-val">$${s.net_credit.toFixed(2)}</div>
+            <div class="card-credit-sub">Net Entry Credit</div>
+          </div>
+        </div>
+        <hr class="card-divider">
+        <div class="card-meta">
+          <div class="card-stat"><div class="card-stat-label">Strikes Matrix</div><div class="card-stat-val">$${s.spread}</div></div>
+          <div class="card-stat"><div class="card-stat-label">Expected Value</div><div class="card-stat-val" style="color:var(--gold);font-weight:600;">+$${s.ev.toFixed(2)}</div></div>
+          <div class="card-stat"><div class="card-stat-label">Sized Allocation</div><div class="card-stat-val" style="color:var(--cyan);font-weight:600;">${s.rec_qty} Contracts</div></div>
+          <div class="card-stat"><div class="card-stat-label">Edge Ratio</div><div class="card-stat-val" style="color:var(--purple);">${s.edge_ratio.toFixed(4)}</div></div>
+          <div class="card-stat"><div class="card-stat-label">Max Matrix Loss</div><div class="card-stat-val" style="color:var(--red);">$${s.total_risk.toLocaleString()}</div></div>
+        </div>
+        <div class="card-profit-row">
+          <span class="profit-pill">PoP: ${s.pop_pct}%</span>
+          <span class="dte-pill">Beta Weighted Δ: ${s.spy_delta_eq.toFixed(1)} SPY</span>
+          <span class="delta-pill">Benchmark Corr: ${s.correlation_spy.toFixed(2)}</span>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  // ─── Archive table ────────────────────────────────────
+  function renderArchive() {
+    const entries = Object.values(spreadArchive);
+    const section = document.getElementById('archive-section');
+
+    if (!entries.length) { section.style.display = 'none'; return; }
+    section.style.display = 'block';
+    document.getElementById('archive-count').textContent = entries.length + ' tracked';
+
+    // Sort: active-in-current-scan first, then by last_seen desc
+    entries.sort((a, b) => {
+      if (a.in_current_scan && !b.in_current_scan) return -1;
+      if (!a.in_current_scan && b.in_current_scan) return 1;
+      return (b.last_seen || '').localeCompare(a.last_seen || '');
+    });
+
+    // Only show entries NOT in the current scan (those already shown above)
+    const archiveOnly = entries.filter(e => !e.in_current_scan);
+
+    if (!archiveOnly.length) {
+      document.getElementById('archive-body-rows').innerHTML =
+        '<tr class="no-row"><td colspan="9">All archived spreads are active in the current scan.</td></tr>';
+      return;
+    }
+
+    document.getElementById('archive-body-rows').innerHTML = archiveOnly.map(e => {
+      const dte = e.expiration ? Math.round((new Date(e.expiration) - new Date()) / 864e5) : 0;
+      const latestCredit = e.credit_history && e.credit_history.length
+        ? e.credit_history[e.credit_history.length - 1].net_credit
+        : '—';
+      const scanCount = e.credit_history ? e.credit_history.length : 0;
+      const firstSeen = e.first_seen ? e.first_seen.replace(/ (UTC|PDT|PST)$/,'').slice(0,16) : '—';
+      const lastSeen  = e.last_seen  ? e.last_seen.replace(/ (UTC|PDT|PST)$/,'').slice(0,16) : '—';
+      const key = e.spread_key || '';
+      return `<tr class="arc-inactive" onclick="openModal('${escKey(key)}')" title="Click to view credit history">
+        <td><span class="arc-status-pill inactive">Archived</span></td>
+        <td><span class="sym">${e.symbol}</span></td>
+        <td><span class="exp">${e.expiration}</span></td>
+        <td><span class="dte-b ${dte<=30?'sweet':''}">${dte}d</span></td>
+        <td>$${e.spread}</td>
+        <td class="credit-v">${latestCredit !== '—' ? '$'+Number(latestCredit).toFixed(2) : '—'}</td>
+        <td style="color:var(--text3);font-size:11px;">${firstSeen}</td>
+        <td style="color:var(--text3);font-size:11px;">${lastSeen}</td>
+        <td class="history-count">${scanCount} snapshot${scanCount!==1?'s':''}</td>
+      </tr>`;
+    }).join('');
+  }
+
+  function toggleArchive() {
+    const body   = document.getElementById('archive-body');
+    const toggle = document.getElementById('archive-toggle');
+    const open   = body.classList.toggle('open');
+    toggle.classList.toggle('open', open);
+  }
+
+  // ─── Modal & Chart ────────────────────────────────────
+  let chartInstance = null;
+
+  function escKey(k) { return k.replace(/'/g, "\\'"); }
+
+  function openModal(spreadKey) {
+    const entry = spreadArchive[spreadKey];
+    if (!entry) return;
+
+    const history = entry.credit_history || [];
+    document.getElementById('modal-title').textContent = `${entry.symbol}  ·  $${entry.spread}`;
+    document.getElementById('modal-sub').textContent   = `Expiry: ${entry.expiration}  ·  ${history.length} credit snapshot${history.length!==1?'s':''}`;
+    document.getElementById('modal-overlay').classList.add('open');
+
+    // Stats
+    if (history.length) {
+      const credits = history.map(h => h.net_credit);
+      const first   = credits[0];
+      const last    = credits[credits.length - 1];
+      const maxC    = Math.max(...credits);
+      const minC    = Math.min(...credits);
+      const change  = last - first;
+      const changeColor = change >= 0 ? 'var(--green)' : 'var(--red)';
+      document.getElementById('modal-stats').innerHTML = `
+        <div class="mstat"><div class="mstat-label">Entry Credit</div><div class="mstat-val" style="color:var(--green);">$${first.toFixed(2)}</div></div>
+        <div class="mstat"><div class="mstat-label">Latest Credit</div><div class="mstat-val" style="color:var(--cyan);">$${last.toFixed(2)}</div></div>
+        <div class="mstat"><div class="mstat-label">Range</div><div class="mstat-val">$${minC.toFixed(2)} – $${maxC.toFixed(2)}</div></div>
+        <div class="mstat"><div class="mstat-label">Net Change</div><div class="mstat-val" style="color:${changeColor};">${change>=0?'+':''}$${change.toFixed(2)}</div></div>`;
+    } else {
+      document.getElementById('modal-stats').innerHTML = '';
+    }
+
+    // Draw chart
+    drawCreditChart(history);
+  }
+
+  function closeModal(e) {
+    if (e.target === document.getElementById('modal-overlay')) closeModalDirect();
+  }
+  function closeModalDirect() {
+    document.getElementById('modal-overlay').classList.remove('open');
+    if (chartInstance) { chartInstance = null; }
+  }
+
+  function drawCreditChart(history) {
+    const canvas = document.getElementById('creditChart');
+    const ctx    = canvas.getContext('2d');
+
+    // HiDPI
+    const dpr = window.devicePixelRatio || 1;
+    const W = canvas.parentElement.clientWidth || 660;
+    const H = 280;
+    canvas.width  = W * dpr;
+    canvas.height = H * dpr;
+    canvas.style.width  = W + 'px';
+    canvas.style.height = H + 'px';
+    ctx.scale(dpr, dpr);
+    ctx.clearRect(0, 0, W, H);
+
+    if (!history.length) {
+      ctx.fillStyle = '#3d5a7a';
+      ctx.font = '13px IBM Plex Mono, monospace';
+      ctx.textAlign = 'center';
+      ctx.fillText('No credit snapshots recorded yet.', W/2, H/2);
+      return;
+    }
+
+    const pad = { top:24, right:24, bottom:48, left:56 };
+    const chartW = W - pad.left - pad.right;
+    const chartH = H - pad.top - pad.bottom;
+
+    const credits  = history.map(h => h.net_credit);
+    const labels   = history.map(h => h.time ? h.time.slice(5,16) : '');  // MM-DD HH:mm
+    const minVal   = Math.min(...credits) * 0.92;
+    const maxVal   = Math.max(...credits) * 1.08;
+    const valRange = maxVal - minVal || 0.01;
+
+    const xOf = i => pad.left + (i / Math.max(credits.length - 1, 1)) * chartW;
+    const yOf = v => pad.top  + chartH - ((v - minVal) / valRange) * chartH;
+
+    // Grid lines
+    const gridCount = 4;
+    ctx.strokeStyle = '#1e2d45';
+    ctx.lineWidth   = 1;
+    for (let g = 0; g <= gridCount; g++) {
+      const y = pad.top + (g / gridCount) * chartH;
+      ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(pad.left + chartW, y); ctx.stroke();
+      const val = maxVal - (g / gridCount) * valRange;
+      ctx.fillStyle = '#3d5a7a';
+      ctx.font = '10px IBM Plex Mono, monospace';
+      ctx.textAlign = 'right';
+      ctx.fillText('$' + val.toFixed(2), pad.left - 6, y + 4);
+    }
+
+    // Gradient fill
+    const grad = ctx.createLinearGradient(0, pad.top, 0, pad.top + chartH);
+    grad.addColorStop(0,   'rgba(0,229,160,0.25)');
+    grad.addColorStop(1,   'rgba(0,229,160,0.02)');
+    ctx.beginPath();
+    ctx.moveTo(xOf(0), yOf(credits[0]));
+    credits.forEach((c, i) => { if (i > 0) ctx.lineTo(xOf(i), yOf(c)); });
+    ctx.lineTo(xOf(credits.length-1), pad.top + chartH);
+    ctx.lineTo(xOf(0), pad.top + chartH);
+    ctx.closePath();
+    ctx.fillStyle = grad;
+    ctx.fill();
+
+    // Line
+    ctx.beginPath();
+    ctx.strokeStyle = '#00e5a0';
+    ctx.lineWidth   = 2.5;
+    ctx.lineJoin    = 'round';
+    ctx.moveTo(xOf(0), yOf(credits[0]));
+    credits.forEach((c, i) => { if (i > 0) ctx.lineTo(xOf(i), yOf(c)); });
+    ctx.stroke();
+
+    // Data points
+    credits.forEach((c, i) => {
+      const x = xOf(i), y = yOf(c);
+      ctx.beginPath();
+      ctx.arc(x, y, 4, 0, Math.PI * 2);
+      ctx.fillStyle = '#0a0e14';
+      ctx.fill();
+      ctx.strokeStyle = '#00e5a0';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+    });
+
+    // X-axis labels (show at most 8 to avoid overlap)
+    const step = Math.ceil(labels.length / 8);
+    ctx.fillStyle = '#3d5a7a';
+    ctx.font = '9px IBM Plex Mono, monospace';
+    ctx.textAlign = 'center';
+    labels.forEach((lbl, i) => {
+      if (i % step === 0) {
+        ctx.save();
+        ctx.translate(xOf(i), pad.top + chartH + 14);
+        ctx.rotate(-Math.PI / 5);
+        ctx.fillText(lbl, 0, 0);
+        ctx.restore();
+      }
+    });
+
+    // Axis label
+    ctx.fillStyle = '#3d5a7a';
+    ctx.font = '10px IBM Plex Mono, monospace';
+    ctx.textAlign = 'left';
+    ctx.fillText('Net Credit ($)', pad.left, pad.top - 8);
+  }
+
+  // ─── Auto-refresh ─────────────────────────────────────
+  setInterval(fetchData, 30000);
+  fetchData();
+</script>
+</body>
+</html>
