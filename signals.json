@@ -1,23 +1,23 @@
 {
-    "scan_time": "2026-06-03 11:55:04 PDT",
+    "scan_time": "2026-06-03 12:01:09 PDT",
     "account_basis": 100000,
-    "benchmark_spy": 755.6,
+    "benchmark_spy": 755.35,
     "top_signals": [
         {
             "symbol": "AMD",
             "expiration": "2026-07-10",
             "spread": "415.0/410.0P",
             "spread_key": "AMD|415.0/410.0P|2026-07-10",
-            "price": 541.5,
-            "net_credit": 0.81,
-            "max_loss": 4.19,
-            "ev": 0.27,
+            "price": 540.71,
+            "net_credit": 0.71,
+            "max_loss": 4.29,
+            "ev": 0.17,
             "pop_pct": 89.1,
             "rec_qty": 4,
-            "spy_delta_eq": -49.86,
+            "spy_delta_eq": -49.8,
             "correlation_spy": 0.979,
-            "edge_ratio": 0.0632,
-            "total_risk": 1676.6,
+            "edge_ratio": 0.0389,
+            "total_risk": 1715.8,
             "is_new": false
         },
         {
@@ -25,13 +25,13 @@
             "expiration": "2026-07-10",
             "spread": "435.0/430.0P",
             "spread_key": "AMD|435.0/430.0P|2026-07-10",
-            "price": 541.5,
+            "price": 540.71,
             "net_credit": 0.88,
             "max_loss": 4.12,
             "ev": 0.16,
             "pop_pct": 85.5,
             "rec_qty": 4,
-            "spy_delta_eq": -66.32,
+            "spy_delta_eq": -66.25,
             "correlation_spy": 0.979,
             "edge_ratio": 0.0386,
             "total_risk": 1647.2,
@@ -39,19 +39,36 @@
         },
         {
             "symbol": "META",
-            "expiration": "2026-06-26",
-            "spread": "505.0/500.0P",
-            "spread_key": "META|505.0/500.0P|2026-06-26",
-            "price": 622.29,
+            "expiration": "2026-06-17",
+            "spread": "550.0/545.0P",
+            "spread_key": "META|550.0/545.0P|2026-06-17",
+            "price": 621.815,
+            "net_credit": 0.16,
+            "max_loss": 4.84,
+            "ev": 0.13,
+            "pop_pct": 99.4,
+            "rec_qty": 4,
+            "spy_delta_eq": -2.33,
+            "correlation_spy": -0.506,
+            "edge_ratio": 0.0263,
+            "total_risk": 1937.28,
+            "is_new": false
+        },
+        {
+            "symbol": "ORCL",
+            "expiration": "2026-07-02",
+            "spread": "140.0/135.0P",
+            "spread_key": "ORCL|140.0/135.0P|2026-07-02",
+            "price": 231.805,
             "net_credit": 0.2,
             "max_loss": 4.8,
-            "ev": 0.1,
-            "pop_pct": 98.1,
+            "ev": 0.12,
+            "pop_pct": 98.5,
             "rec_qty": 4,
-            "spy_delta_eq": -7.67,
-            "correlation_spy": -0.505,
-            "edge_ratio": 0.0216,
-            "total_risk": 1919.64,
+            "spy_delta_eq": -1.87,
+            "correlation_spy": 0.84,
+            "edge_ratio": 0.025,
+            "total_risk": 1921.6,
             "is_new": false
         },
         {
@@ -59,14 +76,14 @@
             "expiration": "2026-07-17",
             "spread": "185.0/180.0P",
             "spread_key": "ORCL|185.0/180.0P|2026-07-17",
-            "price": 231.56,
+            "price": 231.805,
             "net_credit": 0.83,
             "max_loss": 4.17,
             "ev": 0.09,
             "pop_pct": 85.1,
             "rec_qty": 4,
-            "spy_delta_eq": -18.29,
-            "correlation_spy": 0.841,
+            "spy_delta_eq": -18.31,
+            "correlation_spy": 0.84,
             "edge_ratio": 0.0209,
             "total_risk": 1666.8,
             "is_new": false
@@ -76,33 +93,16 @@
             "expiration": "2026-07-02",
             "spread": "505.0/500.0P",
             "spread_key": "META|505.0/500.0P|2026-07-02",
-            "price": 622.29,
+            "price": 621.815,
             "net_credit": 0.17,
             "max_loss": 4.83,
             "ev": 0.1,
             "pop_pct": 98.5,
             "rec_qty": 4,
             "spy_delta_eq": -5.77,
-            "correlation_spy": -0.505,
+            "correlation_spy": -0.506,
             "edge_ratio": 0.0204,
             "total_risk": 1931.4,
-            "is_new": false
-        },
-        {
-            "symbol": "ORCL",
-            "expiration": "2026-07-10",
-            "spread": "140.0/135.0P",
-            "spread_key": "ORCL|140.0/135.0P|2026-07-10",
-            "price": 231.56,
-            "net_credit": 0.19,
-            "max_loss": 4.81,
-            "ev": 0.1,
-            "pop_pct": 98.1,
-            "rec_qty": 4,
-            "spy_delta_eq": -2.33,
-            "correlation_spy": 0.841,
-            "edge_ratio": 0.02,
-            "total_risk": 1923.56,
             "is_new": false
         },
         {
@@ -110,7 +110,7 @@
             "expiration": "2026-06-18",
             "spread": "56.0/51.0P",
             "spread_key": "TQQQ|56.0/51.0P|2026-06-18",
-            "price": 86.66,
+            "price": 86.51,
             "net_credit": 0.1,
             "max_loss": 4.9,
             "ev": 0.1,
@@ -127,13 +127,13 @@
             "expiration": "2026-06-26",
             "spread": "450.0/445.0P",
             "spread_key": "AMD|450.0/445.0P|2026-06-26",
-            "price": 541.5,
+            "price": 540.71,
             "net_credit": 0.78,
             "max_loss": 4.22,
             "ev": 0.08,
             "pop_pct": 85.9,
             "rec_qty": 4,
-            "spy_delta_eq": -64.9,
+            "spy_delta_eq": -64.83,
             "correlation_spy": 0.979,
             "edge_ratio": 0.0181,
             "total_risk": 1686.4,
@@ -144,33 +144,84 @@
             "expiration": "2026-07-17",
             "spread": "115.0/110.0P",
             "spread_key": "ORCL|115.0/110.0P|2026-07-17",
-            "price": 231.56,
+            "price": 231.805,
             "net_credit": 0.13,
             "max_loss": 4.87,
             "ev": 0.08,
             "pop_pct": 99.1,
             "rec_qty": 4,
             "spy_delta_eq": -1.14,
-            "correlation_spy": 0.841,
+            "correlation_spy": 0.84,
             "edge_ratio": 0.0166,
             "total_risk": 1949.04,
             "is_new": false
         },
         {
-            "symbol": "ORCL",
-            "expiration": "2026-07-17",
-            "spread": "175.0/170.0P",
-            "spread_key": "ORCL|175.0/170.0P|2026-07-17",
-            "price": 231.56,
-            "net_credit": 0.6,
-            "max_loss": 4.4,
-            "ev": 0.05,
-            "pop_pct": 89.0,
+            "symbol": "AMD",
+            "expiration": "2026-07-02",
+            "spread": "440.0/435.0P",
+            "spread_key": "AMD|440.0/435.0P|2026-07-02",
+            "price": 540.71,
+            "net_credit": 0.76,
+            "max_loss": 4.24,
+            "ev": 0.07,
+            "pop_pct": 86.2,
             "rec_qty": 4,
-            "spy_delta_eq": -13.46,
-            "correlation_spy": 0.841,
-            "edge_ratio": 0.0122,
-            "total_risk": 1758.92,
+            "spy_delta_eq": -63.22,
+            "correlation_spy": 0.979,
+            "edge_ratio": 0.0164,
+            "total_risk": 1696.2,
+            "is_new": true
+        },
+        {
+            "symbol": "ORCL",
+            "expiration": "2026-06-26",
+            "spread": "190.0/185.0P",
+            "spread_key": "ORCL|190.0/185.0P|2026-06-26",
+            "price": 231.805,
+            "net_credit": 0.76,
+            "max_loss": 4.24,
+            "ev": 0.07,
+            "pop_pct": 86.2,
+            "rec_qty": 4,
+            "spy_delta_eq": -16.96,
+            "correlation_spy": 0.84,
+            "edge_ratio": 0.0162,
+            "total_risk": 1696.2,
+            "is_new": false
+        },
+        {
+            "symbol": "META",
+            "expiration": "2026-06-26",
+            "spread": "505.0/500.0P",
+            "spread_key": "META|505.0/500.0P|2026-06-26",
+            "price": 621.815,
+            "net_credit": 0.17,
+            "max_loss": 4.83,
+            "ev": 0.07,
+            "pop_pct": 98.1,
+            "rec_qty": 4,
+            "spy_delta_eq": -7.67,
+            "correlation_spy": -0.506,
+            "edge_ratio": 0.0144,
+            "total_risk": 1933.36,
+            "is_new": false
+        },
+        {
+            "symbol": "ORCL",
+            "expiration": "2026-06-26",
+            "spread": "140.0/135.0P",
+            "spread_key": "ORCL|140.0/135.0P|2026-06-26",
+            "price": 231.805,
+            "net_credit": 0.14,
+            "max_loss": 4.86,
+            "ev": 0.07,
+            "pop_pct": 98.6,
+            "rec_qty": 4,
+            "spy_delta_eq": -1.77,
+            "correlation_spy": 0.84,
+            "edge_ratio": 0.0134,
+            "total_risk": 1945.12,
             "is_new": false
         },
         {
@@ -178,7 +229,7 @@
             "expiration": "2026-06-18",
             "spread": "55.0/50.0P",
             "spread_key": "TQQQ|55.0/50.0P|2026-06-18",
-            "price": 86.66,
+            "price": 86.51,
             "net_credit": 0.06,
             "max_loss": 4.94,
             "ev": 0.06,
@@ -186,42 +237,25 @@
             "rec_qty": 4,
             "spy_delta_eq": 0.0,
             "correlation_spy": 0.995,
-            "edge_ratio": 0.0119,
-            "total_risk": 1976.48,
-            "is_new": false
-        },
-        {
-            "symbol": "META",
-            "expiration": "2026-07-02",
-            "spread": "525.0/520.0P",
-            "spread_key": "META|525.0/520.0P|2026-07-02",
-            "price": 622.29,
-            "net_credit": 0.24,
-            "max_loss": 4.76,
-            "ev": 0.06,
-            "pop_pct": 96.4,
-            "rec_qty": 4,
-            "spy_delta_eq": -14.19,
-            "correlation_spy": -0.505,
-            "edge_ratio": 0.0117,
-            "total_risk": 1905.92,
+            "edge_ratio": 0.0129,
+            "total_risk": 1974.52,
             "is_new": false
         },
         {
             "symbol": "ORCL",
             "expiration": "2026-07-17",
-            "spread": "180.0/175.0P",
-            "spread_key": "ORCL|180.0/175.0P|2026-07-17",
-            "price": 231.56,
-            "net_credit": 0.69,
-            "max_loss": 4.31,
+            "spread": "175.0/170.0P",
+            "spread_key": "ORCL|175.0/170.0P|2026-07-17",
+            "price": 231.805,
+            "net_credit": 0.6,
+            "max_loss": 4.4,
             "ev": 0.05,
-            "pop_pct": 87.2,
+            "pop_pct": 89.0,
             "rec_qty": 4,
-            "spy_delta_eq": -15.7,
-            "correlation_spy": 0.841,
-            "edge_ratio": 0.0117,
-            "total_risk": 1723.64,
+            "spy_delta_eq": -13.48,
+            "correlation_spy": 0.84,
+            "edge_ratio": 0.0122,
+            "total_risk": 1758.92,
             "is_new": false
         },
         {
@@ -229,67 +263,16 @@
             "expiration": "2026-07-17",
             "spread": "250.0/245.0P",
             "spread_key": "GOOG|250.0/245.0P|2026-07-17",
-            "price": 357.665,
+            "price": 356.94,
             "net_credit": 0.09,
             "max_loss": 4.91,
             "ev": 0.06,
             "pop_pct": 99.4,
             "rec_qty": 4,
             "spy_delta_eq": -1.31,
-            "correlation_spy": 0.358,
+            "correlation_spy": 0.356,
             "edge_ratio": 0.0115,
             "total_risk": 1964.72,
-            "is_new": false
-        },
-        {
-            "symbol": "TSLA",
-            "expiration": "2026-06-18",
-            "spread": "270.0/265.0P",
-            "spread_key": "TSLA|270.0/265.0P|2026-06-18",
-            "price": 423.12,
-            "net_credit": 0.06,
-            "max_loss": 4.94,
-            "ev": 0.06,
-            "pop_pct": 99.9,
-            "rec_qty": 4,
-            "spy_delta_eq": -0.19,
-            "correlation_spy": 0.851,
-            "edge_ratio": 0.0113,
-            "total_risk": 1976.48,
-            "is_new": false
-        },
-        {
-            "symbol": "TQQQ",
-            "expiration": "2026-06-18",
-            "spread": "54.0/49.0P",
-            "spread_key": "TQQQ|54.0/49.0P|2026-06-18",
-            "price": 86.66,
-            "net_credit": 0.05,
-            "max_loss": 4.95,
-            "ev": 0.05,
-            "pop_pct": 100.0,
-            "rec_qty": 4,
-            "spy_delta_eq": 0.0,
-            "correlation_spy": 0.995,
-            "edge_ratio": 0.0109,
-            "total_risk": 1978.44,
-            "is_new": false
-        },
-        {
-            "symbol": "ORCL",
-            "expiration": "2026-07-02",
-            "spread": "140.0/135.0P",
-            "spread_key": "ORCL|140.0/135.0P|2026-07-02",
-            "price": 231.56,
-            "net_credit": 0.13,
-            "max_loss": 4.87,
-            "ev": 0.05,
-            "pop_pct": 98.5,
-            "rec_qty": 4,
-            "spy_delta_eq": -1.86,
-            "correlation_spy": 0.841,
-            "edge_ratio": 0.0105,
-            "total_risk": 1949.04,
             "is_new": false
         },
         {
@@ -297,50 +280,67 @@
             "expiration": "2026-07-17",
             "spread": "140.0/135.0P",
             "spread_key": "ORCL|140.0/135.0P|2026-07-17",
-            "price": 231.56,
+            "price": 231.805,
             "net_credit": 0.22,
             "max_loss": 4.78,
             "ev": 0.05,
             "pop_pct": 96.7,
             "rec_qty": 4,
             "spy_delta_eq": -4.06,
-            "correlation_spy": 0.841,
+            "correlation_spy": 0.84,
             "edge_ratio": 0.0105,
             "total_risk": 1913.76,
             "is_new": false
         },
         {
-            "symbol": "TQQQ",
-            "expiration": "2026-06-12",
-            "spread": "65.0/60.0P",
-            "spread_key": "TQQQ|65.0/60.0P|2026-06-12",
-            "price": 86.66,
+            "symbol": "TSLA",
+            "expiration": "2026-06-18",
+            "spread": "270.0/265.0P",
+            "spread_key": "TSLA|270.0/265.0P|2026-06-18",
+            "price": 421.97,
             "net_credit": 0.05,
             "max_loss": 4.95,
             "ev": 0.05,
             "pop_pct": 99.9,
             "rec_qty": 4,
-            "spy_delta_eq": -0.15,
-            "correlation_spy": 0.995,
-            "edge_ratio": 0.0098,
+            "spy_delta_eq": -0.19,
+            "correlation_spy": 0.85,
+            "edge_ratio": 0.0103,
             "total_risk": 1978.44,
             "is_new": false
         },
         {
             "symbol": "AMD",
             "expiration": "2026-06-18",
-            "spread": "415.0/410.0P",
-            "spread_key": "AMD|415.0/410.0P|2026-06-18",
-            "price": 541.5,
-            "net_credit": 0.24,
-            "max_loss": 4.76,
-            "ev": 0.04,
-            "pop_pct": 96.1,
+            "spread": "370.0/365.0P",
+            "spread_key": "AMD|370.0/365.0P|2026-06-18",
+            "price": 540.71,
+            "net_credit": 0.08,
+            "max_loss": 4.92,
+            "ev": 0.05,
+            "pop_pct": 99.3,
             "rec_qty": 4,
-            "spy_delta_eq": -17.98,
+            "spy_delta_eq": -3.07,
             "correlation_spy": 0.979,
-            "edge_ratio": 0.0093,
-            "total_risk": 1903.96,
+            "edge_ratio": 0.0101,
+            "total_risk": 1966.68,
+            "is_new": false
+        },
+        {
+            "symbol": "ORCL",
+            "expiration": "2026-06-18",
+            "spread": "187.5/182.5P",
+            "spread_key": "ORCL|187.5/182.5P|2026-06-18",
+            "price": 231.805,
+            "net_credit": 0.61,
+            "max_loss": 4.39,
+            "ev": 0.04,
+            "pop_pct": 88.6,
+            "rec_qty": 4,
+            "spy_delta_eq": -13.98,
+            "correlation_spy": 0.84,
+            "edge_ratio": 0.0098,
+            "total_risk": 1755.0,
             "is_new": false
         }
     ],
@@ -423,7 +423,7 @@
             "expiration": "2026-06-26",
             "spread": "195.0/190.0P",
             "first_seen": "2026-06-03 11:11:14 PDT",
-            "last_seen": "2026-06-03 11:55:04 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:11:14 PDT",
@@ -460,6 +460,10 @@
                 {
                     "time": "2026-06-03 11:55:04 PDT",
                     "net_credit": 0.06
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.06
                 }
             ],
             "latest_signal": {
@@ -467,14 +471,14 @@
                 "expiration": "2026-06-26",
                 "spread": "195.0/190.0P",
                 "spread_key": "AMZN|195.0/190.0P|2026-06-26",
-                "price": 248.68,
+                "price": 248.55,
                 "net_credit": 0.06,
                 "max_loss": 4.94,
                 "ev": 0.01,
                 "pop_pct": 98.9,
                 "rec_qty": 4,
                 "spy_delta_eq": -1.55,
-                "correlation_spy": -0.069,
+                "correlation_spy": -0.068,
                 "edge_ratio": 0.0011,
                 "total_risk": 1976.48,
                 "is_new": false
@@ -527,7 +531,7 @@
             "expiration": "2026-07-02",
             "spread": "350.0/345.0P",
             "first_seen": "2026-06-03 11:11:14 PDT",
-            "last_seen": "2026-06-03 11:55:04 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:11:14 PDT",
@@ -564,6 +568,10 @@
                 {
                     "time": "2026-06-03 11:55:04 PDT",
                     "net_credit": 0.15
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.16
                 }
             ],
             "latest_signal": {
@@ -571,16 +579,16 @@
                 "expiration": "2026-07-02",
                 "spread": "350.0/345.0P",
                 "spread_key": "MSFT|350.0/345.0P|2026-07-02",
-                "price": 427.91,
-                "net_credit": 0.15,
-                "max_loss": 4.85,
-                "ev": 0.01,
+                "price": 427.945,
+                "net_credit": 0.16,
+                "max_loss": 4.84,
+                "ev": 0.02,
                 "pop_pct": 97.3,
                 "rec_qty": 4,
-                "spy_delta_eq": -5.42,
+                "spy_delta_eq": -5.43,
                 "correlation_spy": 0.362,
-                "edge_ratio": 0.0029,
-                "total_risk": 1941.2,
+                "edge_ratio": 0.0049,
+                "total_risk": 1937.28,
                 "is_new": false
             },
             "in_current_scan": true
@@ -591,7 +599,7 @@
             "expiration": "2026-06-18",
             "spread": "490.0/485.0P",
             "first_seen": "2026-06-03 11:11:14 PDT",
-            "last_seen": "2026-06-03 11:55:04 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:11:14 PDT",
@@ -628,6 +636,10 @@
                 {
                     "time": "2026-06-03 11:55:04 PDT",
                     "net_credit": 0.07
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.07
                 }
             ],
             "latest_signal": {
@@ -635,14 +647,14 @@
                 "expiration": "2026-06-18",
                 "spread": "490.0/485.0P",
                 "spread_key": "META|490.0/485.0P|2026-06-18",
-                "price": 622.29,
+                "price": 621.815,
                 "net_credit": 0.07,
                 "max_loss": 4.93,
                 "ev": 0.05,
                 "pop_pct": 99.5,
                 "rec_qty": 4,
                 "spy_delta_eq": -1.86,
-                "correlation_spy": -0.505,
+                "correlation_spy": -0.506,
                 "edge_ratio": 0.0091,
                 "total_risk": 1972.56,
                 "is_new": false
@@ -655,7 +667,7 @@
             "expiration": "2026-06-26",
             "spread": "520.0/515.0P",
             "first_seen": "2026-06-03 11:11:14 PDT",
-            "last_seen": "2026-06-03 11:55:04 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:11:14 PDT",
@@ -676,6 +688,10 @@
                 {
                     "time": "2026-06-03 11:55:04 PDT",
                     "net_credit": 0.18
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.18
                 }
             ],
             "latest_signal": {
@@ -683,14 +699,14 @@
                 "expiration": "2026-06-26",
                 "spread": "520.0/515.0P",
                 "spread_key": "META|520.0/515.0P|2026-06-26",
-                "price": 622.29,
+                "price": 621.815,
                 "net_credit": 0.18,
                 "max_loss": 4.82,
                 "ev": 0.02,
                 "pop_pct": 96.7,
                 "rec_qty": 4,
-                "spy_delta_eq": -12.89,
-                "correlation_spy": -0.505,
+                "spy_delta_eq": -12.88,
+                "correlation_spy": -0.506,
                 "edge_ratio": 0.0038,
                 "total_risk": 1927.48,
                 "is_new": false
@@ -703,7 +719,7 @@
             "expiration": "2026-07-02",
             "spread": "505.0/500.0P",
             "first_seen": "2026-06-03 11:11:14 PDT",
-            "last_seen": "2026-06-03 11:55:04 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:11:14 PDT",
@@ -740,6 +756,10 @@
                 {
                     "time": "2026-06-03 11:55:04 PDT",
                     "net_credit": 0.17
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.17
                 }
             ],
             "latest_signal": {
@@ -747,14 +767,14 @@
                 "expiration": "2026-07-02",
                 "spread": "505.0/500.0P",
                 "spread_key": "META|505.0/500.0P|2026-07-02",
-                "price": 622.29,
+                "price": 621.815,
                 "net_credit": 0.17,
                 "max_loss": 4.83,
                 "ev": 0.1,
                 "pop_pct": 98.5,
                 "rec_qty": 4,
                 "spy_delta_eq": -5.77,
-                "correlation_spy": -0.505,
+                "correlation_spy": -0.506,
                 "edge_ratio": 0.0204,
                 "total_risk": 1931.4,
                 "is_new": false
@@ -767,7 +787,7 @@
             "expiration": "2026-07-17",
             "spread": "440.0/435.0P",
             "first_seen": "2026-06-03 11:11:14 PDT",
-            "last_seen": "2026-06-03 11:55:04 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:11:14 PDT",
@@ -804,6 +824,10 @@
                 {
                     "time": "2026-06-03 11:55:04 PDT",
                     "net_credit": 0.08
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.08
                 }
             ],
             "latest_signal": {
@@ -811,14 +835,14 @@
                 "expiration": "2026-07-17",
                 "spread": "440.0/435.0P",
                 "spread_key": "META|440.0/435.0P|2026-07-17",
-                "price": 622.29,
+                "price": 621.815,
                 "net_credit": 0.08,
                 "max_loss": 4.92,
                 "ev": 0.02,
                 "pop_pct": 98.9,
                 "rec_qty": 4,
                 "spy_delta_eq": -4.43,
-                "correlation_spy": -0.505,
+                "correlation_spy": -0.506,
                 "edge_ratio": 0.0046,
                 "total_risk": 1968.64,
                 "is_new": false
@@ -891,7 +915,7 @@
             "expiration": "2026-07-17",
             "spread": "250.0/245.0P",
             "first_seen": "2026-06-03 11:11:14 PDT",
-            "last_seen": "2026-06-03 11:55:04 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:11:14 PDT",
@@ -928,6 +952,10 @@
                 {
                     "time": "2026-06-03 11:55:04 PDT",
                     "net_credit": 0.09
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.09
                 }
             ],
             "latest_signal": {
@@ -935,14 +963,14 @@
                 "expiration": "2026-07-17",
                 "spread": "250.0/245.0P",
                 "spread_key": "GOOG|250.0/245.0P|2026-07-17",
-                "price": 357.665,
+                "price": 356.94,
                 "net_credit": 0.09,
                 "max_loss": 4.91,
                 "ev": 0.06,
                 "pop_pct": 99.4,
                 "rec_qty": 4,
                 "spy_delta_eq": -1.31,
-                "correlation_spy": 0.358,
+                "correlation_spy": 0.356,
                 "edge_ratio": 0.0115,
                 "total_risk": 1964.72,
                 "is_new": false
@@ -955,7 +983,7 @@
             "expiration": "2026-06-26",
             "spread": "290.0/285.0P",
             "first_seen": "2026-06-03 11:11:14 PDT",
-            "last_seen": "2026-06-03 11:55:04 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:11:14 PDT",
@@ -992,6 +1020,10 @@
                 {
                     "time": "2026-06-03 11:55:04 PDT",
                     "net_credit": 0.05
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.05
                 }
             ],
             "latest_signal": {
@@ -999,14 +1031,14 @@
                 "expiration": "2026-06-26",
                 "spread": "290.0/285.0P",
                 "spread_key": "TSLA|290.0/285.0P|2026-06-26",
-                "price": 423.12,
+                "price": 421.97,
                 "net_credit": 0.05,
                 "max_loss": 4.95,
                 "ev": 0.01,
                 "pop_pct": 99.0,
                 "rec_qty": 4,
-                "spy_delta_eq": -3.01,
-                "correlation_spy": 0.851,
+                "spy_delta_eq": -3.0,
+                "correlation_spy": 0.85,
                 "edge_ratio": 0.0012,
                 "total_risk": 1978.44,
                 "is_new": false
@@ -1051,7 +1083,7 @@
             "expiration": "2026-06-12",
             "spread": "380.0/375.0P",
             "first_seen": "2026-06-03 11:11:14 PDT",
-            "last_seen": "2026-06-03 11:55:04 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:11:14 PDT",
@@ -1088,6 +1120,10 @@
                 {
                     "time": "2026-06-03 11:55:04 PDT",
                     "net_credit": 0.09
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.09
                 }
             ],
             "latest_signal": {
@@ -1095,7 +1131,7 @@
                 "expiration": "2026-06-12",
                 "spread": "380.0/375.0P",
                 "spread_key": "AMD|380.0/375.0P|2026-06-12",
-                "price": 541.5,
+                "price": 540.71,
                 "net_credit": 0.09,
                 "max_loss": 4.91,
                 "ev": 0.03,
@@ -1147,7 +1183,7 @@
             "expiration": "2026-06-18",
             "spread": "370.0/365.0P",
             "first_seen": "2026-06-03 11:11:14 PDT",
-            "last_seen": "2026-06-03 11:55:04 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:11:14 PDT",
@@ -1184,6 +1220,10 @@
                 {
                     "time": "2026-06-03 11:55:04 PDT",
                     "net_credit": 0.07
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.08
                 }
             ],
             "latest_signal": {
@@ -1191,16 +1231,16 @@
                 "expiration": "2026-06-18",
                 "spread": "370.0/365.0P",
                 "spread_key": "AMD|370.0/365.0P|2026-06-18",
-                "price": 541.5,
-                "net_credit": 0.07,
-                "max_loss": 4.93,
-                "ev": 0.04,
+                "price": 540.71,
+                "net_credit": 0.08,
+                "max_loss": 4.92,
+                "ev": 0.05,
                 "pop_pct": 99.3,
                 "rec_qty": 4,
                 "spy_delta_eq": -3.07,
                 "correlation_spy": 0.979,
-                "edge_ratio": 0.0071,
-                "total_risk": 1972.56,
+                "edge_ratio": 0.0101,
+                "total_risk": 1966.68,
                 "is_new": false
             },
             "in_current_scan": true
@@ -1211,7 +1251,7 @@
             "expiration": "2026-06-18",
             "spread": "375.0/370.0P",
             "first_seen": "2026-06-03 11:11:14 PDT",
-            "last_seen": "2026-06-03 11:55:04 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:11:14 PDT",
@@ -1248,6 +1288,10 @@
                 {
                     "time": "2026-06-03 11:55:04 PDT",
                     "net_credit": 0.08
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.08
                 }
             ],
             "latest_signal": {
@@ -1255,7 +1299,7 @@
                 "expiration": "2026-06-18",
                 "spread": "375.0/370.0P",
                 "spread_key": "AMD|375.0/370.0P|2026-06-18",
-                "price": 541.5,
+                "price": 540.71,
                 "net_credit": 0.08,
                 "max_loss": 4.92,
                 "ev": 0.04,
@@ -1275,7 +1319,7 @@
             "expiration": "2026-06-18",
             "spread": "380.0/375.0P",
             "first_seen": "2026-06-03 11:11:14 PDT",
-            "last_seen": "2026-06-03 11:55:04 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:11:14 PDT",
@@ -1312,6 +1356,10 @@
                 {
                     "time": "2026-06-03 11:55:04 PDT",
                     "net_credit": 0.06
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.06
                 }
             ],
             "latest_signal": {
@@ -1319,13 +1367,13 @@
                 "expiration": "2026-06-18",
                 "spread": "380.0/375.0P",
                 "spread_key": "AMD|380.0/375.0P|2026-06-18",
-                "price": 541.5,
+                "price": 540.71,
                 "net_credit": 0.06,
                 "max_loss": 4.94,
                 "ev": 0.01,
                 "pop_pct": 99.0,
                 "rec_qty": 4,
-                "spy_delta_eq": -4.82,
+                "spy_delta_eq": -4.81,
                 "correlation_spy": 0.979,
                 "edge_ratio": 0.0023,
                 "total_risk": 1974.52,
@@ -1339,7 +1387,7 @@
             "expiration": "2026-06-18",
             "spread": "385.0/380.0P",
             "first_seen": "2026-06-03 11:11:14 PDT",
-            "last_seen": "2026-06-03 11:55:04 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:11:14 PDT",
@@ -1376,6 +1424,10 @@
                 {
                     "time": "2026-06-03 11:55:04 PDT",
                     "net_credit": 0.1
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.1
                 }
             ],
             "latest_signal": {
@@ -1383,7 +1435,7 @@
                 "expiration": "2026-06-18",
                 "spread": "385.0/380.0P",
                 "spread_key": "AMD|385.0/380.0P|2026-06-18",
-                "price": 541.5,
+                "price": 540.71,
                 "net_credit": 0.1,
                 "max_loss": 4.9,
                 "ev": 0.03,
@@ -1403,7 +1455,7 @@
             "expiration": "2026-06-18",
             "spread": "390.0/385.0P",
             "first_seen": "2026-06-03 11:11:14 PDT",
-            "last_seen": "2026-06-03 11:55:04 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:11:14 PDT",
@@ -1440,6 +1492,10 @@
                 {
                     "time": "2026-06-03 11:55:04 PDT",
                     "net_credit": 0.1
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.1
                 }
             ],
             "latest_signal": {
@@ -1447,16 +1503,16 @@
                 "expiration": "2026-06-18",
                 "spread": "390.0/385.0P",
                 "spread_key": "AMD|390.0/385.0P|2026-06-18",
-                "price": 541.5,
+                "price": 540.71,
                 "net_credit": 0.1,
                 "max_loss": 4.9,
                 "ev": 0.02,
                 "pop_pct": 98.4,
                 "rec_qty": 4,
-                "spy_delta_eq": -7.34,
+                "spy_delta_eq": -7.33,
                 "correlation_spy": 0.979,
-                "edge_ratio": 0.0047,
-                "total_risk": 1958.84,
+                "edge_ratio": 0.0037,
+                "total_risk": 1960.8,
                 "is_new": false
             },
             "in_current_scan": true
@@ -1467,7 +1523,7 @@
             "expiration": "2026-06-18",
             "spread": "400.0/395.0P",
             "first_seen": "2026-06-03 11:11:14 PDT",
-            "last_seen": "2026-06-03 11:55:04 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:11:14 PDT",
@@ -1504,6 +1560,10 @@
                 {
                     "time": "2026-06-03 11:55:04 PDT",
                     "net_credit": 0.14
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.14
                 }
             ],
             "latest_signal": {
@@ -1511,13 +1571,13 @@
                 "expiration": "2026-06-18",
                 "spread": "400.0/395.0P",
                 "spread_key": "AMD|400.0/395.0P|2026-06-18",
-                "price": 541.5,
+                "price": 540.71,
                 "net_credit": 0.14,
                 "max_loss": 4.86,
                 "ev": 0.02,
                 "pop_pct": 97.7,
                 "rec_qty": 4,
-                "spy_delta_eq": -10.73,
+                "spy_delta_eq": -10.72,
                 "correlation_spy": 0.979,
                 "edge_ratio": 0.0042,
                 "total_risk": 1945.12,
@@ -1639,7 +1699,7 @@
             "expiration": "2026-06-18",
             "spread": "415.0/410.0P",
             "first_seen": "2026-06-03 11:11:14 PDT",
-            "last_seen": "2026-06-03 11:55:04 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:11:14 PDT",
@@ -1672,6 +1732,10 @@
                 {
                     "time": "2026-06-03 11:55:04 PDT",
                     "net_credit": 0.24
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.21
                 }
             ],
             "latest_signal": {
@@ -1679,16 +1743,16 @@
                 "expiration": "2026-06-18",
                 "spread": "415.0/410.0P",
                 "spread_key": "AMD|415.0/410.0P|2026-06-18",
-                "price": 541.5,
-                "net_credit": 0.24,
-                "max_loss": 4.76,
-                "ev": 0.04,
+                "price": 540.71,
+                "net_credit": 0.21,
+                "max_loss": 4.79,
+                "ev": 0.01,
                 "pop_pct": 96.1,
                 "rec_qty": 4,
-                "spy_delta_eq": -17.98,
+                "spy_delta_eq": -17.96,
                 "correlation_spy": 0.979,
-                "edge_ratio": 0.0093,
-                "total_risk": 1903.96,
+                "edge_ratio": 0.002,
+                "total_risk": 1917.68,
                 "is_new": false
             },
             "in_current_scan": true
@@ -1799,7 +1863,7 @@
             "expiration": "2026-06-18",
             "spread": "435.0/430.0P",
             "first_seen": "2026-06-03 11:11:14 PDT",
-            "last_seen": "2026-06-03 11:55:04 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:11:14 PDT",
@@ -1824,6 +1888,10 @@
                 {
                     "time": "2026-06-03 11:55:04 PDT",
                     "net_credit": 0.38
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.39
                 }
             ],
             "latest_signal": {
@@ -1831,16 +1899,16 @@
                 "expiration": "2026-06-18",
                 "spread": "435.0/430.0P",
                 "spread_key": "AMD|435.0/430.0P|2026-06-18",
-                "price": 541.5,
-                "net_credit": 0.38,
-                "max_loss": 4.62,
-                "ev": 0.02,
+                "price": 540.71,
+                "net_credit": 0.39,
+                "max_loss": 4.61,
+                "ev": 0.03,
                 "pop_pct": 92.9,
                 "rec_qty": 4,
-                "spy_delta_eq": -32.52,
+                "spy_delta_eq": -32.48,
                 "correlation_spy": 0.979,
-                "edge_ratio": 0.0049,
-                "total_risk": 1849.08,
+                "edge_ratio": 0.0071,
+                "total_risk": 1845.16,
                 "is_new": false
             },
             "in_current_scan": true
@@ -1895,7 +1963,7 @@
                 "total_risk": 1813.8,
                 "is_new": false
             },
-            "in_current_scan": true
+            "in_current_scan": false
         },
         "AMD|465.0/460.0P|2026-06-18": {
             "spread_key": "AMD|465.0/460.0P|2026-06-18",
@@ -1951,7 +2019,7 @@
                 "total_risk": 1706.0,
                 "is_new": false
             },
-            "in_current_scan": true
+            "in_current_scan": false
         },
         "AMD|300.0/295.0P|2026-06-26": {
             "spread_key": "AMD|300.0/295.0P|2026-06-26",
@@ -2051,7 +2119,7 @@
             "expiration": "2026-06-26",
             "spread": "440.0/435.0P",
             "first_seen": "2026-06-03 11:11:14 PDT",
-            "last_seen": "2026-06-03 11:55:04 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:11:14 PDT",
@@ -2084,6 +2152,10 @@
                 {
                     "time": "2026-06-03 11:55:04 PDT",
                     "net_credit": 0.61
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.61
                 }
             ],
             "latest_signal": {
@@ -2091,13 +2163,13 @@
                 "expiration": "2026-06-26",
                 "spread": "440.0/435.0P",
                 "spread_key": "AMD|440.0/435.0P|2026-06-26",
-                "price": 541.5,
+                "price": 540.71,
                 "net_credit": 0.61,
                 "max_loss": 4.39,
                 "ev": 0.01,
                 "pop_pct": 87.9,
                 "rec_qty": 4,
-                "spy_delta_eq": -55.63,
+                "spy_delta_eq": -55.57,
                 "correlation_spy": 0.979,
                 "edge_ratio": 0.0014,
                 "total_risk": 1755.0,
@@ -2111,7 +2183,7 @@
             "expiration": "2026-06-26",
             "spread": "450.0/445.0P",
             "first_seen": "2026-06-03 11:11:14 PDT",
-            "last_seen": "2026-06-03 11:55:04 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:11:14 PDT",
@@ -2140,6 +2212,10 @@
                 {
                     "time": "2026-06-03 11:55:04 PDT",
                     "net_credit": 0.78
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.78
                 }
             ],
             "latest_signal": {
@@ -2147,13 +2223,13 @@
                 "expiration": "2026-06-26",
                 "spread": "450.0/445.0P",
                 "spread_key": "AMD|450.0/445.0P|2026-06-26",
-                "price": 541.5,
+                "price": 540.71,
                 "net_credit": 0.78,
                 "max_loss": 4.22,
                 "ev": 0.08,
                 "pop_pct": 85.9,
                 "rec_qty": 4,
-                "spy_delta_eq": -64.9,
+                "spy_delta_eq": -64.83,
                 "correlation_spy": 0.979,
                 "edge_ratio": 0.0181,
                 "total_risk": 1686.4,
@@ -2223,7 +2299,7 @@
             "expiration": "2026-07-10",
             "spread": "415.0/410.0P",
             "first_seen": "2026-06-03 11:11:14 PDT",
-            "last_seen": "2026-06-03 11:55:04 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:11:14 PDT",
@@ -2260,6 +2336,10 @@
                 {
                     "time": "2026-06-03 11:55:04 PDT",
                     "net_credit": 0.81
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.71
                 }
             ],
             "latest_signal": {
@@ -2267,16 +2347,16 @@
                 "expiration": "2026-07-10",
                 "spread": "415.0/410.0P",
                 "spread_key": "AMD|415.0/410.0P|2026-07-10",
-                "price": 541.5,
-                "net_credit": 0.81,
-                "max_loss": 4.19,
-                "ev": 0.27,
+                "price": 540.71,
+                "net_credit": 0.71,
+                "max_loss": 4.29,
+                "ev": 0.17,
                 "pop_pct": 89.1,
                 "rec_qty": 4,
-                "spy_delta_eq": -49.86,
+                "spy_delta_eq": -49.8,
                 "correlation_spy": 0.979,
-                "edge_ratio": 0.0632,
-                "total_risk": 1676.6,
+                "edge_ratio": 0.0389,
+                "total_risk": 1715.8,
                 "is_new": false
             },
             "in_current_scan": true
@@ -2287,7 +2367,7 @@
             "expiration": "2026-07-10",
             "spread": "435.0/430.0P",
             "first_seen": "2026-06-03 11:11:14 PDT",
-            "last_seen": "2026-06-03 11:55:04 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:11:14 PDT",
@@ -2324,6 +2404,10 @@
                 {
                     "time": "2026-06-03 11:55:04 PDT",
                     "net_credit": 0.88
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.88
                 }
             ],
             "latest_signal": {
@@ -2331,13 +2415,13 @@
                 "expiration": "2026-07-10",
                 "spread": "435.0/430.0P",
                 "spread_key": "AMD|435.0/430.0P|2026-07-10",
-                "price": 541.5,
+                "price": 540.71,
                 "net_credit": 0.88,
                 "max_loss": 4.12,
                 "ev": 0.16,
                 "pop_pct": 85.5,
                 "rec_qty": 4,
-                "spy_delta_eq": -66.32,
+                "spy_delta_eq": -66.25,
                 "correlation_spy": 0.979,
                 "edge_ratio": 0.0386,
                 "total_risk": 1647.2,
@@ -2351,7 +2435,7 @@
             "expiration": "2026-06-12",
             "spread": "150.0/145.0P",
             "first_seen": "2026-06-03 11:11:14 PDT",
-            "last_seen": "2026-06-03 11:55:04 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:11:14 PDT",
@@ -2388,6 +2472,10 @@
                 {
                     "time": "2026-06-03 11:55:04 PDT",
                     "net_credit": 0.07
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.07
                 }
             ],
             "latest_signal": {
@@ -2395,14 +2483,14 @@
                 "expiration": "2026-06-12",
                 "spread": "150.0/145.0P",
                 "spread_key": "ORCL|150.0/145.0P|2026-06-12",
-                "price": 231.56,
+                "price": 231.805,
                 "net_credit": 0.07,
                 "max_loss": 4.93,
                 "ev": 0.03,
                 "pop_pct": 99.2,
                 "rec_qty": 4,
                 "spy_delta_eq": -0.97,
-                "correlation_spy": 0.841,
+                "correlation_spy": 0.84,
                 "edge_ratio": 0.0059,
                 "total_risk": 1972.56,
                 "is_new": false
@@ -2543,7 +2631,7 @@
             "expiration": "2026-06-12",
             "spread": "195.0/190.0P",
             "first_seen": "2026-06-03 11:11:14 PDT",
-            "last_seen": "2026-06-03 11:55:04 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:11:14 PDT",
@@ -2580,6 +2668,10 @@
                 {
                     "time": "2026-06-03 11:55:04 PDT",
                     "net_credit": 0.69
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.72
                 }
             ],
             "latest_signal": {
@@ -2587,16 +2679,16 @@
                 "expiration": "2026-06-12",
                 "spread": "195.0/190.0P",
                 "spread_key": "ORCL|195.0/190.0P|2026-06-12",
-                "price": 231.56,
-                "net_credit": 0.69,
-                "max_loss": 4.31,
-                "ev": 0.01,
+                "price": 231.805,
+                "net_credit": 0.72,
+                "max_loss": 4.28,
+                "ev": 0.04,
                 "pop_pct": 86.3,
                 "rec_qty": 4,
-                "spy_delta_eq": -16.76,
-                "correlation_spy": 0.841,
-                "edge_ratio": 0.0017,
-                "total_risk": 1723.64,
+                "spy_delta_eq": -16.78,
+                "correlation_spy": 0.84,
+                "edge_ratio": 0.0086,
+                "total_risk": 1711.88,
                 "is_new": false
             },
             "in_current_scan": true
@@ -2607,7 +2699,7 @@
             "expiration": "2026-06-18",
             "spread": "165.0/160.0P",
             "first_seen": "2026-06-03 11:11:14 PDT",
-            "last_seen": "2026-06-03 11:36:58 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:11:14 PDT",
@@ -2632,6 +2724,10 @@
                 {
                     "time": "2026-06-03 11:36:58 PDT",
                     "net_credit": 0.25
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.24
                 }
             ],
             "latest_signal": {
@@ -2639,19 +2735,19 @@
                 "expiration": "2026-06-18",
                 "spread": "165.0/160.0P",
                 "spread_key": "ORCL|165.0/160.0P|2026-06-18",
-                "price": 232.53,
-                "net_credit": 0.25,
-                "max_loss": 4.75,
-                "ev": 0.04,
+                "price": 231.805,
+                "net_credit": 0.24,
+                "max_loss": 4.76,
+                "ev": 0.03,
                 "pop_pct": 95.9,
                 "rec_qty": 4,
-                "spy_delta_eq": -5.11,
-                "correlation_spy": 0.841,
-                "edge_ratio": 0.0089,
-                "total_risk": 1900.04,
+                "spy_delta_eq": -5.09,
+                "correlation_spy": 0.84,
+                "edge_ratio": 0.0058,
+                "total_risk": 1905.92,
                 "is_new": false
             },
-            "in_current_scan": false
+            "in_current_scan": true
         },
         "ORCL|187.5/182.5P|2026-06-18": {
             "spread_key": "ORCL|187.5/182.5P|2026-06-18",
@@ -2659,7 +2755,7 @@
             "expiration": "2026-06-18",
             "spread": "187.5/182.5P",
             "first_seen": "2026-06-03 11:11:14 PDT",
-            "last_seen": "2026-06-03 11:18:48 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:11:14 PDT",
@@ -2672,6 +2768,10 @@
                 {
                     "time": "2026-06-03 11:18:48 PDT",
                     "net_credit": 0.59
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.61
                 }
             ],
             "latest_signal": {
@@ -2679,19 +2779,19 @@
                 "expiration": "2026-06-18",
                 "spread": "187.5/182.5P",
                 "spread_key": "ORCL|187.5/182.5P|2026-06-18",
-                "price": 230.91,
-                "net_credit": 0.59,
-                "max_loss": 4.41,
-                "ev": 0.02,
+                "price": 231.805,
+                "net_credit": 0.61,
+                "max_loss": 4.39,
+                "ev": 0.04,
                 "pop_pct": 88.6,
                 "rec_qty": 4,
-                "spy_delta_eq": -13.93,
-                "correlation_spy": 0.841,
-                "edge_ratio": 0.0042,
-                "total_risk": 1764.8,
+                "spy_delta_eq": -13.98,
+                "correlation_spy": 0.84,
+                "edge_ratio": 0.0098,
+                "total_risk": 1755.0,
                 "is_new": false
             },
-            "in_current_scan": false
+            "in_current_scan": true
         },
         "ORCL|190.0/185.0P|2026-06-18": {
             "spread_key": "ORCL|190.0/185.0P|2026-06-18",
@@ -2699,7 +2799,7 @@
             "expiration": "2026-06-18",
             "spread": "190.0/185.0P",
             "first_seen": "2026-06-03 11:11:14 PDT",
-            "last_seen": "2026-06-03 11:55:04 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:11:14 PDT",
@@ -2724,6 +2824,10 @@
                 {
                     "time": "2026-06-03 11:55:04 PDT",
                     "net_credit": 0.66
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.65
                 }
             ],
             "latest_signal": {
@@ -2731,16 +2835,16 @@
                 "expiration": "2026-06-18",
                 "spread": "190.0/185.0P",
                 "spread_key": "ORCL|190.0/185.0P|2026-06-18",
-                "price": 231.56,
-                "net_credit": 0.66,
-                "max_loss": 4.34,
-                "ev": 0.03,
+                "price": 231.805,
+                "net_credit": 0.65,
+                "max_loss": 4.35,
+                "ev": 0.02,
                 "pop_pct": 87.4,
                 "rec_qty": 4,
-                "spy_delta_eq": -15.48,
-                "correlation_spy": 0.841,
-                "edge_ratio": 0.0069,
-                "total_risk": 1735.4,
+                "spy_delta_eq": -15.5,
+                "correlation_spy": 0.84,
+                "edge_ratio": 0.0035,
+                "total_risk": 1741.28,
                 "is_new": false
             },
             "in_current_scan": true
@@ -2751,7 +2855,7 @@
             "expiration": "2026-06-18",
             "spread": "192.5/187.5P",
             "first_seen": "2026-06-03 11:11:14 PDT",
-            "last_seen": "2026-06-03 11:55:04 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:11:14 PDT",
@@ -2788,6 +2892,10 @@
                 {
                     "time": "2026-06-03 11:55:04 PDT",
                     "net_credit": 0.73
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.72
                 }
             ],
             "latest_signal": {
@@ -2795,16 +2903,16 @@
                 "expiration": "2026-06-18",
                 "spread": "192.5/187.5P",
                 "spread_key": "ORCL|192.5/187.5P|2026-06-18",
-                "price": 231.56,
-                "net_credit": 0.73,
-                "max_loss": 4.27,
-                "ev": 0.03,
+                "price": 231.805,
+                "net_credit": 0.72,
+                "max_loss": 4.28,
+                "ev": 0.02,
                 "pop_pct": 86.0,
                 "rec_qty": 4,
-                "spy_delta_eq": -17.14,
-                "correlation_spy": 0.841,
-                "edge_ratio": 0.0061,
-                "total_risk": 1709.92,
+                "spy_delta_eq": -17.16,
+                "correlation_spy": 0.84,
+                "edge_ratio": 0.005,
+                "total_risk": 1711.88,
                 "is_new": false
             },
             "in_current_scan": true
@@ -2815,7 +2923,7 @@
             "expiration": "2026-06-26",
             "spread": "190.0/185.0P",
             "first_seen": "2026-06-03 11:11:14 PDT",
-            "last_seen": "2026-06-03 11:55:04 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:11:14 PDT",
@@ -2852,6 +2960,10 @@
                 {
                     "time": "2026-06-03 11:55:04 PDT",
                     "net_credit": 0.73
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.76
                 }
             ],
             "latest_signal": {
@@ -2859,16 +2971,16 @@
                 "expiration": "2026-06-26",
                 "spread": "190.0/185.0P",
                 "spread_key": "ORCL|190.0/185.0P|2026-06-26",
-                "price": 231.56,
-                "net_credit": 0.73,
-                "max_loss": 4.27,
-                "ev": 0.03,
+                "price": 231.805,
+                "net_credit": 0.76,
+                "max_loss": 4.24,
+                "ev": 0.07,
                 "pop_pct": 86.2,
                 "rec_qty": 4,
-                "spy_delta_eq": -16.94,
-                "correlation_spy": 0.841,
-                "edge_ratio": 0.008,
-                "total_risk": 1709.92,
+                "spy_delta_eq": -16.96,
+                "correlation_spy": 0.84,
+                "edge_ratio": 0.0162,
+                "total_risk": 1696.2,
                 "is_new": false
             },
             "in_current_scan": true
@@ -2979,7 +3091,7 @@
             "expiration": "2026-07-17",
             "spread": "115.0/110.0P",
             "first_seen": "2026-06-03 11:11:14 PDT",
-            "last_seen": "2026-06-03 11:55:04 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:11:14 PDT",
@@ -3016,6 +3128,10 @@
                 {
                     "time": "2026-06-03 11:55:04 PDT",
                     "net_credit": 0.13
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.13
                 }
             ],
             "latest_signal": {
@@ -3023,14 +3139,14 @@
                 "expiration": "2026-07-17",
                 "spread": "115.0/110.0P",
                 "spread_key": "ORCL|115.0/110.0P|2026-07-17",
-                "price": 231.56,
+                "price": 231.805,
                 "net_credit": 0.13,
                 "max_loss": 4.87,
                 "ev": 0.08,
                 "pop_pct": 99.1,
                 "rec_qty": 4,
                 "spy_delta_eq": -1.14,
-                "correlation_spy": 0.841,
+                "correlation_spy": 0.84,
                 "edge_ratio": 0.0166,
                 "total_risk": 1949.04,
                 "is_new": false
@@ -3119,7 +3235,7 @@
                 "total_risk": 1809.88,
                 "is_new": false
             },
-            "in_current_scan": true
+            "in_current_scan": false
         },
         "ORCL|175.0/170.0P|2026-07-17": {
             "spread_key": "ORCL|175.0/170.0P|2026-07-17",
@@ -3127,7 +3243,7 @@
             "expiration": "2026-07-17",
             "spread": "175.0/170.0P",
             "first_seen": "2026-06-03 11:11:14 PDT",
-            "last_seen": "2026-06-03 11:55:04 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:11:14 PDT",
@@ -3164,6 +3280,10 @@
                 {
                     "time": "2026-06-03 11:55:04 PDT",
                     "net_credit": 0.6
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.6
                 }
             ],
             "latest_signal": {
@@ -3171,14 +3291,14 @@
                 "expiration": "2026-07-17",
                 "spread": "175.0/170.0P",
                 "spread_key": "ORCL|175.0/170.0P|2026-07-17",
-                "price": 231.56,
+                "price": 231.805,
                 "net_credit": 0.6,
                 "max_loss": 4.4,
                 "ev": 0.05,
                 "pop_pct": 89.0,
                 "rec_qty": 4,
-                "spy_delta_eq": -13.46,
-                "correlation_spy": 0.841,
+                "spy_delta_eq": -13.48,
+                "correlation_spy": 0.84,
                 "edge_ratio": 0.0122,
                 "total_risk": 1758.92,
                 "is_new": false
@@ -3191,7 +3311,7 @@
             "expiration": "2026-07-17",
             "spread": "180.0/175.0P",
             "first_seen": "2026-06-03 11:11:14 PDT",
-            "last_seen": "2026-06-03 11:55:04 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:11:14 PDT",
@@ -3228,6 +3348,10 @@
                 {
                     "time": "2026-06-03 11:55:04 PDT",
                     "net_credit": 0.69
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.68
                 }
             ],
             "latest_signal": {
@@ -3235,16 +3359,16 @@
                 "expiration": "2026-07-17",
                 "spread": "180.0/175.0P",
                 "spread_key": "ORCL|180.0/175.0P|2026-07-17",
-                "price": 231.56,
-                "net_credit": 0.69,
-                "max_loss": 4.31,
-                "ev": 0.05,
+                "price": 231.805,
+                "net_credit": 0.68,
+                "max_loss": 4.32,
+                "ev": 0.04,
                 "pop_pct": 87.2,
                 "rec_qty": 4,
-                "spy_delta_eq": -15.7,
-                "correlation_spy": 0.841,
-                "edge_ratio": 0.0117,
-                "total_risk": 1723.64,
+                "spy_delta_eq": -15.72,
+                "correlation_spy": 0.84,
+                "edge_ratio": 0.0094,
+                "total_risk": 1727.56,
                 "is_new": false
             },
             "in_current_scan": true
@@ -3255,7 +3379,7 @@
             "expiration": "2026-07-17",
             "spread": "185.0/180.0P",
             "first_seen": "2026-06-03 11:11:14 PDT",
-            "last_seen": "2026-06-03 11:55:04 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:11:14 PDT",
@@ -3292,6 +3416,10 @@
                 {
                     "time": "2026-06-03 11:55:04 PDT",
                     "net_credit": 0.83
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.83
                 }
             ],
             "latest_signal": {
@@ -3299,14 +3427,14 @@
                 "expiration": "2026-07-17",
                 "spread": "185.0/180.0P",
                 "spread_key": "ORCL|185.0/180.0P|2026-07-17",
-                "price": 231.56,
+                "price": 231.805,
                 "net_credit": 0.83,
                 "max_loss": 4.17,
                 "ev": 0.09,
                 "pop_pct": 85.1,
                 "rec_qty": 4,
-                "spy_delta_eq": -18.29,
-                "correlation_spy": 0.841,
+                "spy_delta_eq": -18.31,
+                "correlation_spy": 0.84,
                 "edge_ratio": 0.0209,
                 "total_risk": 1666.8,
                 "is_new": false
@@ -3415,7 +3543,7 @@
             "expiration": "2026-06-18",
             "spread": "60.0/55.0P",
             "first_seen": "2026-06-03 11:11:14 PDT",
-            "last_seen": "2026-06-03 11:55:04 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:11:14 PDT",
@@ -3452,6 +3580,10 @@
                 {
                     "time": "2026-06-03 11:55:04 PDT",
                     "net_credit": 0.06
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.06
                 }
             ],
             "latest_signal": {
@@ -3459,7 +3591,7 @@
                 "expiration": "2026-06-18",
                 "spread": "60.0/55.0P",
                 "spread_key": "TQQQ|60.0/55.0P|2026-06-18",
-                "price": 86.66,
+                "price": 86.51,
                 "net_credit": 0.06,
                 "max_loss": 4.94,
                 "ev": 0.02,
@@ -3467,8 +3599,8 @@
                 "rec_qty": 4,
                 "spy_delta_eq": -1.14,
                 "correlation_spy": 0.995,
-                "edge_ratio": 0.0045,
-                "total_risk": 1974.52,
+                "edge_ratio": 0.0035,
+                "total_risk": 1976.48,
                 "is_new": false
             },
             "in_current_scan": true
@@ -3651,7 +3783,7 @@
             "expiration": "2026-06-12",
             "spread": "167.5/162.5P",
             "first_seen": "2026-06-03 11:12:47 PDT",
-            "last_seen": "2026-06-03 11:49:01 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:12:47 PDT",
@@ -3664,6 +3796,10 @@
                 {
                     "time": "2026-06-03 11:49:01 PDT",
                     "net_credit": 0.19
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.16
                 }
             ],
             "latest_signal": {
@@ -3671,19 +3807,19 @@
                 "expiration": "2026-06-12",
                 "spread": "167.5/162.5P",
                 "spread_key": "ORCL|167.5/162.5P|2026-06-12",
-                "price": 232.0325,
-                "net_credit": 0.19,
-                "max_loss": 4.81,
-                "ev": 0.04,
+                "price": 231.805,
+                "net_credit": 0.16,
+                "max_loss": 4.84,
+                "ev": 0.01,
                 "pop_pct": 97.0,
                 "rec_qty": 4,
                 "spy_delta_eq": -3.66,
-                "correlation_spy": 0.841,
-                "edge_ratio": 0.0088,
-                "total_risk": 1923.56,
+                "correlation_spy": 0.84,
+                "edge_ratio": 0.0026,
+                "total_risk": 1935.32,
                 "is_new": false
             },
-            "in_current_scan": false
+            "in_current_scan": true
         },
         "ORCL|140.0/135.0P|2026-07-02": {
             "spread_key": "ORCL|140.0/135.0P|2026-07-02",
@@ -3691,7 +3827,7 @@
             "expiration": "2026-07-02",
             "spread": "140.0/135.0P",
             "first_seen": "2026-06-03 11:12:47 PDT",
-            "last_seen": "2026-06-03 11:55:04 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:12:47 PDT",
@@ -3716,6 +3852,10 @@
                 {
                     "time": "2026-06-03 11:55:04 PDT",
                     "net_credit": 0.13
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.2
                 }
             ],
             "latest_signal": {
@@ -3723,16 +3863,16 @@
                 "expiration": "2026-07-02",
                 "spread": "140.0/135.0P",
                 "spread_key": "ORCL|140.0/135.0P|2026-07-02",
-                "price": 231.56,
-                "net_credit": 0.13,
-                "max_loss": 4.87,
-                "ev": 0.05,
+                "price": 231.805,
+                "net_credit": 0.2,
+                "max_loss": 4.8,
+                "ev": 0.12,
                 "pop_pct": 98.5,
                 "rec_qty": 4,
-                "spy_delta_eq": -1.86,
-                "correlation_spy": 0.841,
-                "edge_ratio": 0.0105,
-                "total_risk": 1949.04,
+                "spy_delta_eq": -1.87,
+                "correlation_spy": 0.84,
+                "edge_ratio": 0.025,
+                "total_risk": 1921.6,
                 "is_new": false
             },
             "in_current_scan": true
@@ -3787,7 +3927,7 @@
                 "total_risk": 1923.56,
                 "is_new": false
             },
-            "in_current_scan": true
+            "in_current_scan": false
         },
         "ORCL|140.0/135.0P|2026-07-17": {
             "spread_key": "ORCL|140.0/135.0P|2026-07-17",
@@ -3795,7 +3935,7 @@
             "expiration": "2026-07-17",
             "spread": "140.0/135.0P",
             "first_seen": "2026-06-03 11:12:47 PDT",
-            "last_seen": "2026-06-03 11:55:04 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:12:47 PDT",
@@ -3812,6 +3952,10 @@
                 {
                     "time": "2026-06-03 11:55:04 PDT",
                     "net_credit": 0.22
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.22
                 }
             ],
             "latest_signal": {
@@ -3819,14 +3963,14 @@
                 "expiration": "2026-07-17",
                 "spread": "140.0/135.0P",
                 "spread_key": "ORCL|140.0/135.0P|2026-07-17",
-                "price": 231.56,
+                "price": 231.805,
                 "net_credit": 0.22,
                 "max_loss": 4.78,
                 "ev": 0.05,
                 "pop_pct": 96.7,
                 "rec_qty": 4,
                 "spy_delta_eq": -4.06,
-                "correlation_spy": 0.841,
+                "correlation_spy": 0.84,
                 "edge_ratio": 0.0105,
                 "total_risk": 1913.76,
                 "is_new": false
@@ -3839,7 +3983,7 @@
             "expiration": "2026-07-17",
             "spread": "155.0/150.0P",
             "first_seen": "2026-06-03 11:12:47 PDT",
-            "last_seen": "2026-06-03 11:30:53 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:12:47 PDT",
@@ -3848,6 +3992,10 @@
                 {
                     "time": "2026-06-03 11:30:53 PDT",
                     "net_credit": 0.29
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.3
                 }
             ],
             "latest_signal": {
@@ -3855,19 +4003,19 @@
                 "expiration": "2026-07-17",
                 "spread": "155.0/150.0P",
                 "spread_key": "ORCL|155.0/150.0P|2026-07-17",
-                "price": 231.97,
-                "net_credit": 0.29,
-                "max_loss": 4.71,
+                "price": 231.805,
+                "net_credit": 0.3,
+                "max_loss": 4.7,
                 "ev": 0.01,
                 "pop_pct": 94.3,
                 "rec_qty": 4,
                 "spy_delta_eq": -7.05,
-                "correlation_spy": 0.841,
-                "edge_ratio": 0.0015,
-                "total_risk": 1882.4,
+                "correlation_spy": 0.84,
+                "edge_ratio": 0.0025,
+                "total_risk": 1880.44,
                 "is_new": false
             },
-            "in_current_scan": false
+            "in_current_scan": true
         },
         "META|545.0/540.0P|2026-06-17": {
             "spread_key": "META|545.0/540.0P|2026-06-17",
@@ -3907,11 +4055,15 @@
             "expiration": "2026-06-17",
             "spread": "550.0/545.0P",
             "first_seen": "2026-06-03 11:18:48 PDT",
-            "last_seen": "2026-06-03 11:18:48 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:18:48 PDT",
                     "net_credit": 0.06
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.16
                 }
             ],
             "latest_signal": {
@@ -3919,19 +4071,19 @@
                 "expiration": "2026-06-17",
                 "spread": "550.0/545.0P",
                 "spread_key": "META|550.0/545.0P|2026-06-17",
-                "price": 622.56,
-                "net_credit": 0.06,
-                "max_loss": 4.94,
-                "ev": 0.03,
+                "price": 621.815,
+                "net_credit": 0.16,
+                "max_loss": 4.84,
+                "ev": 0.13,
                 "pop_pct": 99.4,
                 "rec_qty": 4,
                 "spy_delta_eq": -2.33,
-                "correlation_spy": -0.505,
-                "edge_ratio": 0.0069,
-                "total_risk": 1974.52,
-                "is_new": true
+                "correlation_spy": -0.506,
+                "edge_ratio": 0.0263,
+                "total_risk": 1937.28,
+                "is_new": false
             },
-            "in_current_scan": false
+            "in_current_scan": true
         },
         "META|500.0/495.0P|2026-07-02": {
             "spread_key": "META|500.0/495.0P|2026-07-02",
@@ -3939,7 +4091,7 @@
             "expiration": "2026-07-02",
             "spread": "500.0/495.0P",
             "first_seen": "2026-06-03 11:18:48 PDT",
-            "last_seen": "2026-06-03 11:55:04 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:18:48 PDT",
@@ -3968,6 +4120,10 @@
                 {
                     "time": "2026-06-03 11:55:04 PDT",
                     "net_credit": 0.09
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.09
                 }
             ],
             "latest_signal": {
@@ -3975,14 +4131,14 @@
                 "expiration": "2026-07-02",
                 "spread": "500.0/495.0P",
                 "spread_key": "META|500.0/495.0P|2026-07-02",
-                "price": 622.29,
+                "price": 621.815,
                 "net_credit": 0.09,
                 "max_loss": 4.91,
                 "ev": 0.04,
                 "pop_pct": 98.9,
                 "rec_qty": 4,
-                "spy_delta_eq": -4.51,
-                "correlation_spy": -0.505,
+                "spy_delta_eq": -4.5,
+                "correlation_spy": -0.506,
                 "edge_ratio": 0.0074,
                 "total_risk": 1962.76,
                 "is_new": false
@@ -3995,7 +4151,7 @@
             "expiration": "2026-07-02",
             "spread": "525.0/520.0P",
             "first_seen": "2026-06-03 11:18:48 PDT",
-            "last_seen": "2026-06-03 11:55:04 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:18:48 PDT",
@@ -4016,6 +4172,10 @@
                 {
                     "time": "2026-06-03 11:55:04 PDT",
                     "net_credit": 0.24
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.22
                 }
             ],
             "latest_signal": {
@@ -4023,16 +4183,16 @@
                 "expiration": "2026-07-02",
                 "spread": "525.0/520.0P",
                 "spread_key": "META|525.0/520.0P|2026-07-02",
-                "price": 622.29,
-                "net_credit": 0.24,
-                "max_loss": 4.76,
-                "ev": 0.06,
+                "price": 621.815,
+                "net_credit": 0.22,
+                "max_loss": 4.78,
+                "ev": 0.04,
                 "pop_pct": 96.4,
                 "rec_qty": 4,
                 "spy_delta_eq": -14.19,
-                "correlation_spy": -0.505,
-                "edge_ratio": 0.0117,
-                "total_risk": 1905.92,
+                "correlation_spy": -0.506,
+                "edge_ratio": 0.0075,
+                "total_risk": 1913.76,
                 "is_new": false
             },
             "in_current_scan": true
@@ -4075,7 +4235,7 @@
             "expiration": "2026-06-10",
             "spread": "720.0/715.0P",
             "first_seen": "2026-06-03 11:18:48 PDT",
-            "last_seen": "2026-06-03 11:55:04 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:18:48 PDT",
@@ -4092,6 +4252,10 @@
                 {
                     "time": "2026-06-03 11:55:04 PDT",
                     "net_credit": 0.06
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.06
                 }
             ],
             "latest_signal": {
@@ -4099,7 +4263,7 @@
                 "expiration": "2026-06-10",
                 "spread": "720.0/715.0P",
                 "spread_key": "SPY|720.0/715.0P|2026-06-10",
-                "price": 755.59,
+                "price": 755.15,
                 "net_credit": 0.06,
                 "max_loss": 4.94,
                 "ev": 0.01,
@@ -4119,7 +4283,7 @@
             "expiration": "2026-06-12",
             "spread": "713.0/708.0P",
             "first_seen": "2026-06-03 11:18:48 PDT",
-            "last_seen": "2026-06-03 11:55:04 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:18:48 PDT",
@@ -4144,6 +4308,10 @@
                 {
                     "time": "2026-06-03 11:55:04 PDT",
                     "net_credit": 0.06
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.06
                 }
             ],
             "latest_signal": {
@@ -4151,7 +4319,7 @@
                 "expiration": "2026-06-12",
                 "spread": "713.0/708.0P",
                 "spread_key": "SPY|713.0/708.0P|2026-06-12",
-                "price": 755.59,
+                "price": 755.15,
                 "net_credit": 0.06,
                 "max_loss": 4.94,
                 "ev": 0.01,
@@ -4171,7 +4339,7 @@
             "expiration": "2026-06-12",
             "spread": "714.0/709.0P",
             "first_seen": "2026-06-03 11:18:48 PDT",
-            "last_seen": "2026-06-03 11:55:04 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:18:48 PDT",
@@ -4200,6 +4368,10 @@
                 {
                     "time": "2026-06-03 11:55:04 PDT",
                     "net_credit": 0.06
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.07
                 }
             ],
             "latest_signal": {
@@ -4207,16 +4379,16 @@
                 "expiration": "2026-06-12",
                 "spread": "714.0/709.0P",
                 "spread_key": "SPY|714.0/709.0P|2026-06-12",
-                "price": 755.59,
-                "net_credit": 0.06,
-                "max_loss": 4.94,
-                "ev": 0.01,
+                "price": 755.15,
+                "net_credit": 0.07,
+                "max_loss": 4.93,
+                "ev": 0.02,
                 "pop_pct": 99.0,
                 "rec_qty": 4,
                 "spy_delta_eq": -4.04,
                 "correlation_spy": 1.0,
-                "edge_ratio": 0.0017,
-                "total_risk": 1976.48,
+                "edge_ratio": 0.0037,
+                "total_risk": 1972.56,
                 "is_new": false
             },
             "in_current_scan": true
@@ -4255,7 +4427,7 @@
                 "total_risk": 1976.48,
                 "is_new": false
             },
-            "in_current_scan": true
+            "in_current_scan": false
         },
         "SPY|675.0/670.0P|2026-06-26": {
             "spread_key": "SPY|675.0/670.0P|2026-06-26",
@@ -4263,7 +4435,7 @@
             "expiration": "2026-06-26",
             "spread": "675.0/670.0P",
             "first_seen": "2026-06-03 11:18:48 PDT",
-            "last_seen": "2026-06-03 11:55:04 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:18:48 PDT",
@@ -4292,6 +4464,10 @@
                 {
                     "time": "2026-06-03 11:55:04 PDT",
                     "net_credit": 0.06
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.06
                 }
             ],
             "latest_signal": {
@@ -4299,7 +4475,7 @@
                 "expiration": "2026-06-26",
                 "spread": "675.0/670.0P",
                 "spread_key": "SPY|675.0/670.0P|2026-06-26",
-                "price": 755.59,
+                "price": 755.15,
                 "net_credit": 0.06,
                 "max_loss": 4.94,
                 "ev": 0.01,
@@ -4391,7 +4567,7 @@
             "expiration": "2026-06-12",
             "spread": "155.0/150.0P",
             "first_seen": "2026-06-03 11:18:48 PDT",
-            "last_seen": "2026-06-03 11:55:04 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:18:48 PDT",
@@ -4420,6 +4596,10 @@
                 {
                     "time": "2026-06-03 11:55:04 PDT",
                     "net_credit": 0.07
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.07
                 }
             ],
             "latest_signal": {
@@ -4427,14 +4607,14 @@
                 "expiration": "2026-06-12",
                 "spread": "155.0/150.0P",
                 "spread_key": "ORCL|155.0/150.0P|2026-06-12",
-                "price": 231.56,
+                "price": 231.805,
                 "net_credit": 0.07,
                 "max_loss": 4.93,
                 "ev": 0.01,
                 "pop_pct": 98.8,
                 "rec_qty": 4,
                 "spy_delta_eq": -1.47,
-                "correlation_spy": 0.841,
+                "correlation_spy": 0.84,
                 "edge_ratio": 0.0017,
                 "total_risk": 1972.56,
                 "is_new": false
@@ -4447,7 +4627,7 @@
             "expiration": "2026-06-26",
             "spread": "155.0/150.0P",
             "first_seen": "2026-06-03 11:18:48 PDT",
-            "last_seen": "2026-06-03 11:36:58 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:18:48 PDT",
@@ -4460,6 +4640,10 @@
                 {
                     "time": "2026-06-03 11:36:58 PDT",
                     "net_credit": 0.21
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.21
                 }
             ],
             "latest_signal": {
@@ -4467,19 +4651,19 @@
                 "expiration": "2026-06-26",
                 "spread": "155.0/150.0P",
                 "spread_key": "ORCL|155.0/150.0P|2026-06-26",
-                "price": 232.53,
+                "price": 231.805,
                 "net_credit": 0.21,
                 "max_loss": 4.79,
                 "ev": 0.05,
                 "pop_pct": 96.8,
                 "rec_qty": 4,
-                "spy_delta_eq": -3.93,
-                "correlation_spy": 0.841,
+                "spy_delta_eq": -3.92,
+                "correlation_spy": 0.84,
                 "edge_ratio": 0.0097,
                 "total_risk": 1917.68,
                 "is_new": false
             },
-            "in_current_scan": false
+            "in_current_scan": true
         },
         "ORCL|165.0/160.0P|2026-06-26": {
             "spread_key": "ORCL|165.0/160.0P|2026-06-26",
@@ -4631,7 +4815,7 @@
             "expiration": "2026-06-12",
             "spread": "65.0/60.0P",
             "first_seen": "2026-06-03 11:18:48 PDT",
-            "last_seen": "2026-06-03 11:55:04 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:18:48 PDT",
@@ -4660,6 +4844,10 @@
                 {
                     "time": "2026-06-03 11:55:04 PDT",
                     "net_credit": 0.05
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.05
                 }
             ],
             "latest_signal": {
@@ -4667,7 +4855,7 @@
                 "expiration": "2026-06-12",
                 "spread": "65.0/60.0P",
                 "spread_key": "TQQQ|65.0/60.0P|2026-06-12",
-                "price": 86.66,
+                "price": 86.51,
                 "net_credit": 0.05,
                 "max_loss": 4.95,
                 "ev": 0.05,
@@ -4687,7 +4875,7 @@
             "expiration": "2026-07-17",
             "spread": "555.0/550.0P",
             "first_seen": "2026-06-03 11:24:50 PDT",
-            "last_seen": "2026-06-03 11:55:04 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:24:50 PDT",
@@ -4704,6 +4892,10 @@
                 {
                     "time": "2026-06-03 11:55:04 PDT",
                     "net_credit": 0.76
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.76
                 }
             ],
             "latest_signal": {
@@ -4711,14 +4903,14 @@
                 "expiration": "2026-07-17",
                 "spread": "555.0/550.0P",
                 "spread_key": "META|555.0/550.0P|2026-07-17",
-                "price": 622.29,
+                "price": 621.815,
                 "net_credit": 0.76,
                 "max_loss": 4.24,
                 "ev": 0.01,
                 "pop_pct": 85.1,
                 "rec_qty": 4,
-                "spy_delta_eq": -59.06,
-                "correlation_spy": -0.505,
+                "spy_delta_eq": -59.03,
+                "correlation_spy": -0.506,
                 "edge_ratio": 0.0029,
                 "total_risk": 1696.2,
                 "is_new": false
@@ -4775,7 +4967,7 @@
                 "total_risk": 1913.76,
                 "is_new": false
             },
-            "in_current_scan": true
+            "in_current_scan": false
         },
         "TSLA|270.0/265.0P|2026-06-18": {
             "spread_key": "TSLA|270.0/265.0P|2026-06-18",
@@ -4783,7 +4975,7 @@
             "expiration": "2026-06-18",
             "spread": "270.0/265.0P",
             "first_seen": "2026-06-03 11:24:50 PDT",
-            "last_seen": "2026-06-03 11:55:04 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:24:50 PDT",
@@ -4804,6 +4996,10 @@
                 {
                     "time": "2026-06-03 11:55:04 PDT",
                     "net_credit": 0.06
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.05
                 }
             ],
             "latest_signal": {
@@ -4811,16 +5007,16 @@
                 "expiration": "2026-06-18",
                 "spread": "270.0/265.0P",
                 "spread_key": "TSLA|270.0/265.0P|2026-06-18",
-                "price": 423.12,
-                "net_credit": 0.06,
-                "max_loss": 4.94,
-                "ev": 0.06,
+                "price": 421.97,
+                "net_credit": 0.05,
+                "max_loss": 4.95,
+                "ev": 0.05,
                 "pop_pct": 99.9,
                 "rec_qty": 4,
                 "spy_delta_eq": -0.19,
-                "correlation_spy": 0.851,
-                "edge_ratio": 0.0113,
-                "total_risk": 1976.48,
+                "correlation_spy": 0.85,
+                "edge_ratio": 0.0103,
+                "total_risk": 1978.44,
                 "is_new": false
             },
             "in_current_scan": true
@@ -4831,10 +5027,14 @@
             "expiration": "2026-06-26",
             "spread": "680.0/675.0P",
             "first_seen": "2026-06-03 11:24:50 PDT",
-            "last_seen": "2026-06-03 11:24:50 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:24:50 PDT",
+                    "net_credit": 0.08
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
                     "net_credit": 0.08
                 }
             ],
@@ -4843,7 +5043,7 @@
                 "expiration": "2026-06-26",
                 "spread": "680.0/675.0P",
                 "spread_key": "SPY|680.0/675.0P|2026-06-26",
-                "price": 755.72,
+                "price": 755.15,
                 "net_credit": 0.08,
                 "max_loss": 4.92,
                 "ev": 0.01,
@@ -4853,9 +5053,9 @@
                 "correlation_spy": 1.0,
                 "edge_ratio": 0.0019,
                 "total_risk": 1968.64,
-                "is_new": true
+                "is_new": false
             },
-            "in_current_scan": false
+            "in_current_scan": true
         },
         "AMD|470.0/465.0P|2026-06-12": {
             "spread_key": "AMD|470.0/465.0P|2026-06-12",
@@ -4935,7 +5135,7 @@
             "expiration": "2026-06-26",
             "spread": "140.0/135.0P",
             "first_seen": "2026-06-03 11:24:50 PDT",
-            "last_seen": "2026-06-03 11:55:04 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:24:50 PDT",
@@ -4956,6 +5156,10 @@
                 {
                     "time": "2026-06-03 11:55:04 PDT",
                     "net_credit": 0.09
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.14
                 }
             ],
             "latest_signal": {
@@ -4963,16 +5167,16 @@
                 "expiration": "2026-06-26",
                 "spread": "140.0/135.0P",
                 "spread_key": "ORCL|140.0/135.0P|2026-06-26",
-                "price": 231.56,
-                "net_credit": 0.09,
-                "max_loss": 4.91,
-                "ev": 0.02,
+                "price": 231.805,
+                "net_credit": 0.14,
+                "max_loss": 4.86,
+                "ev": 0.07,
                 "pop_pct": 98.6,
                 "rec_qty": 4,
                 "spy_delta_eq": -1.77,
-                "correlation_spy": 0.841,
-                "edge_ratio": 0.0033,
-                "total_risk": 1964.72,
+                "correlation_spy": 0.84,
+                "edge_ratio": 0.0134,
+                "total_risk": 1945.12,
                 "is_new": false
             },
             "in_current_scan": true
@@ -5047,7 +5251,7 @@
             "expiration": "2026-06-18",
             "spread": "56.0/51.0P",
             "first_seen": "2026-06-03 11:24:50 PDT",
-            "last_seen": "2026-06-03 11:55:04 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:24:50 PDT",
@@ -5072,6 +5276,10 @@
                 {
                     "time": "2026-06-03 11:55:04 PDT",
                     "net_credit": 0.1
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.1
                 }
             ],
             "latest_signal": {
@@ -5079,7 +5287,7 @@
                 "expiration": "2026-06-18",
                 "spread": "56.0/51.0P",
                 "spread_key": "TQQQ|56.0/51.0P|2026-06-18",
-                "price": 86.66,
+                "price": 86.51,
                 "net_credit": 0.1,
                 "max_loss": 4.9,
                 "ev": 0.1,
@@ -5099,7 +5307,7 @@
             "expiration": "2026-06-26",
             "spread": "505.0/500.0P",
             "first_seen": "2026-06-03 11:30:53 PDT",
-            "last_seen": "2026-06-03 11:55:04 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:30:53 PDT",
@@ -5120,6 +5328,10 @@
                 {
                     "time": "2026-06-03 11:55:04 PDT",
                     "net_credit": 0.2
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.17
                 }
             ],
             "latest_signal": {
@@ -5127,16 +5339,16 @@
                 "expiration": "2026-06-26",
                 "spread": "505.0/500.0P",
                 "spread_key": "META|505.0/500.0P|2026-06-26",
-                "price": 622.29,
-                "net_credit": 0.2,
-                "max_loss": 4.8,
-                "ev": 0.1,
+                "price": 621.815,
+                "net_credit": 0.17,
+                "max_loss": 4.83,
+                "ev": 0.07,
                 "pop_pct": 98.1,
                 "rec_qty": 4,
                 "spy_delta_eq": -7.67,
-                "correlation_spy": -0.505,
-                "edge_ratio": 0.0216,
-                "total_risk": 1919.64,
+                "correlation_spy": -0.506,
+                "edge_ratio": 0.0144,
+                "total_risk": 1933.36,
                 "is_new": false
             },
             "in_current_scan": true
@@ -5179,7 +5391,7 @@
             "expiration": "2026-06-12",
             "spread": "715.0/710.0P",
             "first_seen": "2026-06-03 11:30:53 PDT",
-            "last_seen": "2026-06-03 11:55:04 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:30:53 PDT",
@@ -5188,6 +5400,10 @@
                 {
                     "time": "2026-06-03 11:55:04 PDT",
                     "net_credit": 0.07
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.07
                 }
             ],
             "latest_signal": {
@@ -5195,7 +5411,7 @@
                 "expiration": "2026-06-12",
                 "spread": "715.0/710.0P",
                 "spread_key": "SPY|715.0/710.0P|2026-06-12",
-                "price": 755.59,
+                "price": 755.15,
                 "net_credit": 0.07,
                 "max_loss": 4.93,
                 "ev": 0.01,
@@ -5279,7 +5495,7 @@
                 "total_risk": 1807.92,
                 "is_new": false
             },
-            "in_current_scan": true
+            "in_current_scan": false
         },
         "AMD|460.0/455.0P|2026-06-18": {
             "spread_key": "AMD|460.0/455.0P|2026-06-18",
@@ -5427,7 +5643,7 @@
                 "total_risk": 1978.44,
                 "is_new": false
             },
-            "in_current_scan": true
+            "in_current_scan": false
         },
         "TQQQ|55.0/50.0P|2026-07-02": {
             "spread_key": "TQQQ|55.0/50.0P|2026-07-02",
@@ -5499,7 +5715,7 @@
             "expiration": "2026-06-18",
             "spread": "365.0/360.0P",
             "first_seen": "2026-06-03 11:36:58 PDT",
-            "last_seen": "2026-06-03 11:55:04 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:36:58 PDT",
@@ -5516,6 +5732,10 @@
                 {
                     "time": "2026-06-03 11:55:04 PDT",
                     "net_credit": 0.06
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.05
                 }
             ],
             "latest_signal": {
@@ -5523,16 +5743,16 @@
                 "expiration": "2026-06-18",
                 "spread": "365.0/360.0P",
                 "spread_key": "AMD|365.0/360.0P|2026-06-18",
-                "price": 541.5,
-                "net_credit": 0.06,
-                "max_loss": 4.94,
-                "ev": 0.04,
+                "price": 540.71,
+                "net_credit": 0.05,
+                "max_loss": 4.95,
+                "ev": 0.03,
                 "pop_pct": 99.5,
                 "rec_qty": 4,
-                "spy_delta_eq": -2.39,
+                "spy_delta_eq": -2.38,
                 "correlation_spy": 0.979,
-                "edge_ratio": 0.0076,
-                "total_risk": 1974.52,
+                "edge_ratio": 0.0056,
+                "total_risk": 1978.44,
                 "is_new": false
             },
             "in_current_scan": true
@@ -5543,7 +5763,7 @@
             "expiration": "2026-06-18",
             "spread": "395.0/390.0P",
             "first_seen": "2026-06-03 11:36:58 PDT",
-            "last_seen": "2026-06-03 11:55:04 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:36:58 PDT",
@@ -5560,6 +5780,10 @@
                 {
                     "time": "2026-06-03 11:55:04 PDT",
                     "net_credit": 0.12
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.13
                 }
             ],
             "latest_signal": {
@@ -5567,16 +5791,16 @@
                 "expiration": "2026-06-18",
                 "spread": "395.0/390.0P",
                 "spread_key": "AMD|395.0/390.0P|2026-06-18",
-                "price": 541.5,
-                "net_credit": 0.12,
-                "max_loss": 4.88,
-                "ev": 0.02,
+                "price": 540.71,
+                "net_credit": 0.13,
+                "max_loss": 4.87,
+                "ev": 0.03,
                 "pop_pct": 98.0,
                 "rec_qty": 4,
-                "spy_delta_eq": -8.94,
+                "spy_delta_eq": -8.93,
                 "correlation_spy": 0.979,
-                "edge_ratio": 0.0051,
-                "total_risk": 1951.0,
+                "edge_ratio": 0.0061,
+                "total_risk": 1949.04,
                 "is_new": false
             },
             "in_current_scan": true
@@ -5619,7 +5843,7 @@
             "expiration": "2026-06-26",
             "spread": "325.0/320.0P",
             "first_seen": "2026-06-03 11:36:58 PDT",
-            "last_seen": "2026-06-03 11:55:04 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:36:58 PDT",
@@ -5636,6 +5860,10 @@
                 {
                     "time": "2026-06-03 11:55:04 PDT",
                     "net_credit": 0.07
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.07
                 }
             ],
             "latest_signal": {
@@ -5643,13 +5871,13 @@
                 "expiration": "2026-06-26",
                 "spread": "325.0/320.0P",
                 "spread_key": "AMD|325.0/320.0P|2026-06-26",
-                "price": 541.5,
+                "price": 540.71,
                 "net_credit": 0.07,
                 "max_loss": 4.93,
                 "ev": 0.01,
                 "pop_pct": 98.8,
                 "rec_qty": 4,
-                "spy_delta_eq": -5.69,
+                "spy_delta_eq": -5.68,
                 "correlation_spy": 0.979,
                 "edge_ratio": 0.0023,
                 "total_risk": 1970.6,
@@ -5663,7 +5891,7 @@
             "expiration": "2026-07-02",
             "spread": "180.0/175.0P",
             "first_seen": "2026-06-03 11:36:58 PDT",
-            "last_seen": "2026-06-03 11:42:59 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:36:58 PDT",
@@ -5672,6 +5900,10 @@
                 {
                     "time": "2026-06-03 11:42:59 PDT",
                     "net_credit": 0.54
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.55
                 }
             ],
             "latest_signal": {
@@ -5679,19 +5911,19 @@
                 "expiration": "2026-07-02",
                 "spread": "180.0/175.0P",
                 "spread_key": "ORCL|180.0/175.0P|2026-07-02",
-                "price": 231.96,
-                "net_credit": 0.54,
-                "max_loss": 4.46,
-                "ev": 0.03,
+                "price": 231.805,
+                "net_credit": 0.55,
+                "max_loss": 4.45,
+                "ev": 0.04,
                 "pop_pct": 89.8,
                 "rec_qty": 4,
                 "spy_delta_eq": -12.52,
-                "correlation_spy": 0.841,
-                "edge_ratio": 0.0076,
-                "total_risk": 1782.44,
+                "correlation_spy": 0.84,
+                "edge_ratio": 0.0087,
+                "total_risk": 1780.48,
                 "is_new": false
             },
-            "in_current_scan": false
+            "in_current_scan": true
         },
         "AMD|410.0/405.0P|2026-06-26": {
             "spread_key": "AMD|410.0/405.0P|2026-06-26",
@@ -5699,7 +5931,7 @@
             "expiration": "2026-06-26",
             "spread": "410.0/405.0P",
             "first_seen": "2026-06-03 11:42:59 PDT",
-            "last_seen": "2026-06-03 11:55:04 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:42:59 PDT",
@@ -5712,6 +5944,10 @@
                 {
                     "time": "2026-06-03 11:55:04 PDT",
                     "net_credit": 0.39
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.39
                 }
             ],
             "latest_signal": {
@@ -5719,13 +5955,13 @@
                 "expiration": "2026-06-26",
                 "spread": "410.0/405.0P",
                 "spread_key": "AMD|410.0/405.0P|2026-06-26",
-                "price": 541.5,
+                "price": 540.71,
                 "net_credit": 0.39,
                 "max_loss": 4.61,
                 "ev": 0.01,
                 "pop_pct": 92.3,
                 "rec_qty": 4,
-                "spy_delta_eq": -35.13,
+                "spy_delta_eq": -35.09,
                 "correlation_spy": 0.979,
                 "edge_ratio": 0.002,
                 "total_risk": 1843.2,
@@ -5771,7 +6007,7 @@
             "expiration": "2026-06-26",
             "spread": "180.0/175.0P",
             "first_seen": "2026-06-03 11:42:59 PDT",
-            "last_seen": "2026-06-03 11:49:01 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:42:59 PDT",
@@ -5780,6 +6016,10 @@
                 {
                     "time": "2026-06-03 11:49:01 PDT",
                     "net_credit": 0.49
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.5
                 }
             ],
             "latest_signal": {
@@ -5787,19 +6027,19 @@
                 "expiration": "2026-06-26",
                 "spread": "180.0/175.0P",
                 "spread_key": "ORCL|180.0/175.0P|2026-06-26",
-                "price": 232.0325,
-                "net_credit": 0.49,
-                "max_loss": 4.51,
-                "ev": 0.03,
+                "price": 231.805,
+                "net_credit": 0.5,
+                "max_loss": 4.5,
+                "ev": 0.04,
                 "pop_pct": 90.7,
                 "rec_qty": 4,
                 "spy_delta_eq": -11.47,
-                "correlation_spy": 0.841,
-                "edge_ratio": 0.0062,
-                "total_risk": 1802.04,
+                "correlation_spy": 0.84,
+                "edge_ratio": 0.0084,
+                "total_risk": 1798.12,
                 "is_new": false
             },
-            "in_current_scan": false
+            "in_current_scan": true
         },
         "AMD|340.0/335.0P|2026-06-26": {
             "spread_key": "AMD|340.0/335.0P|2026-06-26",
@@ -5807,7 +6047,7 @@
             "expiration": "2026-06-26",
             "spread": "340.0/335.0P",
             "first_seen": "2026-06-03 11:49:01 PDT",
-            "last_seen": "2026-06-03 11:55:04 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:49:01 PDT",
@@ -5816,6 +6056,10 @@
                 {
                     "time": "2026-06-03 11:55:04 PDT",
                     "net_credit": 0.12
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.12
                 }
             ],
             "latest_signal": {
@@ -5823,13 +6067,13 @@
                 "expiration": "2026-06-26",
                 "spread": "340.0/335.0P",
                 "spread_key": "AMD|340.0/335.0P|2026-06-26",
-                "price": 541.5,
+                "price": 540.71,
                 "net_credit": 0.12,
                 "max_loss": 4.88,
                 "ev": 0.03,
                 "pop_pct": 98.1,
                 "rec_qty": 4,
-                "spy_delta_eq": -8.67,
+                "spy_delta_eq": -8.66,
                 "correlation_spy": 0.979,
                 "edge_ratio": 0.0057,
                 "total_risk": 1951.0,
@@ -5843,7 +6087,7 @@
             "expiration": "2026-07-17",
             "spread": "130.0/125.0P",
             "first_seen": "2026-06-03 11:49:01 PDT",
-            "last_seen": "2026-06-03 11:55:04 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:49:01 PDT",
@@ -5852,6 +6096,10 @@
                 {
                     "time": "2026-06-03 11:55:04 PDT",
                     "net_credit": 0.12
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.11
                 }
             ],
             "latest_signal": {
@@ -5859,16 +6107,16 @@
                 "expiration": "2026-07-17",
                 "spread": "130.0/125.0P",
                 "spread_key": "ORCL|130.0/125.0P|2026-07-17",
-                "price": 231.56,
-                "net_credit": 0.12,
-                "max_loss": 4.88,
-                "ev": 0.02,
+                "price": 231.805,
+                "net_credit": 0.11,
+                "max_loss": 4.89,
+                "ev": 0.01,
                 "pop_pct": 98.0,
                 "rec_qty": 4,
-                "spy_delta_eq": -2.51,
-                "correlation_spy": 0.841,
-                "edge_ratio": 0.0041,
-                "total_risk": 1951.0,
+                "spy_delta_eq": -2.52,
+                "correlation_spy": 0.84,
+                "edge_ratio": 0.0011,
+                "total_risk": 1956.88,
                 "is_new": false
             },
             "in_current_scan": true
@@ -5879,7 +6127,7 @@
             "expiration": "2026-06-12",
             "spread": "68.0/63.0P",
             "first_seen": "2026-06-03 11:49:01 PDT",
-            "last_seen": "2026-06-03 11:55:04 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:49:01 PDT",
@@ -5888,6 +6136,10 @@
                 {
                     "time": "2026-06-03 11:55:04 PDT",
                     "net_credit": 0.08
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.08
                 }
             ],
             "latest_signal": {
@@ -5895,7 +6147,7 @@
                 "expiration": "2026-06-12",
                 "spread": "68.0/63.0P",
                 "spread_key": "TQQQ|68.0/63.0P|2026-06-12",
-                "price": 86.66,
+                "price": 86.51,
                 "net_credit": 0.08,
                 "max_loss": 4.92,
                 "ev": 0.01,
@@ -5915,7 +6167,7 @@
             "expiration": "2026-06-18",
             "spread": "55.0/50.0P",
             "first_seen": "2026-06-03 11:49:01 PDT",
-            "last_seen": "2026-06-03 11:55:04 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:49:01 PDT",
@@ -5924,6 +6176,10 @@
                 {
                     "time": "2026-06-03 11:55:04 PDT",
                     "net_credit": 0.06
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.06
                 }
             ],
             "latest_signal": {
@@ -5931,7 +6187,7 @@
                 "expiration": "2026-06-18",
                 "spread": "55.0/50.0P",
                 "spread_key": "TQQQ|55.0/50.0P|2026-06-18",
-                "price": 86.66,
+                "price": 86.51,
                 "net_credit": 0.06,
                 "max_loss": 4.94,
                 "ev": 0.06,
@@ -5939,8 +6195,8 @@
                 "rec_qty": 4,
                 "spy_delta_eq": 0.0,
                 "correlation_spy": 0.995,
-                "edge_ratio": 0.0119,
-                "total_risk": 1976.48,
+                "edge_ratio": 0.0129,
+                "total_risk": 1974.52,
                 "is_new": false
             },
             "in_current_scan": true
@@ -5951,10 +6207,14 @@
             "expiration": "2026-06-12",
             "spread": "712.0/707.0P",
             "first_seen": "2026-06-03 11:55:04 PDT",
-            "last_seen": "2026-06-03 11:55:04 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:55:04 PDT",
+                    "net_credit": 0.06
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
                     "net_credit": 0.06
                 }
             ],
@@ -5963,7 +6223,7 @@
                 "expiration": "2026-06-12",
                 "spread": "712.0/707.0P",
                 "spread_key": "SPY|712.0/707.0P|2026-06-12",
-                "price": 755.59,
+                "price": 755.15,
                 "net_credit": 0.06,
                 "max_loss": 4.94,
                 "ev": 0.02,
@@ -5973,7 +6233,7 @@
                 "correlation_spy": 1.0,
                 "edge_ratio": 0.0041,
                 "total_risk": 1976.48,
-                "is_new": true
+                "is_new": false
             },
             "in_current_scan": true
         },
@@ -5983,10 +6243,14 @@
             "expiration": "2026-06-26",
             "spread": "55.0/50.0P",
             "first_seen": "2026-06-03 11:55:04 PDT",
-            "last_seen": "2026-06-03 11:55:04 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
             "credit_history": [
                 {
                     "time": "2026-06-03 11:55:04 PDT",
+                    "net_credit": 0.1
+                },
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
                     "net_credit": 0.1
                 }
             ],
@@ -5995,16 +6259,112 @@
                 "expiration": "2026-06-26",
                 "spread": "55.0/50.0P",
                 "spread_key": "TQQQ|55.0/50.0P|2026-06-26",
-                "price": 86.66,
+                "price": 86.51,
                 "net_credit": 0.1,
                 "max_loss": 4.9,
                 "ev": 0.01,
                 "pop_pct": 98.3,
                 "rec_qty": 4,
-                "spy_delta_eq": -2.37,
+                "spy_delta_eq": -2.36,
                 "correlation_spy": 0.995,
                 "edge_ratio": 0.0024,
                 "total_risk": 1960.8,
+                "is_new": false
+            },
+            "in_current_scan": true
+        },
+        "SPY|716.0/711.0P|2026-06-12": {
+            "spread_key": "SPY|716.0/711.0P|2026-06-12",
+            "symbol": "SPY",
+            "expiration": "2026-06-12",
+            "spread": "716.0/711.0P",
+            "first_seen": "2026-06-03 12:01:09 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
+            "credit_history": [
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.08
+                }
+            ],
+            "latest_signal": {
+                "symbol": "SPY",
+                "expiration": "2026-06-12",
+                "spread": "716.0/711.0P",
+                "spread_key": "SPY|716.0/711.0P|2026-06-12",
+                "price": 755.15,
+                "net_credit": 0.08,
+                "max_loss": 4.92,
+                "ev": 0.01,
+                "pop_pct": 98.7,
+                "rec_qty": 4,
+                "spy_delta_eq": -5.4,
+                "correlation_spy": 1.0,
+                "edge_ratio": 0.0022,
+                "total_risk": 1968.64,
+                "is_new": true
+            },
+            "in_current_scan": true
+        },
+        "AMD|450.0/445.0P|2026-06-18": {
+            "spread_key": "AMD|450.0/445.0P|2026-06-18",
+            "symbol": "AMD",
+            "expiration": "2026-06-18",
+            "spread": "450.0/445.0P",
+            "first_seen": "2026-06-03 12:01:09 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
+            "credit_history": [
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.54
+                }
+            ],
+            "latest_signal": {
+                "symbol": "AMD",
+                "expiration": "2026-06-18",
+                "spread": "450.0/445.0P",
+                "spread_key": "AMD|450.0/445.0P|2026-06-18",
+                "price": 540.71,
+                "net_credit": 0.54,
+                "max_loss": 4.46,
+                "ev": 0.02,
+                "pop_pct": 89.6,
+                "rec_qty": 4,
+                "spy_delta_eq": -47.6,
+                "correlation_spy": 0.979,
+                "edge_ratio": 0.0044,
+                "total_risk": 1784.4,
+                "is_new": true
+            },
+            "in_current_scan": true
+        },
+        "AMD|440.0/435.0P|2026-07-02": {
+            "spread_key": "AMD|440.0/435.0P|2026-07-02",
+            "symbol": "AMD",
+            "expiration": "2026-07-02",
+            "spread": "440.0/435.0P",
+            "first_seen": "2026-06-03 12:01:09 PDT",
+            "last_seen": "2026-06-03 12:01:09 PDT",
+            "credit_history": [
+                {
+                    "time": "2026-06-03 12:01:09 PDT",
+                    "net_credit": 0.76
+                }
+            ],
+            "latest_signal": {
+                "symbol": "AMD",
+                "expiration": "2026-07-02",
+                "spread": "440.0/435.0P",
+                "spread_key": "AMD|440.0/435.0P|2026-07-02",
+                "price": 540.71,
+                "net_credit": 0.76,
+                "max_loss": 4.24,
+                "ev": 0.07,
+                "pop_pct": 86.2,
+                "rec_qty": 4,
+                "spy_delta_eq": -63.22,
+                "correlation_spy": 0.979,
+                "edge_ratio": 0.0164,
+                "total_risk": 1696.2,
                 "is_new": true
             },
             "in_current_scan": true
