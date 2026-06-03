@@ -195,7 +195,6 @@
       <div class="dot" id="dot"></div>
       <div class="status-text" id="status-text">Connecting to Node...</div>
     </div>
-    <button class="btn" onclick="triggerScan()">↺ Run Engine</button>
   </div>
 </div>
 
@@ -333,6 +332,15 @@
   let lastUpdatedStamp = null;
   let isScanRunning = false;
 
+  // Safe formatters: a missing/NaN field renders "—" instead of throwing and
+  // blanking the whole table (guards against scanner/dashboard schema drift).
+  function num(v, d = 2) {
+    return (v === null || v === undefined || isNaN(Number(v))) ? '—' : Number(v).toFixed(d);
+  }
+  function money(v) {
+    return (v === null || v === undefined || isNaN(Number(v))) ? '—' : '$' + Number(v).toLocaleString();
+  }
+
   // ─── Tab switching ───────────────────────────────────
   function switchTab(tab) {
     document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
@@ -402,52 +410,6 @@
     } catch (e) {
       document.getElementById('dot').className = 'dot error';
       document.getElementById('status-text').textContent = 'Stream error: ' + e.message;
-    }
-  }
-
-  // ─── Trigger GitHub Actions scan ─────────────────────
-  async function triggerScan() {
-    if (isScanRunning) return;
-    let token = localStorage.getItem('gh_token');
-    if (!token) {
-      token = prompt("Enter GitHub Personal Access Token:");
-      if (token) localStorage.setItem('gh_token', token);
-    }
-    if (!token) return;
-    try {
-      isScanRunning = true;
-      const btn = document.querySelector('.btn');
-      btn.textContent = '⏳ Engine Mapping…';
-      setScanningStatus('Deploying GitHub Dispatch Routine…');
-      const res = await fetch('https://api.github.com/repos/negin228/scanner/dispatches', {
-        method: 'POST',
-        headers: { 'Authorization': `Bearer ${token}`, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
-        body: JSON.stringify({ event_type: 'manual_refresh' })
-      });
-      if (res.status === 401) {
-        localStorage.removeItem('gh_token');
-        alert("Invalid authorization payload string.");
-        isScanRunning = false;
-        btn.textContent = '↺ Run Engine';
-        return;
-      }
-      if (res.ok) {
-        let attempts = 0;
-        const poll = setInterval(async () => {
-          attempts++;
-          setScanningStatus('Re-calculating Greeks (' + attempts + '/9)');
-          await fetchData();
-          if (attempts >= 9) {
-            clearInterval(poll);
-            isScanRunning = false;
-            btn.textContent = '↺ Run Engine';
-            document.getElementById('dot').className = 'dot';
-          }
-        }, 8000);
-      }
-    } catch (e) {
-      isScanRunning = false;
-      document.querySelector('.btn').textContent = '↺ Run Engine';
     }
   }
 
@@ -527,22 +489,23 @@
         ebe ? 'earn-warn' : ''
       ].filter(Boolean).join(' ');
       const key = s.spread_key || '';
+      const price = s.price ?? s.underlying_price;
       return `<tr class="${rowClass}" onclick="openModal('${escKey(key)}')" title="Click to view credit history">
         <td><span class="sym">${s.symbol}</span>${newBadge}${earnBadge}</td>
         <td><span class="exp">${s.expiration}</span></td>
         <td><span class="dte-b ${dte<=30?'sweet':''}">${dte}d</span></td>
         <td>${earnCell}</td>
         <td>$${s.spread}</td>
-        <td>$${s.price.toFixed(2)}</td>
-        <td class="credit-v">$${s.net_credit.toFixed(2)}</td>
-        <td class="risk-v">$${s.max_loss.toFixed(2)}</td>
-        <td class="ev-v">$${s.ev.toFixed(2)}</td>
-        <td class="pop-v">${s.pop_pct}%</td>
-        <td style="font-weight:600;">${s.rec_qty} c</td>
-        <td class="beta-v">${s.spy_delta_eq.toFixed(1)} Δ</td>
-        <td>${s.correlation_spy.toFixed(2)}</td>
-        <td class="edge-v">${s.edge_ratio.toFixed(4)}</td>
-        <td style="color:var(--text); font-weight:500;">$${s.total_risk.toLocaleString()}</td>
+        <td>$${num(price)}</td>
+        <td class="credit-v">$${num(s.net_credit)}</td>
+        <td class="risk-v">$${num(s.max_loss)}</td>
+        <td class="ev-v">$${num(s.ev)}</td>
+        <td class="pop-v">${s.pop_pct ?? '—'}%</td>
+        <td style="font-weight:600;">${s.rec_qty ?? '—'} c</td>
+        <td class="beta-v">${num(s.spy_delta_eq, 1)} Δ</td>
+        <td>${num(s.correlation_spy)}</td>
+        <td class="edge-v">${num(s.edge_ratio, 4)}</td>
+        <td style="color:var(--text); font-weight:500;">${money(s.total_risk)}</td>
       </tr>`;
     }).join('');
   }
@@ -569,22 +532,22 @@
             <div class="card-exp">${s.expiration} · ${dte} DTE</div>
           </div>
           <div class="card-credit">
-            <div class="card-credit-val">$${s.net_credit.toFixed(2)}</div>
+            <div class="card-credit-val">$${num(s.net_credit)}</div>
             <div class="card-credit-sub">Net Entry Credit</div>
           </div>
         </div>
         <hr class="card-divider">
         <div class="card-meta">
           <div class="card-stat"><div class="card-stat-label">Strikes Matrix</div><div class="card-stat-val">$${s.spread}</div></div>
-          <div class="card-stat"><div class="card-stat-label">Expected Value</div><div class="card-stat-val" style="color:var(--gold);font-weight:600;">+$${s.ev.toFixed(2)}</div></div>
-          <div class="card-stat"><div class="card-stat-label">Sized Allocation</div><div class="card-stat-val" style="color:var(--cyan);font-weight:600;">${s.rec_qty} Contracts</div></div>
-          <div class="card-stat"><div class="card-stat-label">Edge Ratio</div><div class="card-stat-val" style="color:var(--purple);">${s.edge_ratio.toFixed(4)}</div></div>
-          <div class="card-stat"><div class="card-stat-label">Max Matrix Loss</div><div class="card-stat-val" style="color:var(--red);">$${s.total_risk.toLocaleString()}</div></div>
+          <div class="card-stat"><div class="card-stat-label">Expected Value</div><div class="card-stat-val" style="color:var(--gold);font-weight:600;">+$${num(s.ev)}</div></div>
+          <div class="card-stat"><div class="card-stat-label">Sized Allocation</div><div class="card-stat-val" style="color:var(--cyan);font-weight:600;">${s.rec_qty ?? '—'} Contracts</div></div>
+          <div class="card-stat"><div class="card-stat-label">Edge Ratio</div><div class="card-stat-val" style="color:var(--purple);">${num(s.edge_ratio, 4)}</div></div>
+          <div class="card-stat"><div class="card-stat-label">Max Matrix Loss</div><div class="card-stat-val" style="color:var(--red);">${money(s.total_risk)}</div></div>
         </div>
         <div class="card-profit-row">
-          <span class="profit-pill">PoP: ${s.pop_pct}%</span>
-          <span class="dte-pill">Beta Weighted Δ: ${s.spy_delta_eq.toFixed(1)} SPY</span>
-          <span class="delta-pill">Benchmark Corr: ${s.correlation_spy.toFixed(2)}</span>
+          <span class="profit-pill">PoP: ${s.pop_pct ?? '—'}%</span>
+          <span class="dte-pill">Beta Weighted Δ: ${num(s.spy_delta_eq, 1)} SPY</span>
+          <span class="delta-pill">Benchmark Corr: ${num(s.correlation_spy)}</span>
           ${ebe ? `<span class="earn-pill">⚠ Earnings ${ed} · before expiry</span>` : ''}
         </div>
       </div>`;
