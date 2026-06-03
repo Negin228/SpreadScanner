@@ -34,6 +34,7 @@
   .dot { width:7px; height:7px; border-radius:50%; background:var(--green); box-shadow:0 0 8px var(--green); animation:pulse 2s infinite; }
   .dot.stale { background:var(--amber); box-shadow:0 0 8px var(--amber); }
   .dot.error { background:var(--red); box-shadow:0 0 8px var(--red); animation:none; }
+  .dot.closed { background:var(--text3); box-shadow:none; animation:none; }
   @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
   .status-text { font-family:var(--mono); font-size:11px; color:var(--text2); }
   .btn { background:var(--bg3); border:1px solid var(--border2); color:var(--text2); font-family:var(--mono); font-size:11px; padding:5px 12px; border-radius:3px; cursor:pointer; transition:all 0.15s; }
@@ -375,20 +376,47 @@
 
   // Data is "fresh" if the last scan is within ~15 min (scanner loops every 5 min
   // in-market). Older than that means we're showing a prior session — mark stale.
+  // Is the US equity market in its regular session right now? NYSE 9:30-16:00 ET
+  // == 6:30 AM-1:00 PM PT, Mon-Fri. Intl handles PT (incl. daylight saving) for us.
+  // (Does not account for market holidays — those will read as "open".)
+  function marketOpenNow() {
+    const parts = new Intl.DateTimeFormat('en-US', {
+      timeZone: 'America/Los_Angeles', weekday: 'short',
+      hour: '2-digit', minute: '2-digit', hour12: false
+    }).formatToParts(new Date());
+    const get = t => (parts.find(p => p.type === t) || {}).value;
+    let hh = parseInt(get('hour'), 10);
+    if (hh === 24) hh = 0;                       // some engines emit '24' at midnight
+    const mins = hh * 60 + parseInt(get('minute'), 10);
+    const weekday = get('weekday');
+    const isWeekday = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'].includes(weekday);
+    return isWeekday && mins >= 390 && mins <= 780;   // 6:30 AM (390) - 1:00 PM (780) PT
+  }
+
   const STALE_AFTER_MIN = 15;
   function updateFreshness(scanTime) {
     const dot  = document.getElementById('dot');
     const text = document.getElementById('status-text');
+    const open = marketOpenNow();
     const d = parseScanTimeUTC(scanTime);
+
     if (!d) {
-      dot.className = 'dot';
-      text.textContent = 'Live Synced: ' + (scanTime || '—');
+      dot.className = open ? 'dot' : 'dot closed';
+      text.textContent = open ? 'Live' : 'Market closed';
       return;
     }
     const ageMs = Date.now() - d.getTime();
+
+    // Market closed: never claim "Live", regardless of how recent the last scan is.
+    if (!open) {
+      dot.className = 'dot closed';
+      text.textContent = `Market closed · last scan ${fmtAge(ageMs)}`;
+      return;
+    }
+    // Market open: fresh = Live, otherwise the scanner may be lagging.
     if (ageMs > STALE_AFTER_MIN * 60000) {
       dot.className = 'dot stale';
-      text.textContent = `Stale · last scan ${fmtAge(ageMs)} (prior session)`;
+      text.textContent = `Stale · last scan ${fmtAge(ageMs)} (scanner delayed?)`;
     } else {
       dot.className = 'dot';
       text.textContent = `Live · last scan ${fmtAge(ageMs)}`;
