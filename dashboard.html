@@ -347,6 +347,46 @@
     document.getElementById('status-text').textContent = msg + (lastUpdatedStamp ? ' · Last: ' + lastUpdatedStamp : '');
   }
 
+  // scan_time is written by scanner.py as UTC "YYYY-MM-DD HH:MM:SS" (no suffix).
+  // Treat it as UTC and report how long ago the last scan ran.
+  function parseScanTimeUTC(stamp) {
+    if (!stamp) return null;
+    const d = new Date(stamp.replace(' ', 'T') + 'Z');
+    return isNaN(d.getTime()) ? null : d;
+  }
+
+  function fmtAge(ms) {
+    const m = Math.floor(ms / 60000);
+    if (m < 1)  return 'just now';
+    if (m < 60) return m + 'm ago';
+    const h = Math.floor(m / 60), rem = m % 60;
+    if (h < 24) return rem ? `${h}h ${rem}m ago` : `${h}h ago`;
+    const days = Math.floor(h / 24);
+    return days + 'd ago';
+  }
+
+  // Data is "fresh" if the last scan is within ~15 min (scanner loops every 5 min
+  // in-market). Older than that means we're showing a prior session — mark stale.
+  const STALE_AFTER_MIN = 15;
+  function updateFreshness(scanTime) {
+    const dot  = document.getElementById('dot');
+    const text = document.getElementById('status-text');
+    const d = parseScanTimeUTC(scanTime);
+    if (!d) {
+      dot.className = 'dot';
+      text.textContent = 'Live Synced: ' + (scanTime || '—');
+      return;
+    }
+    const ageMs = Date.now() - d.getTime();
+    if (ageMs > STALE_AFTER_MIN * 60000) {
+      dot.className = 'dot stale';
+      text.textContent = `Stale · last scan ${fmtAge(ageMs)} (prior session)`;
+    } else {
+      dot.className = 'dot';
+      text.textContent = `Live · last scan ${fmtAge(ageMs)}`;
+    }
+  }
+
   // ─── Fetch signals.json ───────────────────────────────
   async function fetchData() {
     if (!isScanRunning) setScanningStatus('Reading Data Streams...');
@@ -421,8 +461,7 @@
     document.getElementById('meta-spy').textContent   = '$' + (data.benchmark_spy || 0).toFixed(2);
 
     if (!isScanRunning) {
-      document.getElementById('dot').className = 'dot';
-      document.getElementById('status-text').textContent = 'Live Synced: ' + lastUpdatedStamp;
+      updateFreshness(data.scan_time);
     }
 
     document.getElementById('badge-all').textContent   = allSignals.length;
