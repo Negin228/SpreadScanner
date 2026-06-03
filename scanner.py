@@ -38,6 +38,7 @@ MIN_VOLUME         = 50
 MIN_DISCOUNT_PCT   = 0.20    # Rigid 20% Out-Of-The-Money cushion
 
 OUTPUT_FILE = "signals.json"
+EARNINGS_FILE = "earnings.json"   # written biweekly by fetch_earnings.py
 
 HEADERS = {
     "Authorization": f"Bearer {TRADIER_API_KEY}",
@@ -116,6 +117,36 @@ def get_historical_closes(symbol):
     history = data.get("history", {}).get("day", []) if data else []
     return [float(d["close"]) for d in history if "close" in d]
 
+def load_earnings_map():
+    """Load {symbol: 'YYYY-MM-DD' or None} from the biweekly earnings cache."""
+    if not os.path.exists(EARNINGS_FILE):
+        return {}
+    try:
+        with open(EARNINGS_FILE, "r") as f:
+            return json.load(f).get("earnings", {})
+    except Exception:
+        return {}
+
+
+def earnings_check(symbol, expiration, earnings_map):
+    """
+    Return (earnings_date_str_or_None, earnings_before_exp_bool).
+    earnings_before_exp is True when the next earnings report lands on or before
+    the spread's expiration (and hasn't already passed) — i.e. you'd be holding
+    the short premium through the earnings event.
+    """
+    ed = earnings_map.get(symbol)
+    if not ed:
+        return None, False
+    try:
+        ed_date = datetime.datetime.strptime(ed[:10], "%Y-%m-%d").date()
+        exp_date = datetime.datetime.strptime(expiration, "%Y-%m-%d").date()
+        today = datetime.date.today()
+    except Exception:
+        return ed, False
+    return ed, (today <= ed_date <= exp_date)
+
+
 def load_existing_archive():
     if not os.path.exists(OUTPUT_FILE): return {}
     try:
@@ -127,6 +158,7 @@ def run_workstation_scan():
     print(f"\n[SYSTEM] Initializing Custom Velocity Edge Scan...")
     
     archive = load_existing_archive()
+    earnings_map = load_earnings_map()
     spy_data = fetch_data("markets/quotes", {"symbols": BENCHMARK, "greeks": "true"})
     if not spy_data or "quotes" not in spy_data: return
 
@@ -198,6 +230,8 @@ def run_workstation_scan():
                 spread_label = f"{strike}/{strike-SPREAD_WIDTH}P"
                 spread_key = f"{symbol}|{spread_label}|{exp}"
 
+                earnings_date, earnings_before_exp = earnings_check(symbol, exp, earnings_map)
+
                 signal = {
                     "symbol": symbol,
                     "expiration": exp,
@@ -211,7 +245,9 @@ def run_workstation_scan():
                     "edge_ratio": metrics["edge_ratio"],
                     "pop_pct": metrics["pop"],
                     "rec_qty": metrics["qty"],
-                    "bid_ask_spread_width": round(s_ba_width, 2)
+                    "bid_ask_spread_width": round(s_ba_width, 2),
+                    "earnings_date": earnings_date,
+                    "earnings_before_exp": earnings_before_exp
                 }
 
                 all_signals.append(signal)
