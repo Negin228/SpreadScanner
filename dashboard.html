@@ -150,6 +150,17 @@
   .arc-status-pill.inactive { background:var(--archive-bg); border:1px solid var(--archive); color:var(--archive); }
   .history-count { font-family:var(--mono); font-size:11px; color:var(--purple); }
 
+  /* ── Earnings-before-expiration warning ── */
+  tbody tr.earn-warn { background:var(--red-bg); }
+  tbody tr.earn-warn td:first-child { border-left:2px solid var(--red); }
+  tbody tr.earn-warn:hover { background:rgba(255,77,106,0.14); }
+  .earn-badge { display:inline-flex; align-items:center; gap:3px; font-family:var(--mono); font-size:9px; font-weight:600; letter-spacing:0.06em; background:var(--red-bg); border:1px solid var(--red); color:var(--red); padding:1px 5px; border-radius:3px; margin-left:6px; vertical-align:middle; }
+  .earn-warn-cell { color:var(--red); font-weight:600; }
+  .earn-ok-cell { color:var(--text2); }
+  .earn-none-cell { color:var(--text3); }
+  .earn-pill { font-family:var(--mono); font-size:11px; background:var(--red-bg); border:1px solid var(--red); color:var(--red); padding:2px 8px; border-radius:3px; }
+  .signal-card.earn-warn { border-color:var(--red); }
+
   /* ── Chart Modal ── */
   .modal-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.75); z-index:500; align-items:center; justify-content:center; backdrop-filter:blur(3px); }
   .modal-overlay.open { display:flex; }
@@ -209,6 +220,7 @@
     <div class="legend-row">
       <span class="legend-item"><span class="legend-dot" style="background:var(--new);"></span> <span style="color:var(--new);">★ NEW</span> — first time appearing</span>
       <span class="legend-item"><span class="legend-dot" style="background:var(--green);"></span> <span style="color:var(--text2);">Returning spread (in archive)</span></span>
+      <span class="legend-item"><span class="legend-dot" style="background:var(--red);"></span> <span style="color:var(--red);">⚠ ER</span> <span style="color:var(--text2);">— earnings before expiration</span></span>
       <span class="legend-item" style="color:var(--text3);">Click any row to view credit history chart</span>
     </div>
 
@@ -225,6 +237,7 @@
             <th onclick="setSort('symbol',this)">Symbol</th>
             <th onclick="setSort('expiration',this)">Expiry</th>
             <th onclick="setSort('dte',this)">DTE</th>
+            <th>Earnings</th>
             <th>Spread Leg Matrix</th>
             <th onclick="setSort('price',this)">Underlying</th>
             <th onclick="setSort('net_credit',this)">Slippage Credit</th>
@@ -239,7 +252,7 @@
           </tr>
         </thead>
         <tbody id="signals-body">
-          <tr class="no-row"><td colspan="14">Awaiting signals.json payload parse...</td></tr>
+          <tr class="no-row"><td colspan="15">Awaiting signals.json payload parse...</td></tr>
         </tbody>
       </table>
     </div>
@@ -456,7 +469,7 @@
     });
 
     if (!sigs.length) {
-      document.getElementById('signals-body').innerHTML = '<tr class="no-row"><td colspan="14">No matrix intersections cleared filters.</td></tr>';
+      document.getElementById('signals-body').innerHTML = '<tr class="no-row"><td colspan="15">No matrix intersections cleared filters.</td></tr>';
       return;
     }
 
@@ -464,12 +477,22 @@
       const dte = s.expiration ? Math.round((new Date(s.expiration) - new Date()) / 864e5) : 0;
       const isNew = s.is_new === true;
       const newBadge = isNew ? `<span class="new-badge">★ NEW</span>` : '';
-      const rowClass = isNew ? 'new-signal' : (i < 3 ? 'top-row' : '');
+      const ebe = s.earnings_before_exp === true;
+      const ed = s.earnings_date || null;
+      const earnBadge = ebe ? `<span class="earn-badge" title="Earnings before expiration">⚠ ER</span>` : '';
+      const earnCell = ebe
+        ? `<span class="earn-warn-cell" title="Reports before this spread expires">⚠ ${ed}</span>`
+        : (ed ? `<span class="earn-ok-cell">${ed}</span>` : `<span class="earn-none-cell">—</span>`);
+      const rowClass = [
+        isNew ? 'new-signal' : (i < 3 ? 'top-row' : ''),
+        ebe ? 'earn-warn' : ''
+      ].filter(Boolean).join(' ');
       const key = s.spread_key || '';
       return `<tr class="${rowClass}" onclick="openModal('${escKey(key)}')" title="Click to view credit history">
-        <td><span class="sym">${s.symbol}</span>${newBadge}</td>
+        <td><span class="sym">${s.symbol}</span>${newBadge}${earnBadge}</td>
         <td><span class="exp">${s.expiration}</span></td>
         <td><span class="dte-b ${dte<=30?'sweet':''}">${dte}d</span></td>
+        <td>${earnCell}</td>
         <td>$${s.spread}</td>
         <td>$${s.price.toFixed(2)}</td>
         <td class="credit-v">$${s.net_credit.toFixed(2)}</td>
@@ -495,9 +518,11 @@
     document.getElementById('top10-grid').innerHTML = topTrades.map((s, i) => {
       const dte = s.expiration ? Math.round((new Date(s.expiration) - new Date()) / 864e5) : 0;
       const isNew = s.is_new === true;
+      const ebe = s.earnings_before_exp === true;
+      const ed = s.earnings_date || null;
       const key = s.spread_key || '';
       return `
-      <div class="signal-card ${i<3?`rank-${i+1}`:''}" onclick="openModal('${escKey(key)}')" style="cursor:pointer;" title="Click to view credit history">
+      <div class="signal-card ${i<3?`rank-${i+1}`:''} ${ebe?'earn-warn':''}" onclick="openModal('${escKey(key)}')" style="cursor:pointer;" title="Click to view credit history">
         <div class="card-rank">EDGE RANK #${i+1}${isNew?' ★':''}</div>
         <div class="card-top">
           <div>
@@ -521,6 +546,7 @@
           <span class="profit-pill">PoP: ${s.pop_pct}%</span>
           <span class="dte-pill">Beta Weighted Δ: ${s.spy_delta_eq.toFixed(1)} SPY</span>
           <span class="delta-pill">Benchmark Corr: ${s.correlation_spy.toFixed(2)}</span>
+          ${ebe ? `<span class="earn-pill">⚠ Earnings ${ed} · before expiry</span>` : ''}
         </div>
       </div>`;
     }).join('');
