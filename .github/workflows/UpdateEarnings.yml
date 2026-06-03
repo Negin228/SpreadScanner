@@ -1,0 +1,59 @@
+name: Update Earnings Calendar
+
+on:
+  schedule:
+    # Biweekly-ish: 1st and 15th of each month at 09:00 UTC. GitHub cron has no
+    # native "every 2 weeks", so the 1st/15th pair is the standard approximation.
+    - cron: '0 9 1,15 * *'
+  workflow_dispatch:        # lets you refresh on demand from the Actions tab
+
+# Don't let two earnings refreshes overlap.
+concurrency:
+  group: update-earnings
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  update-earnings:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: pip install yfinance
+
+      - name: Configure git
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+
+      - name: Fetch earnings dates
+        run: python fetch_earnings.py
+
+      - name: Commit earnings.json
+        run: |
+          git add earnings.json
+          if git diff --cached --quiet; then
+            echo "No earnings changes."
+            exit 0
+          fi
+          git commit -m "Update earnings calendar: $(date -u)"
+          for attempt in 1 2 3 4 5; do
+            if git push; then
+              echo "Push succeeded (attempt $attempt)"; exit 0
+            fi
+            echo "Push rejected (attempt $attempt) - syncing..."
+            git fetch origin main
+            git merge -X ours origin/main --no-edit || true
+            sleep $(( (RANDOM % 5) + 2 ))
+          done
+          echo "WARN: could not push earnings.json"; exit 1
