@@ -49,14 +49,41 @@ jobs:
         run: |
           set -e
 
+          # Push that survives concurrent pushes from another run.
+          # signals.json is regenerated wholesale each scan, so on a rejected
+          # push we rewind our commit onto the latest remote (keeping OUR file)
+          # and retry. Never aborts the job on push failure.
+          commit_and_push() {
+            for attempt in 1 2 3 4 5; do
+              git add signals.json
+              git commit -m "Auto scan $(TZ='America/Los_Angeles' date '+%H:%M %Z')" 2>/dev/null || true
+              if git push 2>/dev/null; then
+                echo "[PUSH] success (attempt $attempt)"
+                return 0
+              fi
+              echo "[PUSH] rejected — syncing to remote, retrying ($attempt/5)"
+              git fetch origin main || true
+              # Rewind our commit but KEEP our regenerated signals.json staged,
+              # so the next loop re-commits it cleanly on top of the new remote.
+              git reset --soft origin/main || true
+              sleep $(( (RANDOM % 4) + 2 ))
+            done
+            echo "[PUSH] WARN: could not push after 5 tries; keeping local copy, will retry next scan"
+            return 0
+          }
+
           run_scan() {
             echo "────────────────────────────────────────"
             echo "[SCAN] $(TZ='America/Los_Angeles' date '+%Y-%m-%d %H:%M:%S %Z')"
-            python scanner.py
-            git add signals.json
-            git commit -m "Auto scan $(TZ='America/Los_Angeles' date '+%H:%M %Z')" || true
-            git push
-            echo "[DONE] committed signals.json"
+            # Sync to latest remote first so the archive in signals.json is current
+            git fetch origin main 2>/dev/null || true
+            git reset --hard origin/main 2>/dev/null || true
+            if ! python scanner.py; then
+              echo "[SCAN] scanner.py errored this cycle — skipping push, will retry next loop"
+              return 0
+            fi
+            commit_and_push
+            echo "[DONE] scan cycle complete"
           }
 
           echo "[PRE-MARKET] Running initial scan..."
@@ -99,14 +126,41 @@ jobs:
         run: |
           set -e
 
+          # Push that survives concurrent pushes from another run.
+          # signals.json is regenerated wholesale each scan, so on a rejected
+          # push we rewind our commit onto the latest remote (keeping OUR file)
+          # and retry. Never aborts the job on push failure.
+          commit_and_push() {
+            for attempt in 1 2 3 4 5; do
+              git add signals.json
+              git commit -m "Auto scan $(TZ='America/Los_Angeles' date '+%H:%M %Z')" 2>/dev/null || true
+              if git push 2>/dev/null; then
+                echo "[PUSH] success (attempt $attempt)"
+                return 0
+              fi
+              echo "[PUSH] rejected — syncing to remote, retrying ($attempt/5)"
+              git fetch origin main || true
+              # Rewind our commit but KEEP our regenerated signals.json staged,
+              # so the next loop re-commits it cleanly on top of the new remote.
+              git reset --soft origin/main || true
+              sleep $(( (RANDOM % 4) + 2 ))
+            done
+            echo "[PUSH] WARN: could not push after 5 tries; keeping local copy, will retry next scan"
+            return 0
+          }
+
           run_scan() {
             echo "────────────────────────────────────────"
             echo "[SCAN] $(TZ='America/Los_Angeles' date '+%Y-%m-%d %H:%M:%S %Z')"
-            python scanner.py
-            git add signals.json
-            git commit -m "Auto scan $(TZ='America/Los_Angeles' date '+%H:%M %Z')" || true
-            git push
-            echo "[DONE] committed signals.json"
+            # Sync to latest remote first so the archive in signals.json is current
+            git fetch origin main 2>/dev/null || true
+            git reset --hard origin/main 2>/dev/null || true
+            if ! python scanner.py; then
+              echo "[SCAN] scanner.py errored this cycle — skipping push, will retry next loop"
+              return 0
+            fi
+            commit_and_push
+            echo "[DONE] scan cycle complete"
           }
 
           echo "[BLOCK2] Resuming scan loop until market close (1:00 PM PT)"
