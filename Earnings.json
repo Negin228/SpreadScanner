@@ -1,0 +1,17 @@
+{
+  "updated": "seed - will be overwritten by the first fetch_earnings.py run",
+  "earnings": {
+    "NVDA": null,
+    "AMZN": null,
+    "MSFT": null,
+    "META": null,
+    "GOOG": null,
+    "NFLX": null,
+    "TSLA": null,
+    "SPY": null,
+    "AMD": null,
+    "AAPL": null,
+    "ORCL": null,
+    "TQQQ": null
+  }
+}
