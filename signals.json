@@ -1,8 +1,8 @@
 {
-    "scan_time": "2026-06-04 14:02:09",
+    "scan_time": "2026-06-04 14:07:26",
     "sorting_method": "Velocity Edge Engine (Optimized for Fast Fills & Rapid Theta Decay)",
     "account_basis": 100000,
-    "benchmark_spy": 753.25,
+    "benchmark_spy": 752.32,
     "top_signals": [
         {
             "symbol": "TQQQ",
@@ -13,21 +13,21 @@
             "short_strike": 65.0,
             "long_strike": 60.0,
             "is_new": false,
-            "price": 83.17,
-            "underlying_price": 83.17,
-            "net_credit": 0.1,
-            "max_loss": 4.9,
-            "ev": 0.07,
+            "price": 82.73,
+            "underlying_price": 82.73,
+            "net_credit": 0.11,
+            "max_loss": 4.89,
+            "ev": 0.09,
             "pop_pct": 99.5,
             "rec_qty": 4,
             "spy_delta_eq": -0.65,
             "correlation_spy": 0.984,
-            "edge_ratio": 0.015,
-            "total_risk": 1961,
+            "edge_ratio": 0.018,
+            "total_risk": 1955,
             "short_delta": -0.0049,
             "theta_efficiency": 2.4e-05,
-            "velocity_edge_score": 0.014668,
-            "bid_ask_spread_width": 0.03,
+            "velocity_edge_score": 0.017657,
+            "bid_ask_spread_width": 0.04,
             "earnings_date": null,
             "earnings_before_exp": false
         },
@@ -40,21 +40,48 @@
             "short_strike": 66.0,
             "long_strike": 61.0,
             "is_new": false,
-            "price": 83.17,
-            "underlying_price": 83.17,
-            "net_credit": 0.08,
-            "max_loss": 4.92,
-            "ev": 0.05,
+            "price": 82.73,
+            "underlying_price": 82.73,
+            "net_credit": 0.09,
+            "max_loss": 4.91,
+            "ev": 0.06,
             "pop_pct": 99.3,
             "rec_qty": 4,
-            "spy_delta_eq": -0.93,
+            "spy_delta_eq": -0.92,
             "correlation_spy": 0.984,
-            "edge_ratio": 0.0098,
-            "total_risk": 1967,
+            "edge_ratio": 0.0118,
+            "total_risk": 1963,
             "short_delta": -0.007,
             "theta_efficiency": 3e-05,
-            "velocity_edge_score": 0.009717,
-            "bid_ask_spread_width": 0.08,
+            "velocity_edge_score": 0.011713,
+            "bid_ask_spread_width": 0.06,
+            "earnings_date": null,
+            "earnings_before_exp": false
+        },
+        {
+            "symbol": "TQQQ",
+            "expiration": "2026-06-18",
+            "dte": 14,
+            "spread": "60.0/55.0P",
+            "spread_key": "TQQQ|60.0/55.0P|2026-06-18",
+            "short_strike": 60.0,
+            "long_strike": 55.0,
+            "is_new": true,
+            "price": 82.73,
+            "underlying_price": 82.73,
+            "net_credit": 0.1,
+            "max_loss": 4.9,
+            "ev": 0.05,
+            "pop_pct": 99.0,
+            "rec_qty": 4,
+            "spy_delta_eq": -1.37,
+            "correlation_spy": 0.984,
+            "edge_ratio": 0.0104,
+            "total_risk": 1959,
+            "short_delta": -0.0104,
+            "theta_efficiency": 3.4e-05,
+            "velocity_edge_score": 0.007399,
+            "bid_ask_spread_width": 0.02,
             "earnings_date": null,
             "earnings_before_exp": false
         },
@@ -67,21 +94,21 @@
             "short_strike": 65.0,
             "long_strike": 60.0,
             "is_new": false,
-            "price": 83.17,
-            "underlying_price": 83.17,
-            "net_credit": 0.17,
-            "max_loss": 4.83,
-            "ev": 0.01,
+            "price": 82.73,
+            "underlying_price": 82.73,
+            "net_credit": 0.19,
+            "max_loss": 4.81,
+            "ev": 0.03,
             "pop_pct": 96.8,
             "rec_qty": 4,
-            "spy_delta_eq": -4.25,
+            "spy_delta_eq": -4.24,
             "correlation_spy": 0.984,
-            "edge_ratio": 0.0013,
-            "total_risk": 1933,
+            "edge_ratio": 0.0053,
+            "total_risk": 1926,
             "short_delta": -0.0321,
             "theta_efficiency": 7.7e-05,
-            "velocity_edge_score": 0.000971,
-            "bid_ask_spread_width": 0.06,
+            "velocity_edge_score": 0.004108,
+            "bid_ask_spread_width": 0.08,
             "earnings_date": null,
             "earnings_before_exp": false
         }
@@ -115,9 +142,13 @@
                 {
                     "time": "2026-06-04 14:02:09",
                     "net_credit": 0.1
+                },
+                {
+                    "time": "2026-06-04 14:07:26",
+                    "net_credit": 0.11
                 }
             ],
-            "last_seen": "2026-06-04 14:02:09",
+            "last_seen": "2026-06-04 14:07:26",
             "in_current_scan": true
         },
         "TQQQ|50.0/45.0P|2026-06-18": {
@@ -148,9 +179,13 @@
                 {
                     "time": "2026-06-04 14:02:09",
                     "net_credit": 0.05
+                },
+                {
+                    "time": "2026-06-04 14:07:26",
+                    "net_credit": 0.05
                 }
             ],
-            "last_seen": "2026-06-04 14:02:09",
+            "last_seen": "2026-06-04 14:07:26",
             "in_current_scan": false
         },
         "ORCL|140.0/135.0P|2026-06-18": {
@@ -181,9 +216,13 @@
                 {
                     "time": "2026-06-04 14:02:09",
                     "net_credit": 0.11
+                },
+                {
+                    "time": "2026-06-04 14:07:26",
+                    "net_credit": 0.11
                 }
             ],
-            "last_seen": "2026-06-04 14:02:09",
+            "last_seen": "2026-06-04 14:07:26",
             "in_current_scan": false
         },
         "TQQQ|65.0/60.0P|2026-06-18": {
@@ -210,9 +249,13 @@
                 {
                     "time": "2026-06-04 14:02:09",
                     "net_credit": 0.17
+                },
+                {
+                    "time": "2026-06-04 14:07:26",
+                    "net_credit": 0.19
                 }
             ],
-            "last_seen": "2026-06-04 14:02:09",
+            "last_seen": "2026-06-04 14:07:26",
             "in_current_scan": true
         },
         "TQQQ|66.0/61.0P|2026-06-12": {
@@ -235,9 +278,30 @@
                 {
                     "time": "2026-06-04 14:02:09",
                     "net_credit": 0.08
+                },
+                {
+                    "time": "2026-06-04 14:07:26",
+                    "net_credit": 0.09
                 }
             ],
-            "last_seen": "2026-06-04 14:02:09",
+            "last_seen": "2026-06-04 14:07:26",
+            "in_current_scan": true
+        },
+        "TQQQ|60.0/55.0P|2026-06-18": {
+            "spread_key": "TQQQ|60.0/55.0P|2026-06-18",
+            "symbol": "TQQQ",
+            "expiration": "2026-06-18",
+            "spread": "60.0/55.0P",
+            "short_strike": 60.0,
+            "long_strike": 55.0,
+            "first_seen": "2026-06-04 14:07:26",
+            "credit_history": [
+                {
+                    "time": "2026-06-04 14:07:26",
+                    "net_credit": 0.1
+                }
+            ],
+            "last_seen": "2026-06-04 14:07:26",
             "in_current_scan": true
         }
     }
