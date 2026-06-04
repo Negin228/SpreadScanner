@@ -196,10 +196,105 @@ def load_existing_archive():
             return json.load(f).get("spread_archive", {})
     except Exception: return {}
 
+def price_chain_credits(symbol, expiration, strike_pairs):
+    """Fetch ONE option chain and return {short_strike: net_credit or None} for the
+    requested (short_strike, long_strike) pairs. Used to re-price archived spreads
+    that have dropped off the main list, batched per (symbol, expiration)."""
+    chain = fetch_data("markets/options/chains",
+                       {"symbol": symbol, "expiration": expiration, "greeks": "false"})
+    options = chain.get("options", {}).get("option", []) if chain else []
+    if isinstance(options, dict):
+        options = [options]
+    by_strike = {float(o["strike"]): o for o in options if o.get("option_type") == "put"}
+
+    out = {}
+    for short_strike, long_strike in strike_pairs:
+        s = by_strike.get(short_strike)
+        l = by_strike.get(long_strike)
+        if not s or not l:
+            out[short_strike] = None
+            continue
+        s_bid = float(s.get("bid", 0) or 0); s_ask = float(s.get("ask", 0) or 0)
+        l_bid = float(l.get("bid", 0) or 0); l_ask = float(l.get("ask", 0) or 0)
+        if s_bid == 0 and s_ask == 0:          # no live market (e.g. closed) -> skip point
+            out[short_strike] = None
+            continue
+        nc = (((s_bid + s_ask) / 2) - ((l_bid + l_ask) / 2)) * (1 - SLIPPAGE_ADJUST)
+        out[short_strike] = round(nc, 2)
+    return out
+
+
+def update_archive(archive, top_signals, scan_time):
+    """Maintain spread_archive: append a credit point for every tracked spread each
+    run (re-pricing ones that fell off the main list), and drop expired entries."""
+    today = datetime.date.today()
+    current_keys = set()
+
+    # 1) Spreads in the current top list: upsert + append their freshly-scanned credit.
+    for s in top_signals:
+        key = s["spread_key"]
+        current_keys.add(key)
+        entry = archive.get(key)
+        if entry is None:
+            entry = {
+                "spread_key":   key,
+                "symbol":       s["symbol"],
+                "expiration":   s["expiration"],
+                "spread":       s["spread"],
+                "short_strike": s.get("short_strike"),
+                "long_strike":  s.get("long_strike"),
+                "first_seen":   scan_time,
+                "credit_history": []
+            }
+            archive[key] = entry
+        entry["last_seen"] = scan_time
+        entry["in_current_scan"] = True
+        entry["credit_history"].append({"time": scan_time, "net_credit": s["net_credit"]})
+
+    # 2) Archived spreads NOT in the current list and not expired: re-fetch a live
+    #    quote and append a point. Group by (symbol, expiration) = one chain call each.
+    groups = {}
+    for key, entry in archive.items():
+        if key in current_keys:
+            continue
+        try:
+            exp_date = datetime.datetime.strptime(entry.get("expiration", ""), "%Y-%m-%d").date()
+        except Exception:
+            continue
+        if exp_date < today:
+            continue  # expired -> dropped in step 3
+        ss, ls = entry.get("short_strike"), entry.get("long_strike")
+        if ss is None or ls is None:
+            entry["in_current_scan"] = False
+            continue
+        groups.setdefault((entry["symbol"], entry["expiration"]), []).append((float(ss), float(ls), key))
+
+    for (symbol, exp), items in groups.items():
+        credits = price_chain_credits(symbol, exp, [(ss, ls) for ss, ls, _ in items])
+        for ss, ls, key in items:
+            entry = archive[key]
+            entry["in_current_scan"] = False
+            nc = credits.get(ss)
+            if nc is not None:
+                entry["last_seen"] = scan_time
+                entry["credit_history"].append({"time": scan_time, "net_credit": nc})
+
+    # 3) Drop expired entries so the file stays bounded.
+    for key in list(archive.keys()):
+        try:
+            if datetime.datetime.strptime(archive[key].get("expiration", ""), "%Y-%m-%d").date() < today:
+                del archive[key]
+        except Exception:
+            pass
+
+    return archive
+
+
 def run_workstation_scan():
     print(f"\n[SYSTEM] Initializing Custom Velocity Edge Scan...")
     
     archive = load_existing_archive()
+    prior_archive_keys = set(archive.keys())
     earnings_map = load_earnings_map()
     spy_data = fetch_data("markets/quotes", {"symbols": BENCHMARK, "greeks": "true"})
     if not spy_data or "quotes" not in spy_data: return
@@ -300,6 +395,9 @@ def run_workstation_scan():
                     "dte": dte,
                     "spread": spread_label,
                     "spread_key": spread_key,
+                    "short_strike": strike,
+                    "long_strike": strike - SPREAD_WIDTH,
+                    "is_new": (spread_key not in prior_archive_keys),
                     "price": round(price, 2),
                     "underlying_price": round(price, 2),
                     "net_credit": round(net_credit, 2),
@@ -325,19 +423,11 @@ def run_workstation_scan():
 
     # Rank exclusively by the brand new High-Velocity Win score
     all_signals.sort(key=lambda x: x["velocity_edge_score"], reverse=True)
-
-    report = {
-        "scan_time": scan_time,
-        "sorting_method": "Velocity Edge Engine (Optimized for Fast Fills & Rapid Theta Decay)",
-        "account_basis": ACCOUNT_SIZE,
-        "benchmark_spy": round(spy_price, 2),
-        "top_signals": all_signals[:20]
-    }
+    top_signals = all_signals[:20]
 
     # Anti-blank guard: if this scan found ZERO signals (e.g. a pre-market or
     # after-hours run where option bids are 0 and every leg gets filtered out),
-    # do NOT overwrite a perfectly good existing signals.json. Keep the last
-    # session's data on the dashboard until a live scan produces real signals.
+    # do NOT overwrite a good existing file and do NOT append junk to the archive.
     if not all_signals:
         existing = []
         if os.path.exists(OUTPUT_FILE):
@@ -352,10 +442,25 @@ def run_workstation_scan():
                   f"instead of blanking the dashboard.")
             return
 
+    # Maintain the credit-history archive: append a point for every tracked spread
+    # (re-pricing ones that fell off the list), drop expired entries.
+    archive = update_archive(archive, top_signals, scan_time)
+
+    report = {
+        "scan_time": scan_time,
+        "sorting_method": "Velocity Edge Engine (Optimized for Fast Fills & Rapid Theta Decay)",
+        "account_basis": ACCOUNT_SIZE,
+        "benchmark_spy": round(spy_price, 2),
+        "top_signals": top_signals,
+        "spread_archive": archive
+    }
+
     with open(OUTPUT_FILE, "w") as f:
         json.dump(report, f, indent=4)
 
-    print(f"\n[SUCCESS] Custom Scan finalized. 20 target positions prioritized via Velocity Decay written to {OUTPUT_FILE}")
+    archived_only = sum(1 for e in archive.values() if not e.get("in_current_scan"))
+    print(f"\n[SUCCESS] Scan finalized: {len(top_signals)} live signal(s), "
+          f"{len(archive)} spread(s) in archive ({archived_only} off-list, still tracked).")
 
 if __name__ == "__main__":
     run_workstation_scan()
