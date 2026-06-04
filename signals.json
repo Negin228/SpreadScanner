@@ -1,60 +1,60 @@
 {
-    "scan_time": "2026-06-04 14:23:17",
+    "scan_time": "2026-06-04 14:33:47",
     "sorting_method": "Velocity Edge Engine (Optimized for Fast Fills & Rapid Theta Decay)",
     "account_basis": 100000,
-    "benchmark_spy": 753.79,
+    "benchmark_spy": 753.86,
     "top_signals": [
         {
-            "symbol": "ORCL",
-            "expiration": "2026-06-12",
-            "dte": 8,
-            "spread": "160.0/155.0P",
-            "spread_key": "ORCL|160.0/155.0P|2026-06-12",
-            "short_strike": 160.0,
-            "long_strike": 155.0,
-            "is_new": false,
-            "price": 233.92,
-            "underlying_price": 233.92,
-            "net_credit": 0.11,
-            "max_loss": 4.89,
+            "symbol": "TSLA",
+            "expiration": "2026-06-18",
+            "dte": 14,
+            "spread": "245.0/240.0P",
+            "spread_key": "TSLA|245.0/240.0P|2026-06-18",
+            "short_strike": 245.0,
+            "long_strike": 240.0,
+            "is_new": true,
+            "price": 420.93,
+            "underlying_price": 420.93,
+            "net_credit": 0.04,
+            "max_loss": 4.96,
             "ev": 0.04,
-            "pop_pct": 98.6,
+            "pop_pct": 100.0,
             "rec_qty": 4,
-            "spy_delta_eq": -1.78,
-            "correlation_spy": 0.892,
-            "edge_ratio": 0.0074,
-            "total_risk": 1957,
-            "short_delta": -0.0143,
-            "theta_efficiency": 0.000204,
-            "velocity_edge_score": 0.009751,
-            "bid_ask_spread_width": 0.07,
-            "earnings_date": "2026-06-10",
-            "earnings_before_exp": true
+            "spy_delta_eq": 0.0,
+            "correlation_spy": 0.754,
+            "edge_ratio": 0.0079,
+            "total_risk": 1984,
+            "short_delta": 0.0,
+            "theta_efficiency": 1e-06,
+            "velocity_edge_score": 0.005283,
+            "bid_ask_spread_width": 0.05,
+            "earnings_date": "2026-07-22",
+            "earnings_before_exp": false
         },
         {
             "symbol": "TQQQ",
             "expiration": "2026-06-18",
             "dte": 14,
-            "spread": "50.0/45.0P",
-            "spread_key": "TQQQ|50.0/45.0P|2026-06-18",
-            "short_strike": 50.0,
-            "long_strike": 45.0,
+            "spread": "60.0/55.0P",
+            "spread_key": "TQQQ|60.0/55.0P|2026-06-18",
+            "short_strike": 60.0,
+            "long_strike": 55.0,
             "is_new": false,
-            "price": 83.61,
-            "underlying_price": 83.61,
-            "net_credit": 0.03,
-            "max_loss": 4.97,
-            "ev": 0.03,
-            "pop_pct": 100.0,
+            "price": 83.89,
+            "underlying_price": 83.89,
+            "net_credit": 0.08,
+            "max_loss": 4.92,
+            "ev": 0.02,
+            "pop_pct": 98.7,
             "rec_qty": 4,
-            "spy_delta_eq": -0.05,
+            "spy_delta_eq": -1.76,
             "correlation_spy": 0.984,
-            "edge_ratio": 0.0065,
-            "total_risk": 1986,
-            "short_delta": -0.0004,
-            "theta_efficiency": 3e-06,
-            "velocity_edge_score": 0.004366,
-            "bid_ask_spread_width": 0.03,
+            "edge_ratio": 0.0035,
+            "total_risk": 1967,
+            "short_delta": -0.0132,
+            "theta_efficiency": 6.1e-05,
+            "velocity_edge_score": 0.00263,
+            "bid_ask_spread_width": 0.07,
             "earnings_date": null,
             "earnings_before_exp": false
         }
@@ -104,9 +104,13 @@
                 {
                     "time": "2026-06-04 14:23:17",
                     "net_credit": 0.08
+                },
+                {
+                    "time": "2026-06-04 14:33:47",
+                    "net_credit": 0.05
                 }
             ],
-            "last_seen": "2026-06-04 14:23:17",
+            "last_seen": "2026-06-04 14:33:47",
             "in_current_scan": false
         },
         "TQQQ|50.0/45.0P|2026-06-18": {
@@ -153,10 +157,14 @@
                 {
                     "time": "2026-06-04 14:23:17",
                     "net_credit": 0.03
+                },
+                {
+                    "time": "2026-06-04 14:33:47",
+                    "net_credit": 0.03
                 }
             ],
-            "last_seen": "2026-06-04 14:23:17",
-            "in_current_scan": true
+            "last_seen": "2026-06-04 14:33:47",
+            "in_current_scan": false
         },
         "ORCL|140.0/135.0P|2026-06-18": {
             "spread_key": "ORCL|140.0/135.0P|2026-06-18",
@@ -202,9 +210,13 @@
                 {
                     "time": "2026-06-04 14:23:17",
                     "net_credit": 0.07
+                },
+                {
+                    "time": "2026-06-04 14:33:47",
+                    "net_credit": 0.07
                 }
             ],
-            "last_seen": "2026-06-04 14:23:17",
+            "last_seen": "2026-06-04 14:33:47",
             "in_current_scan": false
         },
         "TQQQ|65.0/60.0P|2026-06-18": {
@@ -247,9 +259,13 @@
                 {
                     "time": "2026-06-04 14:23:17",
                     "net_credit": 0.17
+                },
+                {
+                    "time": "2026-06-04 14:33:47",
+                    "net_credit": 0.15
                 }
             ],
-            "last_seen": "2026-06-04 14:23:17",
+            "last_seen": "2026-06-04 14:33:47",
             "in_current_scan": false
         },
         "TQQQ|66.0/61.0P|2026-06-12": {
@@ -288,9 +304,13 @@
                 {
                     "time": "2026-06-04 14:23:17",
                     "net_credit": 0.07
+                },
+                {
+                    "time": "2026-06-04 14:33:47",
+                    "net_credit": 0.06
                 }
             ],
-            "last_seen": "2026-06-04 14:23:17",
+            "last_seen": "2026-06-04 14:33:47",
             "in_current_scan": false
         },
         "TQQQ|60.0/55.0P|2026-06-18": {
@@ -317,10 +337,14 @@
                 {
                     "time": "2026-06-04 14:23:17",
                     "net_credit": 0.07
+                },
+                {
+                    "time": "2026-06-04 14:33:47",
+                    "net_credit": 0.08
                 }
             ],
-            "last_seen": "2026-06-04 14:23:17",
-            "in_current_scan": false
+            "last_seen": "2026-06-04 14:33:47",
+            "in_current_scan": true
         },
         "TQQQ|61.5/56.5P|2026-06-12": {
             "spread_key": "TQQQ|61.5/56.5P|2026-06-12",
@@ -342,9 +366,13 @@
                 {
                     "time": "2026-06-04 14:23:17",
                     "net_credit": -0.05
+                },
+                {
+                    "time": "2026-06-04 14:33:47",
+                    "net_credit": -0.04
                 }
             ],
-            "last_seen": "2026-06-04 14:23:17",
+            "last_seen": "2026-06-04 14:33:47",
             "in_current_scan": false
         },
         "ORCL|160.0/155.0P|2026-06-12": {
@@ -363,9 +391,30 @@
                 {
                     "time": "2026-06-04 14:23:17",
                     "net_credit": 0.11
+                },
+                {
+                    "time": "2026-06-04 14:33:47",
+                    "net_credit": 0.0
                 }
             ],
-            "last_seen": "2026-06-04 14:23:17",
+            "last_seen": "2026-06-04 14:33:47",
+            "in_current_scan": false
+        },
+        "TSLA|245.0/240.0P|2026-06-18": {
+            "spread_key": "TSLA|245.0/240.0P|2026-06-18",
+            "symbol": "TSLA",
+            "expiration": "2026-06-18",
+            "spread": "245.0/240.0P",
+            "short_strike": 245.0,
+            "long_strike": 240.0,
+            "first_seen": "2026-06-04 14:33:47",
+            "credit_history": [
+                {
+                    "time": "2026-06-04 14:33:47",
+                    "net_credit": 0.04
+                }
+            ],
+            "last_seen": "2026-06-04 14:33:47",
             "in_current_scan": true
         }
     }
