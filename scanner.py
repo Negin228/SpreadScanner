@@ -27,15 +27,32 @@ BENCHMARK = "SPY"
 ACCOUNT_SIZE       = 100000
 MAX_RISK_PER_TRADE = 0.02
 SPREAD_WIDTH       = 5.0
-MIN_DTE            = 0
-MAX_DTE            = 45
+
+# ── DTE band: short enough for brisk decay, but with a floor so a losing trade
+#    can be held a day or two WITHOUT being forced into expiration (assignment).
+MIN_DTE            = 5
+MAX_DTE            = 14
+DTE_BAND_CENTER    = 9       # ranking peaks here, tapers toward the band edges
+
+# ── Assignment-risk controls ──
+MAX_SHORT_DELTA    = 0.10    # short put must be far OTM (~<=10% chance ITM); primary guard
+EXPECTED_MOVE_MULT = 1.0     # short strike must sit >= 1 expected move below price
+MIN_DISCOUNT_PCT   = 0.20    # price floor under the short strike; delta does the heavy lifting
+
+# ── Exit-cost / liquidity controls (you pay the bid/ask twice on a fast trade) ──
+MAX_SHORT_BA_WIDTH = 0.10    # HARD filter on absolute short-leg bid/ask width
+MAX_BID_ASK_RATIO  = 2.2     # relative width guard (catches cheap, wide options)
+
+# ── Trend filter: skip selling puts into a CONFIRMED downtrend ──
+USE_TREND_FILTER   = True
+TREND_FAST_MA      = 20
+TREND_SLOW_MA      = 50
+
 MIN_PROB_PROFIT    = 85.0
 SLIPPAGE_ADJUST    = 0.02
 MIN_BID_PRICE      = 0.05
-MAX_BID_ASK_RATIO  = 2.2     # Stricter filter for cleaner fills
 MIN_OI             = 50
 MIN_VOLUME         = 50
-MIN_DISCOUNT_PCT   = 0.20    # Rigid 20% Out-Of-The-Money cushion
 
 OUTPUT_FILE = "signals.json"
 EARNINGS_FILE = "earnings.json"   # written biweekly by fetch_earnings.py
@@ -49,28 +66,33 @@ HEADERS = {
 # VELOCITY RANKING ENGINE
 # ─────────────────────────────────────────────
 
-def calculate_velocity_metrics(short_delta, net_credit, max_loss, price, spy_price, dte, short_ba_width, ticker_beta=1.2):
-    # Baseline Institutional Expectancy
+def calculate_velocity_metrics(short_delta, short_theta, net_credit, max_loss, price, spy_price, dte, short_ba_width, ticker_beta=1.2):
+    # Baseline expectancy: EV per dollar of risk (probability-weighted).
     p_loss = abs(short_delta)
     p_win = 1.0 - p_loss
     ev = (p_win * net_credit) - (p_loss * max_loss)
     pop = p_win * 100
     edge_ratio = ev / max_loss if max_loss > 0 else 0
 
-    # Clean Execution Layer: Penalize wider bid/ask spreads
-    # Spreads wider than $0.10 get exponentially penalized to guarantee clean fills
+    # Execution layer: penalize wider bid/ask (we also HARD-filter at MAX_SHORT_BA_WIDTH).
     liquidity_factor = 1.0
     if short_ba_width > 0.10:
         liquidity_factor = max(0.1, 1.0 - ((short_ba_width - 0.10) * 4))
 
-    # High-Velocity Win Layer: Time Decay Optimization
-    # We compress DTE using a square root function so shorter duration boosts the score.
-    time_decay_multiplier = 1.0 / math.sqrt(dte + 1)
+    # DTE band preference: peaks at DTE_BAND_CENTER and tapers toward the edges,
+    # instead of "shortest always wins" (which favored un-holdable 0-1 DTE).
+    dte_factor = max(0.4, 1.0 - abs(dte - DTE_BAND_CENTER) / 15.0)
 
-    # Combined Velocity Edge Score
-    velocity_edge_score = edge_ratio * time_decay_multiplier * liquidity_factor
+    # Theta efficiency: daily premium decay captured per dollar of risk — the
+    # truest "fast money" metric for a same-day / next-day exit. Boosts score up to ~2x.
+    risk_dollars = max_loss * 100
+    theta_eff = (abs(short_theta) / risk_dollars) if (short_theta and risk_dollars > 0) else 0.0
+    theta_factor = 1.0 + min(theta_eff * 2000.0, 1.0)
 
-    # Institutional Position Sizing
+    # Combined edge score
+    velocity_edge_score = edge_ratio * dte_factor * liquidity_factor * theta_factor
+
+    # Position sizing (risk-capped)
     dollar_risk_cap = ACCOUNT_SIZE * MAX_RISK_PER_TRADE
     risk_per_spread = max_loss * 100
     recommended_qty = math.floor(dollar_risk_cap / risk_per_spread) if risk_per_spread > 0 else 0
@@ -84,6 +106,8 @@ def calculate_velocity_metrics(short_delta, net_credit, max_loss, price, spy_pri
         "qty": recommended_qty,
         "spy_weighted_delta": round(weighted_delta, 2),
         "edge_ratio": round(edge_ratio, 4),
+        "theta_efficiency": round(theta_eff, 6),
+        "dte_factor": round(dte_factor, 3),
         "velocity_edge_score": round(velocity_edge_score, 6)
     }
 
@@ -112,10 +136,28 @@ def fetch_data(endpoint, params=None):
 def get_historical_closes(symbol):
     data = fetch_data("markets/history", {
         "symbol": symbol, "interval": "daily",
-        "start": (datetime.date.today() - timedelta(days=40)).strftime("%Y-%m-%d")
+        "start": (datetime.date.today() - timedelta(days=90)).strftime("%Y-%m-%d")
     })
     history = data.get("history", {}).get("day", []) if data else []
     return [float(d["close"]) for d in history if "close" in d]
+
+
+def moving_average(values, period):
+    if not values or len(values) < period:
+        return None
+    return sum(values[-period:]) / period
+
+
+def trend_ok(price, hist):
+    """Reject only a CONFIRMED downtrend (price below the slow MA AND fast MA below
+    slow MA). Neutral, consolidating, and uptrending names pass; passes if data is thin."""
+    if not USE_TREND_FILTER:
+        return True
+    ma_fast = moving_average(hist, TREND_FAST_MA)
+    ma_slow = moving_average(hist, TREND_SLOW_MA)
+    if ma_fast is None or ma_slow is None:
+        return True
+    return not (price < ma_slow and ma_fast < ma_slow)
 
 def load_earnings_map():
     """Load {symbol: 'YYYY-MM-DD' or None} from the biweekly earnings cache."""
@@ -177,6 +219,11 @@ def run_workstation_scan():
         hist = get_historical_closes(symbol)
         correlation = get_correlation(hist, spy_hist)
 
+        # Trend gate: skip the whole symbol if it's in a confirmed downtrend.
+        if not trend_ok(price, hist):
+            print(f"  > {symbol}: downtrend — skipping".ljust(60))
+            continue
+
         exp_data = fetch_data("markets/options/expirations", {"symbol": symbol})
         if not exp_data: continue
         dates = exp_data.get("expirations", {}).get("date", [])
@@ -203,11 +250,28 @@ def run_workstation_scan():
                 s_bid = float(short_opt.get("bid", 0) or 0)
                 s_ask = float(short_opt.get("ask", 0) or 0)
                 s_ba_width = s_ask - s_bid
-                
+
                 if s_bid < MIN_BID_PRICE: continue
+                if s_ba_width > MAX_SHORT_BA_WIDTH: continue           # HARD exit-cost filter
                 if s_bid > 0 and (s_ask / s_bid) > MAX_BID_ASK_RATIO: continue
                 if int(short_opt.get("open_interest", 0) or 0) < MIN_OI: continue
                 if int(short_opt.get("volume", 0) or 0) < MIN_VOLUME: continue
+
+                greeks_dict = short_opt.get("greeks", {})
+                if not greeks_dict or greeks_dict.get("delta") is None: continue
+                delta = float(greeks_dict.get("delta"))
+                theta = greeks_dict.get("theta")
+                theta = float(theta) if theta is not None else 0.0
+                iv = greeks_dict.get("mid_iv") or greeks_dict.get("smv_vol") or greeks_dict.get("ask_iv") or 0
+                iv = float(iv) if iv else 0.0
+
+                # Assignment-risk control: short put must be far OTM by delta.
+                if abs(delta) > MAX_SHORT_DELTA: continue
+
+                # Expected-move cushion: short strike at least 1 expected move below price.
+                if iv > 0:
+                    exp_move = price * iv * math.sqrt(max(dte, 1) / 365.0)
+                    if (price - strike) < EXPECTED_MOVE_MULT * exp_move: continue
 
                 l_bid = float(long_opt.get("bid", 0) or 0)
                 l_ask = float(long_opt.get("ask", 0) or 0)
@@ -216,12 +280,8 @@ def run_workstation_scan():
 
                 if net_credit <= 0.03: continue
 
-                greeks_dict = short_opt.get("greeks", {})
-                if not greeks_dict or greeks_dict.get("delta") is None: continue
-                delta = float(greeks_dict.get("delta"))
-
                 metrics = calculate_velocity_metrics(
-                    delta, net_credit, max_loss, price, spy_price, 
+                    delta, theta, net_credit, max_loss, price, spy_price,
                     dte, s_ba_width, ticker_beta=BETA_MAPPING.get(symbol, 1.2)
                 )
 
@@ -251,6 +311,8 @@ def run_workstation_scan():
                     "correlation_spy": correlation,
                     "edge_ratio": metrics["edge_ratio"],
                     "total_risk": total_risk,
+                    "short_delta": round(delta, 4),
+                    "theta_efficiency": metrics["theta_efficiency"],
                     "velocity_edge_score": metrics["velocity_edge_score"],
                     "bid_ask_spread_width": round(s_ba_width, 2),
                     "earnings_date": earnings_date,
