@@ -1,8 +1,8 @@
 {
-    "scan_time": "2026-06-04 15:26:34",
+    "scan_time": "2026-06-04 15:31:48",
     "sorting_method": "Velocity Edge Engine (Optimized for Fast Fills & Rapid Theta Decay)",
     "account_basis": 100000,
-    "benchmark_spy": 755.62,
+    "benchmark_spy": 755.68,
     "top_signals": [
         {
             "symbol": "AMD",
@@ -12,22 +12,22 @@
             "spread_key": "AMD|415.0/410.0P|2026-06-12",
             "short_strike": 415.0,
             "long_strike": 410.0,
-            "is_new": true,
-            "price": 524.71,
-            "underlying_price": 524.71,
-            "net_credit": 0.17,
-            "max_loss": 4.83,
-            "ev": 0.06,
+            "is_new": false,
+            "price": 524.0,
+            "underlying_price": 524.0,
+            "net_credit": 0.15,
+            "max_loss": 4.85,
+            "ev": 0.04,
             "pop_pct": 97.8,
             "rec_qty": 4,
-            "spy_delta_eq": -9.91,
+            "spy_delta_eq": -9.9,
             "correlation_spy": 0.954,
-            "edge_ratio": 0.0124,
-            "total_risk": 1931,
+            "edge_ratio": 0.0083,
+            "total_risk": 1939,
             "short_delta": -0.0223,
-            "theta_efficiency": 0.000425,
-            "velocity_edge_score": 0.021455,
-            "bid_ask_spread_width": 0.08,
+            "theta_efficiency": 0.000423,
+            "velocity_edge_score": 0.014362,
+            "bid_ask_spread_width": 0.1,
             "earnings_date": "2026-08-04",
             "earnings_before_exp": false
         },
@@ -40,8 +40,8 @@
             "short_strike": 55.0,
             "long_strike": 50.0,
             "is_new": false,
-            "price": 84.95,
-            "underlying_price": 84.95,
+            "price": 84.89,
+            "underlying_price": 84.89,
             "net_credit": 0.03,
             "max_loss": 4.97,
             "ev": 0.03,
@@ -66,9 +66,9 @@
             "spread_key": "AMD|385.0/380.0P|2026-06-12",
             "short_strike": 385.0,
             "long_strike": 380.0,
-            "is_new": true,
-            "price": 524.71,
-            "underlying_price": 524.71,
+            "is_new": false,
+            "price": 524.0,
+            "underlying_price": 524.0,
             "net_credit": 0.04,
             "max_loss": 4.96,
             "ev": 0.02,
@@ -94,8 +94,8 @@
             "short_strike": 60.0,
             "long_strike": 55.0,
             "is_new": false,
-            "price": 84.95,
-            "underlying_price": 84.95,
+            "price": 84.89,
+            "underlying_price": 84.89,
             "net_credit": 0.08,
             "max_loss": 4.92,
             "ev": 0.03,
@@ -202,9 +202,13 @@
                 {
                     "time": "2026-06-04 15:26:34",
                     "net_credit": 0.02
+                },
+                {
+                    "time": "2026-06-04 15:31:48",
+                    "net_credit": 0.02
                 }
             ],
-            "last_seen": "2026-06-04 15:26:34",
+            "last_seen": "2026-06-04 15:31:48",
             "in_current_scan": false
         },
         "TQQQ|50.0/45.0P|2026-06-18": {
@@ -295,9 +299,13 @@
                 {
                     "time": "2026-06-04 15:26:34",
                     "net_credit": 0.02
+                },
+                {
+                    "time": "2026-06-04 15:31:48",
+                    "net_credit": 0.02
                 }
             ],
-            "last_seen": "2026-06-04 15:26:34",
+            "last_seen": "2026-06-04 15:31:48",
             "in_current_scan": false
         },
         "ORCL|140.0/135.0P|2026-06-18": {
@@ -388,9 +396,13 @@
                 {
                     "time": "2026-06-04 15:26:34",
                     "net_credit": 0.05
+                },
+                {
+                    "time": "2026-06-04 15:31:48",
+                    "net_credit": 0.05
                 }
             ],
-            "last_seen": "2026-06-04 15:26:34",
+            "last_seen": "2026-06-04 15:31:48",
             "in_current_scan": false
         },
         "TQQQ|65.0/60.0P|2026-06-18": {
@@ -477,9 +489,13 @@
                 {
                     "time": "2026-06-04 15:26:34",
                     "net_credit": 0.13
+                },
+                {
+                    "time": "2026-06-04 15:31:48",
+                    "net_credit": 0.13
                 }
             ],
-            "last_seen": "2026-06-04 15:26:34",
+            "last_seen": "2026-06-04 15:31:48",
             "in_current_scan": false
         },
         "TQQQ|66.0/61.0P|2026-06-12": {
@@ -562,9 +578,13 @@
                 {
                     "time": "2026-06-04 15:26:34",
                     "net_credit": 0.04
+                },
+                {
+                    "time": "2026-06-04 15:31:48",
+                    "net_credit": 0.04
                 }
             ],
-            "last_seen": "2026-06-04 15:26:34",
+            "last_seen": "2026-06-04 15:31:48",
             "in_current_scan": false
         },
         "TQQQ|60.0/55.0P|2026-06-18": {
@@ -635,9 +655,13 @@
                 {
                     "time": "2026-06-04 15:26:34",
                     "net_credit": 0.08
+                },
+                {
+                    "time": "2026-06-04 15:31:48",
+                    "net_credit": 0.08
                 }
             ],
-            "last_seen": "2026-06-04 15:26:34",
+            "last_seen": "2026-06-04 15:31:48",
             "in_current_scan": true
         },
         "TQQQ|61.5/56.5P|2026-06-12": {
@@ -704,9 +728,13 @@
                 {
                     "time": "2026-06-04 15:26:34",
                     "net_credit": 0.01
+                },
+                {
+                    "time": "2026-06-04 15:31:48",
+                    "net_credit": 0.02
                 }
             ],
-            "last_seen": "2026-06-04 15:26:34",
+            "last_seen": "2026-06-04 15:31:48",
             "in_current_scan": false
         },
         "ORCL|160.0/155.0P|2026-06-12": {
@@ -769,9 +797,13 @@
                 {
                     "time": "2026-06-04 15:26:34",
                     "net_credit": 0.06
+                },
+                {
+                    "time": "2026-06-04 15:31:48",
+                    "net_credit": 0.06
                 }
             ],
-            "last_seen": "2026-06-04 15:26:34",
+            "last_seen": "2026-06-04 15:31:48",
             "in_current_scan": false
         },
         "TSLA|245.0/240.0P|2026-06-18": {
@@ -826,9 +858,13 @@
                 {
                     "time": "2026-06-04 15:26:34",
                     "net_credit": 0.02
+                },
+                {
+                    "time": "2026-06-04 15:31:48",
+                    "net_credit": 0.0
                 }
             ],
-            "last_seen": "2026-06-04 15:26:34",
+            "last_seen": "2026-06-04 15:31:48",
             "in_current_scan": false
         },
         "TQQQ|55.0/50.0P|2026-06-18": {
@@ -859,9 +895,13 @@
                 {
                     "time": "2026-06-04 15:26:34",
                     "net_credit": 0.03
+                },
+                {
+                    "time": "2026-06-04 15:31:48",
+                    "net_credit": 0.03
                 }
             ],
-            "last_seen": "2026-06-04 15:26:34",
+            "last_seen": "2026-06-04 15:31:48",
             "in_current_scan": true
         },
         "AMD|415.0/410.0P|2026-06-12": {
@@ -876,9 +916,13 @@
                 {
                     "time": "2026-06-04 15:26:34",
                     "net_credit": 0.17
+                },
+                {
+                    "time": "2026-06-04 15:31:48",
+                    "net_credit": 0.15
                 }
             ],
-            "last_seen": "2026-06-04 15:26:34",
+            "last_seen": "2026-06-04 15:31:48",
             "in_current_scan": true
         },
         "AMD|385.0/380.0P|2026-06-12": {
@@ -893,9 +937,13 @@
                 {
                     "time": "2026-06-04 15:26:34",
                     "net_credit": 0.04
+                },
+                {
+                    "time": "2026-06-04 15:31:48",
+                    "net_credit": 0.04
                 }
             ],
-            "last_seen": "2026-06-04 15:26:34",
+            "last_seen": "2026-06-04 15:31:48",
             "in_current_scan": true
         }
     }
