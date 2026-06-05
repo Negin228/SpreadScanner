@@ -1,62 +1,89 @@
 {
-    "scan_time": "2026-06-05 18:41:08",
+    "scan_time": "2026-06-05 18:46:48",
     "sorting_method": "Velocity Edge Engine (Optimized for Fast Fills & Rapid Theta Decay)",
     "account_basis": 100000,
-    "benchmark_spy": 740.26,
+    "benchmark_spy": 739.34,
     "top_signals": [
         {
             "symbol": "ORCL",
-            "expiration": "2026-06-18",
-            "dte": 13,
-            "spread": "160.0/155.0P",
-            "spread_key": "ORCL|160.0/155.0P|2026-06-18",
-            "short_strike": 160.0,
-            "long_strike": 155.0,
+            "expiration": "2026-06-12",
+            "dte": 7,
+            "spread": "165.0/160.0P",
+            "spread_key": "ORCL|165.0/160.0P|2026-06-12",
+            "short_strike": 165.0,
+            "long_strike": 160.0,
             "is_new": false,
-            "price": 210.28,
-            "underlying_price": 210.28,
+            "price": 209.52,
+            "underlying_price": 209.52,
             "net_credit": 0.31,
             "max_loss": 4.69,
-            "ev": 0.06,
-            "pop_pct": 95.0,
+            "ev": 0.08,
+            "pop_pct": 95.4,
             "rec_qty": 4,
-            "spy_delta_eq": -5.68,
+            "spy_delta_eq": -5.25,
             "correlation_spy": 0.893,
-            "edge_ratio": 0.0136,
-            "total_risk": 1875,
-            "short_delta": -0.05,
-            "theta_efficiency": 0.0004,
-            "velocity_edge_score": 0.017907,
+            "edge_ratio": 0.0165,
+            "total_risk": 1877,
+            "short_delta": -0.0463,
+            "theta_efficiency": 0.000582,
+            "velocity_edge_score": 0.028524,
             "bid_ask_spread_width": 0.09,
             "earnings_date": "2026-06-10",
             "earnings_before_exp": true
         },
         {
-            "symbol": "ORCL",
+            "symbol": "AMD",
+            "expiration": "2026-06-12",
+            "dte": 7,
+            "spread": "320.0/315.0P",
+            "spread_key": "AMD|320.0/315.0P|2026-06-12",
+            "short_strike": 320.0,
+            "long_strike": 315.0,
+            "is_new": true,
+            "price": 465.04,
+            "underlying_price": 465.04,
+            "net_credit": 0.06,
+            "max_loss": 4.94,
+            "ev": 0.04,
+            "pop_pct": 99.7,
+            "rec_qty": 4,
+            "spy_delta_eq": -1.29,
+            "correlation_spy": 0.955,
+            "edge_ratio": 0.0087,
+            "total_risk": 1976,
+            "short_delta": -0.0032,
+            "theta_efficiency": 0.000154,
+            "velocity_edge_score": 0.009816,
+            "bid_ask_spread_width": 0.1,
+            "earnings_date": "2026-08-04",
+            "earnings_before_exp": false
+        },
+        {
+            "symbol": "TQQQ",
             "expiration": "2026-06-18",
             "dte": 13,
-            "spread": "140.0/135.0P",
-            "spread_key": "ORCL|140.0/135.0P|2026-06-18",
-            "short_strike": 140.0,
-            "long_strike": 135.0,
+            "spread": "45.0/40.0P",
+            "spread_key": "TQQQ|45.0/40.0P|2026-06-18",
+            "short_strike": 45.0,
+            "long_strike": 40.0,
             "is_new": false,
-            "price": 210.28,
-            "underlying_price": 210.28,
-            "net_credit": 0.12,
-            "max_loss": 4.88,
+            "price": 73.95,
+            "underlying_price": 73.95,
+            "net_credit": 0.1,
+            "max_loss": 4.9,
             "ev": 0.05,
-            "pop_pct": 98.5,
+            "pop_pct": 99.0,
             "rec_qty": 4,
-            "spy_delta_eq": -1.67,
-            "correlation_spy": 0.893,
+            "spy_delta_eq": -1.18,
+            "correlation_spy": 0.984,
             "edge_ratio": 0.01,
-            "total_risk": 1951,
-            "short_delta": -0.0147,
-            "theta_efficiency": 0.000171,
-            "velocity_edge_score": 0.00989,
-            "bid_ask_spread_width": 0.08,
-            "earnings_date": "2026-06-10",
-            "earnings_before_exp": true
+            "total_risk": 1961,
+            "short_delta": -0.0098,
+            "theta_efficiency": 4.5e-05,
+            "velocity_edge_score": 0.007991,
+            "bid_ask_spread_width": 0.1,
+            "earnings_date": null,
+            "earnings_before_exp": false
         },
         {
             "symbol": "NVDA",
@@ -67,8 +94,8 @@
             "short_strike": 160.0,
             "long_strike": 155.0,
             "is_new": false,
-            "price": 205.19,
-            "underlying_price": 205.19,
+            "price": 205.11,
+            "underlying_price": 205.11,
             "net_credit": 0.05,
             "max_loss": 4.95,
             "ev": 0.04,
@@ -86,57 +113,111 @@
             "earnings_before_exp": false
         },
         {
+            "symbol": "ORCL",
+            "expiration": "2026-06-18",
+            "dte": 13,
+            "spread": "160.0/155.0P",
+            "spread_key": "ORCL|160.0/155.0P|2026-06-18",
+            "short_strike": 160.0,
+            "long_strike": 155.0,
+            "is_new": false,
+            "price": 209.52,
+            "underlying_price": 209.52,
+            "net_credit": 0.27,
+            "max_loss": 4.73,
+            "ev": 0.02,
+            "pop_pct": 95.0,
+            "rec_qty": 4,
+            "spy_delta_eq": -5.67,
+            "correlation_spy": 0.893,
+            "edge_ratio": 0.0052,
+            "total_risk": 1890,
+            "short_delta": -0.05,
+            "theta_efficiency": 0.000396,
+            "velocity_edge_score": 0.006788,
+            "bid_ask_spread_width": 0.07,
+            "earnings_date": "2026-06-10",
+            "earnings_before_exp": true
+        },
+        {
             "symbol": "AMD",
             "expiration": "2026-06-12",
             "dte": 7,
-            "spread": "310.0/305.0P",
-            "spread_key": "AMD|310.0/305.0P|2026-06-12",
-            "short_strike": 310.0,
-            "long_strike": 305.0,
+            "spread": "295.0/290.0P",
+            "spread_key": "AMD|295.0/290.0P|2026-06-12",
+            "short_strike": 295.0,
+            "long_strike": 290.0,
             "is_new": true,
-            "price": 467.66,
-            "underlying_price": 467.66,
-            "net_credit": 0.04,
-            "max_loss": 4.96,
+            "price": 465.04,
+            "underlying_price": 465.04,
+            "net_credit": 0.03,
+            "max_loss": 4.97,
             "ev": 0.03,
-            "pop_pct": 99.8,
+            "pop_pct": 100.0,
             "rec_qty": 4,
-            "spy_delta_eq": -0.65,
+            "spy_delta_eq": -0.2,
             "correlation_spy": 0.955,
-            "edge_ratio": 0.0063,
-            "total_risk": 1984,
-            "short_delta": -0.0016,
-            "theta_efficiency": 7.5e-05,
-            "velocity_edge_score": 0.006264,
-            "bid_ask_spread_width": 0.06,
+            "edge_ratio": 0.0064,
+            "total_risk": 1986,
+            "short_delta": -0.0005,
+            "theta_efficiency": 2.3e-05,
+            "velocity_edge_score": 0.0058,
+            "bid_ask_spread_width": 0.08,
             "earnings_date": "2026-08-04",
             "earnings_before_exp": false
         },
         {
-            "symbol": "TQQQ",
-            "expiration": "2026-06-18",
-            "dte": 13,
-            "spread": "50.0/45.0P",
-            "spread_key": "TQQQ|50.0/45.0P|2026-06-18",
-            "short_strike": 50.0,
-            "long_strike": 45.0,
+            "symbol": "AMD",
+            "expiration": "2026-06-12",
+            "dte": 7,
+            "spread": "345.0/340.0P",
+            "spread_key": "AMD|345.0/340.0P|2026-06-12",
+            "short_strike": 345.0,
+            "long_strike": 340.0,
             "is_new": false,
-            "price": 74.44,
-            "underlying_price": 74.44,
-            "net_credit": 0.13,
-            "max_loss": 4.87,
+            "price": 465.04,
+            "underlying_price": 465.04,
+            "net_credit": 0.07,
+            "max_loss": 4.93,
             "ev": 0.02,
-            "pop_pct": 97.7,
+            "pop_pct": 98.9,
             "rec_qty": 4,
-            "spy_delta_eq": -2.82,
-            "correlation_spy": 0.984,
-            "edge_ratio": 0.0031,
-            "total_risk": 1947,
-            "short_delta": -0.0234,
-            "theta_efficiency": 8.5e-05,
-            "velocity_edge_score": 0.002697,
-            "bid_ask_spread_width": 0.02,
-            "earnings_date": null,
+            "spy_delta_eq": -4.59,
+            "correlation_spy": 0.955,
+            "edge_ratio": 0.0033,
+            "total_risk": 1971,
+            "short_delta": -0.0114,
+            "theta_efficiency": 0.000386,
+            "velocity_edge_score": 0.005145,
+            "bid_ask_spread_width": 0.08,
+            "earnings_date": "2026-08-04",
+            "earnings_before_exp": false
+        },
+        {
+            "symbol": "AMD",
+            "expiration": "2026-06-12",
+            "dte": 7,
+            "spread": "350.0/345.0P",
+            "spread_key": "AMD|350.0/345.0P|2026-06-12",
+            "short_strike": 350.0,
+            "long_strike": 345.0,
+            "is_new": false,
+            "price": 465.04,
+            "underlying_price": 465.04,
+            "net_credit": 0.08,
+            "max_loss": 4.92,
+            "ev": 0.01,
+            "pop_pct": 98.6,
+            "rec_qty": 4,
+            "spy_delta_eq": -5.52,
+            "correlation_spy": 0.955,
+            "edge_ratio": 0.003,
+            "total_risk": 1967,
+            "short_delta": -0.0137,
+            "theta_efficiency": 0.000437,
+            "velocity_edge_score": 0.004891,
+            "bid_ask_spread_width": 0.09,
+            "earnings_date": "2026-08-04",
             "earnings_before_exp": false
         },
         {
@@ -148,50 +229,50 @@
             "short_strike": 155.0,
             "long_strike": 150.0,
             "is_new": false,
-            "price": 205.19,
-            "underlying_price": 205.19,
-            "net_credit": 0.04,
-            "max_loss": 4.96,
-            "ev": 0.01,
+            "price": 205.11,
+            "underlying_price": 205.11,
+            "net_credit": 0.05,
+            "max_loss": 4.95,
+            "ev": 0.02,
             "pop_pct": 99.5,
             "rec_qty": 4,
             "spy_delta_eq": -1.04,
             "correlation_spy": 0.953,
-            "edge_ratio": 0.0024,
-            "total_risk": 1984,
+            "edge_ratio": 0.0043,
+            "total_risk": 1980,
             "short_delta": -0.0055,
             "theta_efficiency": 6.2e-05,
-            "velocity_edge_score": 0.001944,
+            "velocity_edge_score": 0.003579,
             "bid_ask_spread_width": 0.01,
             "earnings_date": "2026-08-26",
             "earnings_before_exp": false
         },
         {
-            "symbol": "TQQQ",
+            "symbol": "ORCL",
             "expiration": "2026-06-18",
             "dte": 13,
-            "spread": "45.0/40.0P",
-            "spread_key": "TQQQ|45.0/40.0P|2026-06-18",
-            "short_strike": 45.0,
-            "long_strike": 40.0,
-            "is_new": false,
-            "price": 74.44,
-            "underlying_price": 74.44,
+            "spread": "135.0/130.0P",
+            "spread_key": "ORCL|135.0/130.0P|2026-06-18",
+            "short_strike": 135.0,
+            "long_strike": 130.0,
+            "is_new": true,
+            "price": 209.52,
+            "underlying_price": 209.52,
             "net_credit": 0.06,
             "max_loss": 4.94,
-            "ev": 0.01,
+            "ev": 0.02,
             "pop_pct": 99.0,
             "rec_qty": 4,
-            "spy_delta_eq": -1.18,
-            "correlation_spy": 0.984,
-            "edge_ratio": 0.002,
-            "total_risk": 1976,
-            "short_delta": -0.0098,
-            "theta_efficiency": 4.5e-05,
-            "velocity_edge_score": 0.001585,
-            "bid_ask_spread_width": 0.05,
-            "earnings_date": null,
-            "earnings_before_exp": false
+            "spy_delta_eq": -1.1,
+            "correlation_spy": 0.893,
+            "edge_ratio": 0.0031,
+            "total_risk": 1975,
+            "short_delta": -0.0097,
+            "theta_efficiency": 0.000129,
+            "velocity_edge_score": 0.002843,
+            "bid_ask_spread_width": 0.08,
+            "earnings_date": "2026-06-10",
+            "earnings_before_exp": true
         }
     ],
     "spread_archive": {
@@ -715,9 +796,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.4
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.52
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "TQQQ|50.0/45.0P|2026-06-18": {
@@ -1240,10 +1325,14 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.13
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.11
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
-            "in_current_scan": true
+            "last_seen": "2026-06-05 18:46:48",
+            "in_current_scan": false
         },
         "ORCL|140.0/135.0P|2026-06-18": {
             "spread_key": "ORCL|140.0/135.0P|2026-06-18",
@@ -1765,10 +1854,14 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.12
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.09
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
-            "in_current_scan": true
+            "last_seen": "2026-06-05 18:46:48",
+            "in_current_scan": false
         },
         "TQQQ|65.0/60.0P|2026-06-18": {
             "spread_key": "TQQQ|65.0/60.0P|2026-06-18",
@@ -2286,9 +2379,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.73
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.73
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "TQQQ|66.0/61.0P|2026-06-12": {
@@ -2803,9 +2900,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.42
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.56
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "TQQQ|60.0/55.0P|2026-06-18": {
@@ -3308,9 +3409,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.39
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.41
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "TQQQ|61.5/56.5P|2026-06-12": {
@@ -3809,9 +3914,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.24
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.28
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "ORCL|160.0/155.0P|2026-06-12": {
@@ -4306,9 +4415,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.2
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.17
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "TSLA|245.0/240.0P|2026-06-18": {
@@ -4795,9 +4908,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.02
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.02
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "TQQQ|55.0/50.0P|2026-06-18": {
@@ -5260,9 +5377,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.15
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.22
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "AMD|415.0/410.0P|2026-06-12": {
@@ -5709,9 +5830,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.49
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.56
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "AMD|385.0/380.0P|2026-06-12": {
@@ -6158,9 +6283,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.15
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.2
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "TSLA|235.0/230.0P|2026-06-18": {
@@ -6599,9 +6728,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.01
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.01
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "ORCL|165.0/160.0P|2026-06-12": {
@@ -7040,10 +7173,14 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.25
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.31
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
-            "in_current_scan": false
+            "last_seen": "2026-06-05 18:46:48",
+            "in_current_scan": true
         },
         "AMD|390.0/385.0P|2026-06-12": {
             "spread_key": "AMD|390.0/385.0P|2026-06-12",
@@ -7481,9 +7618,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.23
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.28
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "AMD|330.0/325.0P|2026-06-12": {
@@ -7902,9 +8043,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.03
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.04
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "AMD|380.0/375.0P|2026-06-18": {
@@ -8271,9 +8416,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.36
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.32
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "AMD|400.0/395.0P|2026-06-18": {
@@ -8640,9 +8789,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.69
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.47
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "AMD|365.0/360.0P|2026-06-18": {
@@ -9009,9 +9162,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.15
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.16
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "AMD|390.0/385.0P|2026-06-18": {
@@ -9378,9 +9535,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.44
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.44
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "META|500.0/495.0P|2026-06-18": {
@@ -9743,9 +9904,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.13
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.11
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "TQQQ|62.5/57.5P|2026-06-18": {
@@ -10104,9 +10269,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.55
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.6
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "ORCL|175.0/170.0P|2026-06-12": {
@@ -10461,9 +10630,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.54
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.6
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "AMD|370.0/365.0P|2026-06-12": {
@@ -10810,9 +10983,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.09
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.11
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "ORCL|130.0/125.0P|2026-06-18": {
@@ -11111,9 +11288,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.12
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.05
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "TSLA|250.0/245.0P|2026-06-18": {
@@ -11400,9 +11581,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.02
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.01
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "AMD|380.0/375.0P|2026-06-12": {
@@ -11689,9 +11874,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.16
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.21
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "TSLA|300.0/295.0P|2026-06-12": {
@@ -11950,9 +12139,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.03
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.04
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "TSLA|270.0/265.0P|2026-06-18": {
@@ -12211,9 +12404,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.03
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.03
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "TQQQ|63.0/58.0P|2026-06-12": {
@@ -12468,9 +12665,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.43
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.35
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "TQQQ|58.0/53.0P|2026-06-18": {
@@ -12717,9 +12918,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.27
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.39
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "TQQQ|42.5/37.5P|2026-06-18": {
@@ -12966,9 +13171,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.04
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.04
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "ORCL|135.0/130.0P|2026-06-12": {
@@ -13211,9 +13420,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.02
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.03
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "AMD|400.0/395.0P|2026-06-12": {
@@ -13452,9 +13665,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.33
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.45
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "TQQQ|68.0/63.0P|2026-06-12": {
@@ -13693,9 +13910,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.65
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.77
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "TQQQ|56.0/51.0P|2026-06-18": {
@@ -13926,9 +14147,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.21
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.2
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "TQQQ|55.0/50.0P|2026-06-12": {
@@ -14151,9 +14376,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.11
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.13
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "AMD|365.0/360.0P|2026-06-12": {
@@ -14372,9 +14601,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.07
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.08
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "TQQQ|45.0/40.0P|2026-06-18": {
@@ -14593,9 +14826,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.06
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.1
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": true
         },
         "AMD|350.0/345.0P|2026-06-12": {
@@ -14806,10 +15043,14 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.03
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.08
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
-            "in_current_scan": false
+            "last_seen": "2026-06-05 18:46:48",
+            "in_current_scan": true
         },
         "NVDA|165.0/160.0P|2026-06-18": {
             "spread_key": "NVDA|165.0/160.0P|2026-06-18",
@@ -15011,9 +15252,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.07
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.07
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "NVDA|167.0/162.0P|2026-06-18": {
@@ -15200,9 +15445,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.08
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.08
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "ORCL|160.0/155.0P|2026-06-18": {
@@ -15389,9 +15638,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.31
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.27
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": true
         },
         "TQQQ|60.0/55.0P|2026-06-12": {
@@ -15574,9 +15827,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.16
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.16
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "AMD|345.0/340.0P|2026-06-12": {
@@ -15751,10 +16008,14 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.07
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.07
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
-            "in_current_scan": false
+            "last_seen": "2026-06-05 18:46:48",
+            "in_current_scan": true
         },
         "AMD|340.0/335.0P|2026-06-12": {
             "spread_key": "AMD|340.0/335.0P|2026-06-12",
@@ -15924,9 +16185,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": -0.01
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.0
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "NVDA|160.0/155.0P|2026-06-18": {
@@ -16097,9 +16362,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.05
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.05
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "TQQQ|54.0/49.0P|2026-06-18": {
@@ -16262,9 +16531,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.24
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.25
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "AMD|370.0/365.0P|2026-06-18": {
@@ -16423,9 +16696,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.32
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.36
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "TSLA|300.0/295.0P|2026-06-18": {
@@ -16584,9 +16861,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.07
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.08
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "ORCL|172.5/167.5P|2026-06-12": {
@@ -16733,9 +17014,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.47
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.49
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "NVDA|155.0/150.0P|2026-06-18": {
@@ -16878,9 +17163,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.04
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.05
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": true
         },
         "ORCL|170.0/165.0P|2026-06-12": {
@@ -17019,9 +17308,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.4
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.41
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "TQQQ|62.0/57.0P|2026-06-12": {
@@ -17152,9 +17445,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.25
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.38
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "TQQQ|40.0/35.0P|2026-06-18": {
@@ -17277,9 +17574,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.07
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.04
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "NVDA|150.0/145.0P|2026-06-18": {
@@ -17402,9 +17703,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.03
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.02
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "NVDA|160.0/155.0P|2026-06-17": {
@@ -17527,9 +17832,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.05
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.05
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": true
         },
         "ORCL|170.0/165.0P|2026-06-18": {
@@ -17648,9 +17957,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.53
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.54
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "AMD|375.0/370.0P|2026-06-12": {
@@ -17769,9 +18082,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.11
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.09
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "ORCL|165.0/160.0P|2026-06-18": {
@@ -17890,9 +18207,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.35
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.36
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "AMD|275.0/270.0P|2026-06-12": {
@@ -18003,9 +18324,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.04
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.04
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "ORCL|162.5/157.5P|2026-06-12": {
@@ -18104,9 +18429,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.22
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.24
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "ORCL|120.0/115.0P|2026-06-18": {
@@ -18205,9 +18534,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": -0.16
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": -0.16
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "TSLA|310.0/305.0P|2026-06-12": {
@@ -18302,9 +18635,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.05
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.05
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "NVDA|165.0/160.0P|2026-06-12": {
@@ -18395,9 +18732,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.03
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.04
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "TSLA|315.0/310.0P|2026-06-12": {
@@ -18476,9 +18817,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.05
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.05
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "AMD|285.0/280.0P|2026-06-12": {
@@ -18553,9 +18898,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.07
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": -0.0
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "TQQQ|59.0/54.0P|2026-06-12": {
@@ -18630,9 +18979,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.19
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.16
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "TQQQ|50.0/45.0P|2026-06-12": {
@@ -18699,9 +19052,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.05
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.03
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "TSLA|295.0/290.0P|2026-06-12": {
@@ -18756,9 +19113,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.03
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.03
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "AMD|325.0/320.0P|2026-06-12": {
@@ -18809,9 +19170,13 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.0
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.02
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": false
         },
         "AMD|310.0/305.0P|2026-06-12": {
@@ -18826,9 +19191,64 @@
                 {
                     "time": "2026-06-05 18:41:08",
                     "net_credit": 0.04
+                },
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.03
                 }
             ],
-            "last_seen": "2026-06-05 18:41:08",
+            "last_seen": "2026-06-05 18:46:48",
+            "in_current_scan": false
+        },
+        "AMD|320.0/315.0P|2026-06-12": {
+            "spread_key": "AMD|320.0/315.0P|2026-06-12",
+            "symbol": "AMD",
+            "expiration": "2026-06-12",
+            "spread": "320.0/315.0P",
+            "short_strike": 320.0,
+            "long_strike": 315.0,
+            "first_seen": "2026-06-05 18:46:48",
+            "credit_history": [
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.06
+                }
+            ],
+            "last_seen": "2026-06-05 18:46:48",
+            "in_current_scan": true
+        },
+        "AMD|295.0/290.0P|2026-06-12": {
+            "spread_key": "AMD|295.0/290.0P|2026-06-12",
+            "symbol": "AMD",
+            "expiration": "2026-06-12",
+            "spread": "295.0/290.0P",
+            "short_strike": 295.0,
+            "long_strike": 290.0,
+            "first_seen": "2026-06-05 18:46:48",
+            "credit_history": [
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.03
+                }
+            ],
+            "last_seen": "2026-06-05 18:46:48",
+            "in_current_scan": true
+        },
+        "ORCL|135.0/130.0P|2026-06-18": {
+            "spread_key": "ORCL|135.0/130.0P|2026-06-18",
+            "symbol": "ORCL",
+            "expiration": "2026-06-18",
+            "spread": "135.0/130.0P",
+            "short_strike": 135.0,
+            "long_strike": 130.0,
+            "first_seen": "2026-06-05 18:46:48",
+            "credit_history": [
+                {
+                    "time": "2026-06-05 18:46:48",
+                    "net_credit": 0.06
+                }
+            ],
+            "last_seen": "2026-06-05 18:46:48",
             "in_current_scan": true
         }
     }
