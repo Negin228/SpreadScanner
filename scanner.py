@@ -51,8 +51,10 @@ TREND_SLOW_MA      = 50
 MIN_PROB_PROFIT    = 85.0
 SLIPPAGE_ADJUST    = 0.02
 MIN_BID_PRICE      = 0.05
-MIN_OI             = 50
-MIN_VOLUME         = 50
+MIN_OI             = 100    # kellyold All Signals: MIN_OPEN_INTEREST = 100
+MIN_VOLUME         = 50     # kellyold All Signals: MIN_VOLUME = 50
+MIN_IV             = 0.20   # kellyold All Signals: iv < MIN_IV → skip
+MIN_NET_CREDIT     = 0.10   # kellyold All Signals: net_credit < MIN_NET_CREDIT → skip
 
 OUTPUT_FILE = "signals.json"
 EARNINGS_FILE = "earnings.json"   # written biweekly by fetch_earnings.py
@@ -351,6 +353,9 @@ def run_workstation_scan():
                 if s_bid > 0 and (s_ask / s_bid) > MAX_BID_ASK_RATIO: continue
                 if int(short_opt.get("open_interest", 0) or 0) < MIN_OI: continue
                 if int(short_opt.get("volume", 0) or 0) < MIN_VOLUME: continue
+                # kellyold All Signals: also check long leg OI and volume
+                if int(long_opt.get("open_interest", 0) or 0) < MIN_OI: continue
+                if int(long_opt.get("volume", 0) or 0) < MIN_VOLUME: continue
 
                 greeks_dict = short_opt.get("greeks", {})
                 if not greeks_dict or greeks_dict.get("delta") is None: continue
@@ -359,6 +364,9 @@ def run_workstation_scan():
                 theta = float(theta) if theta is not None else 0.0
                 iv = greeks_dict.get("mid_iv") or greeks_dict.get("smv_vol") or greeks_dict.get("ask_iv") or 0
                 iv = float(iv) if iv else 0.0
+
+                # kellyold All Signals: skip if IV is too low
+                if iv < MIN_IV: continue
 
                 # Assignment-risk control: short put must be far OTM by delta.
                 if abs(delta) > MAX_SHORT_DELTA: continue
@@ -373,7 +381,7 @@ def run_workstation_scan():
                 net_credit = (((s_bid + s_ask)/2) - ((l_bid + l_ask)/2)) * (1 - SLIPPAGE_ADJUST)
                 max_loss = SPREAD_WIDTH - net_credit
 
-                if net_credit <= 0.03: continue
+                if net_credit < MIN_NET_CREDIT: continue
 
                 metrics = calculate_velocity_metrics(
                     delta, theta, net_credit, max_loss, price, spy_price,
